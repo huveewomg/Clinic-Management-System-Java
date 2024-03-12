@@ -1,4 +1,4 @@
-# Java_Assignment
+# Java Assignment
 Java Programming Module for Final Semester 
 
 <h1> Starting with General Features </h1>
