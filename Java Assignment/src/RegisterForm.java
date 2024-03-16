@@ -24,6 +24,9 @@ import java.awt.Label;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 
 
 public class RegisterForm extends JFrame {
@@ -103,6 +106,7 @@ public class RegisterForm extends JFrame {
 		contentPane.add(Password);
 		
 		CpasswordTXT = new JPasswordField();
+		CpasswordTXT.setHorizontalAlignment(SwingConstants.TRAILING);
 		CpasswordTXT.setToolTipText("Password");
 		CpasswordTXT.setBounds(427, 394, 219, 28);
 		contentPane.add(CpasswordTXT);
@@ -153,6 +157,11 @@ public class RegisterForm extends JFrame {
 				String password = new String(PasswordTXT.getPassword());
 				String confirmPassword = new String(CpasswordTXT.getPassword());
 	
+				if (username.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
+					JOptionPane.showMessageDialog(null, "Please fill in all fields!");
+					return;
+				}
+				
 				if (!password.equals(confirmPassword)) {
 					JOptionPane.showMessageDialog(null, "Passwords do not match!");
 					return;

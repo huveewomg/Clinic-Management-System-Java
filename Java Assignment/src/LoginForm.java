@@ -136,6 +136,10 @@ public class LoginForm extends JFrame {
 				String password = null;
 				boolean found = false;
 
+				if (usernameInput.isEmpty() || passwordInput.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Empty Fields", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 				// Read each line and search for username and password
 				while (scanner.hasNextLine()) {
 					String line = scanner.nextLine();
