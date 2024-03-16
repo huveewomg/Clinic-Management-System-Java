@@ -168,7 +168,7 @@ public class LoginForm extends JFrame {
 				// Check if credentials were found and matched
 				if (found) {
 					// If successful, go to Homepage.java
-					Homepage homepage = new Homepage();
+					Homepage homepage = new Homepage(usernameInput);
 					homepage.setVisible(true);
 					dispose();
 				} else {
