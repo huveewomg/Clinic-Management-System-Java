@@ -27,6 +27,8 @@ import javax.swing.JOptionPane;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 
 public class RegisterForm extends JFrame {
@@ -106,7 +108,6 @@ public class RegisterForm extends JFrame {
 		contentPane.add(Password);
 		
 		CpasswordTXT = new JPasswordField();
-		CpasswordTXT.setHorizontalAlignment(SwingConstants.TRAILING);
 		CpasswordTXT.setToolTipText("Password");
 		CpasswordTXT.setBounds(427, 394, 219, 28);
 		contentPane.add(CpasswordTXT);
@@ -162,10 +163,26 @@ public class RegisterForm extends JFrame {
 					return;
 				}
 				
+				if (email.indexOf('@') == -1) {
+					JOptionPane.showMessageDialog(null, "Invalid email address!");
+					return;
+				}
+				
 				if (!password.equals(confirmPassword)) {
 					JOptionPane.showMessageDialog(null, "Passwords do not match!");
 					return;
 				}
+
+				BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+				String line;
+				while ((line = reader.readLine()) != null) {
+					if (line.contains("Username: " + username)) {
+						JOptionPane.showMessageDialog(null, "Username already exists!");
+						reader.close();
+						return;
+					}
+				}
+				reader.close();
 	
 				FileWriter writer = new FileWriter("credentials.txt", true);
 				writer.write("Username: " + username + "\n");

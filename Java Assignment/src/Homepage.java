@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -57,7 +58,7 @@ public class Homepage extends JFrame {
 				Logout();
 			}
 		});
-		LogoutBtn.setBounds(671, 34, 103, 23);
+		LogoutBtn.setBounds(628, 34, 146, 23);
 		contentPane.add(LogoutBtn);
 		
 		JButton AddBtn = new JButton("Add Item");
@@ -67,18 +68,32 @@ public class Homepage extends JFrame {
 		
 		JButton EditBtn = new JButton("Edit Item");
 		EditBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		EditBtn.setBounds(34, 292, 208, 70);
+		EditBtn.setBounds(425, 172, 208, 70);
 		contentPane.add(EditBtn);
 		
 		JButton btnDeleteItem = new JButton("Delete Item");
 		btnDeleteItem.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		btnDeleteItem.setBounds(34, 417, 208, 70);
+		btnDeleteItem.setBounds(34, 344, 208, 70);
 		contentPane.add(btnDeleteItem);
 		
 		JLabel lblNewLabel_1 = new JLabel("User UI");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblNewLabel_1.setBounds(297, 87, 87, 61);
 		contentPane.add(lblNewLabel_1);
+		
+		JButton ViewBtn = new JButton("View Item");
+		ViewBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		ViewBtn.setBounds(425, 344, 208, 70);
+		contentPane.add(ViewBtn);
+		
+		JButton ChangePassBTN = new JButton("Change Password");
+		ChangePassBTN.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ChangePassForm();
+			}
+		});
+		ChangePassBTN.setBounds(628, 68, 146, 23);
+		contentPane.add(ChangePassBTN);
 	}
 	
 		public void Logout() {
@@ -87,5 +102,11 @@ public class Homepage extends JFrame {
 			dispose();
 			JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
 
+		}
+		
+		public void ChangePassForm() {
+			ChangePass ChangePass = new ChangePass(username);
+			ChangePass.setVisible(true);
+			dispose();
 		}
 }
