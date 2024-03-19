@@ -30,7 +30,6 @@ import javax.swing.border.TitledBorder;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-
 public class RegisterForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -68,54 +67,54 @@ public class RegisterForm extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.LIGHT_GRAY);
 		panel.setBounds(0, 0, 279, 656);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(RegisterForm.class.getResource("/images/Capture.PNG")));
 		lblNewLabel.setBounds(0, 0, 279, 421);
 		panel.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Register Now !");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 48));
 		lblNewLabel_1.setBounds(371, 9, 319, 112);
 		contentPane.add(lblNewLabel_1);
-		
+
 		JLabel uname = new JLabel("USERNAME");
 		uname.setBounds(428, 132, 69, 14);
 		contentPane.add(uname);
-		
+
 		UsernameTXT = new JTextField();
 		UsernameTXT.setColumns(10);
 		UsernameTXT.setBounds(427, 157, 219, 28);
 		contentPane.add(UsernameTXT);
-		
+
 		JLabel Email = new JLabel("Email");
 		Email.setBounds(428, 210, 69, 14);
 		contentPane.add(Email);
-		
+
 		PasswordTXT = new JPasswordField();
 		PasswordTXT.setToolTipText("Password");
 		PasswordTXT.setBounds(428, 317, 219, 28);
 		contentPane.add(PasswordTXT);
-		
+
 		JLabel Password = new JLabel("PASSWORD");
 		Password.setBounds(429, 292, 69, 14);
 		contentPane.add(Password);
-		
+
 		CpasswordTXT = new JPasswordField();
 		CpasswordTXT.setToolTipText("Password");
 		CpasswordTXT.setBounds(427, 394, 219, 28);
 		contentPane.add(CpasswordTXT);
-		
+
 		JLabel Cpassword = new JLabel("CONFIRM PASSWORD");
 		Cpassword.setBounds(428, 369, 156, 14);
 		contentPane.add(Cpassword);
-		
+
 		Button RegisterBtn = new Button("SIGN UP");
 		RegisterBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,13 +125,13 @@ public class RegisterForm extends JFrame {
 		RegisterBtn.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
 		RegisterBtn.setBounds(359, 446, 386, 48);
 		contentPane.add(RegisterBtn);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("ALREADY HAVE AN ACCOUNT ?");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setForeground(Color.RED);
 		lblNewLabel_1_1.setBounds(359, 500, 200, 38);
 		contentPane.add(lblNewLabel_1_1);
-		
+
 		Button ToLoginBtn = new Button("PROCEED TO LOGIN");
 		ToLoginBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -143,68 +142,68 @@ public class RegisterForm extends JFrame {
 		ToLoginBtn.setBackground(Color.BLUE);
 		ToLoginBtn.setBounds(565, 500, 180, 38);
 		contentPane.add(ToLoginBtn);
-		
+
 		EmailTXT = new JTextField();
 		EmailTXT.setColumns(10);
 		EmailTXT.setBounds(428, 235, 219, 28);
 		contentPane.add(EmailTXT);
-		
-		
-	}
-		public void storeCredentials() {
-			try {
-				String username = UsernameTXT.getText();
-				String email = EmailTXT.getText();
-				String password = new String(PasswordTXT.getPassword());
-				String confirmPassword = new String(CpasswordTXT.getPassword());
-	
-				if (username.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
-					JOptionPane.showMessageDialog(null, "Please fill in all fields!");
-					return;
-				}
-				
-				if (email.indexOf('@') == -1) {
-					JOptionPane.showMessageDialog(null, "Invalid email address!");
-					return;
-				}
-				
-				if (!password.equals(confirmPassword)) {
-					JOptionPane.showMessageDialog(null, "Passwords do not match!");
-					return;
-				}
 
-				BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
-				String line;
-				while ((line = reader.readLine()) != null) {
-					if (line.contains("Username: " + username)) {
-						JOptionPane.showMessageDialog(null, "Username already exists!");
-						reader.close();
-						return;
-					}
-				}
-				reader.close();
-	
-				FileWriter writer = new FileWriter("credentials.txt", true);
-				writer.write("Username: " + username + "\n");
-				writer.write("Email: " + email + "\n");
-				writer.write("Password: " + password + "\n");
-				writer.write("\n");
-	
-				writer.close();
-				JOptionPane.showMessageDialog(null, "Account created successfully!");
-				// Navigate to LoginForm
-				LoginForm loginForm = new LoginForm();
-				loginForm.setVisible(true);
-				dispose(); // Close the current frame
-				
-			} catch (IOException e) {
-				e.printStackTrace();
+	}
+
+	public void storeCredentials() {
+		try {
+			String username = UsernameTXT.getText();
+			String email = EmailTXT.getText();
+			String password = new String(PasswordTXT.getPassword());
+			String confirmPassword = new String(CpasswordTXT.getPassword());
+
+			if (username.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
+				JOptionPane.showMessageDialog(null, "Please fill in all fields!");
+				return;
 			}
+
+			if (email.indexOf('@') == -1) {
+				JOptionPane.showMessageDialog(null, "Invalid email address!");
+				return;
+			}
+
+			if (!password.equals(confirmPassword)) {
+				JOptionPane.showMessageDialog(null, "Passwords do not match!");
+				return;
+			}
+
+			BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				if (line.contains("Username: " + username)) {
+					JOptionPane.showMessageDialog(null, "Username already exists!");
+					reader.close();
+					return;
+				}
+			}
+			reader.close();
+
+			FileWriter writer = new FileWriter("credentials.txt", true);
+			writer.write("Username: " + username + "\n");
+			writer.write("Email: " + email + "\n");
+			writer.write("Password: " + password + "\n");
+			writer.write("\n");
+
+			writer.close();
+			JOptionPane.showMessageDialog(null, "Account created successfully!");
+			// Navigate to LoginForm
+			LoginForm loginForm = new LoginForm();
+			loginForm.setVisible(true);
+			dispose(); // Close the current frame
+
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		
-		public void LoginForm() {
-			LoginForm LoginForm = new LoginForm();
-			LoginForm.setVisible(true);
-			dispose(); 
-		}
+	}
+
+	public void LoginForm() {
+		LoginForm LoginForm = new LoginForm();
+		LoginForm.setVisible(true);
+		dispose();
+	}
 }

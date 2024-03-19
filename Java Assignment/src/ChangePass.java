@@ -1,6 +1,4 @@
 import java.awt.EventQueue;
-
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +8,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 public class ChangePass extends JFrame {
 
@@ -47,32 +51,32 @@ public class ChangePass extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel CurrentPassLabel = new JLabel("Current Password");
 		CurrentPassLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		CurrentPassLabel.setBounds(27, 239, 277, 42);
 		contentPane.add(CurrentPassLabel);
-		
+
 		JLabel PageTitle = new JLabel("Change Password");
 		PageTitle.setBounds(212, 11, 359, 56);
 		PageTitle.setFont(new Font("Tahoma", Font.PLAIN, 46));
 		contentPane.add(PageTitle);
-		
+
 		JLabel NewPassLabel = new JLabel("New Password");
 		NewPassLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		NewPassLabel.setBounds(27, 364, 277, 42);
 		contentPane.add(NewPassLabel);
-		
+
 		OldPassBox = new JPasswordField();
 		OldPassBox.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		OldPassBox.setBounds(317, 251, 359, 34);
 		contentPane.add(OldPassBox);
-		
+
 		NewPassBox = new JPasswordField();
 		NewPassBox.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		NewPassBox.setBounds(314, 372, 359, 34);
 		contentPane.add(NewPassBox);
-		
+
 		JButton btnNewButton = new JButton("Cancel");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -82,54 +86,77 @@ public class ChangePass extends JFrame {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(154, 480, 144, 70);
 		contentPane.add(btnNewButton);
-		
+
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				ChangePass();
+				 ChangePass();
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnSubmit.setBounds(487, 480, 144, 70);
 		contentPane.add(btnSubmit);
 	}
-	
-		public void Homepage() {
-			Homepage Homepage = new Homepage(username);
-			Homepage.setVisible(true);
-			dispose();	
-		}
-		
-//		change pass function
-		public void ChangePass() {
-			try {
-				String username = this.username;
-				String oldPass = OldPassBox.getText();
-				String newPass = NewPassBox.getText();
 
-				if (oldPass.equals("") || newPass.equals("")) {
-					System.out.println("Please fill in all fields");
-				} else {
-					// check if old password is correct
-					if (oldPass.equals("oldPass")) {
-						// update password
-						System.out.println("Password updated");
-					} else {
-						System.out.println("Incorrect password");
-					}
-				}
-				
+	public void Homepage() {
+		Homepage Homepage = new Homepage(username);
+		Homepage.setVisible(true);
+		dispose();
+	}
+
+	// change pass function
+	public void ChangePass() {
+		try {
+			String username = this.username;
+			String oldPass = OldPassBox.getText();
+			String newPass = NewPassBox.getText();
+
+			if (oldPass.equals("") || newPass.equals("")) {
+				JOptionPane.showMessageDialog(null, "Please fill in all fields");
+			} else {
 				BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
 				String line;
+				boolean usernameFound = false;
+				boolean oldPassCorrect = false;
+				StringBuilder fileContent = new StringBuilder();
 				while ((line = reader.readLine()) != null) {
-					if (line.contains("Username: " + )) {
-						JOptionPane.showMessageDialog(null, "Username already exists!");
-						reader.close();
-						return;
+					if (line.contains("Username: " + username)) {
+						usernameFound = true;
+						fileContent.append(line).append(System.lineSeparator());
+					} else if (line.contains("Password: " + oldPass)) {
+						oldPassCorrect = true;
+						fileContent.append("Password: ").append(newPass).append(System.lineSeparator());
+					} else {
+						fileContent.append(line).append(System.lineSeparator());
 					}
 				}
 				reader.close();
+
+				if (!usernameFound) {
+					JOptionPane.showMessageDialog(null, "Username not found! Please Contact Admin");
+					return;
+				}
+
+				if (!oldPassCorrect) {
+					JOptionPane.showMessageDialog(null, "Old password is incorrect!");
+					return;
+				}
+
+				if (newPass.equals(OldPassBox.getText())) {
+					JOptionPane.showMessageDialog(null, "New password can't be same as Old Password");
+					return;
+				}
+
+				// Write the updated content back to the file
+				BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
+				writer.write(fileContent.toString());
+				writer.close();
+
+				JOptionPane.showMessageDialog(null, "Password changed successfully!");
+				Homepage(); // Jump back to the homepage
 			}
-			
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
 }
