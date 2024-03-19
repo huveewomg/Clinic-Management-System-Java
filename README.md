@@ -12,3 +12,6 @@ Setup
 - Eclipse
 - Window Builder
 - Github Personal Access Tokens
+
+Current Progress:
+Registration, Homepage, Change Password 
