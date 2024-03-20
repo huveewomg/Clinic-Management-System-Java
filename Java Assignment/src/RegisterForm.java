@@ -156,6 +156,7 @@ public class RegisterForm extends JFrame {
 			String email = EmailTXT.getText();
 			String password = new String(PasswordTXT.getPassword());
 			String confirmPassword = new String(CpasswordTXT.getPassword());
+			String role = "user";
 
 			if (username.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
 				JOptionPane.showMessageDialog(null, "Please fill in all fields!");
@@ -187,6 +188,7 @@ public class RegisterForm extends JFrame {
 			writer.write("Username: " + username + "\n");
 			writer.write("Email: " + email + "\n");
 			writer.write("Password: " + password + "\n");
+			writer.write("Role: " + role + "\n");
 			writer.write("\n");
 
 			writer.close();

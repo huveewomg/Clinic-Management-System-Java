@@ -119,12 +119,51 @@ public class LoginForm extends JFrame {
 		ToRegisterBtn.setBounds(578, 495, 180, 38);
 		contentPane.add(ToRegisterBtn);
 	}
+		
+		// Functions starts here
 		public void RegisterForm() {
 			RegisterForm RegisterForm = new RegisterForm();
 			RegisterForm.setVisible(true);
 			dispose(); 
 		}
-		
+		public String getRoleFromCredentials(String username) {
+			String filepath = "credentials.txt";
+			try {
+				File file = new File(filepath);
+				Scanner scanner = new Scanner(file);
+				String role = null;
+
+				while (scanner.hasNextLine()) {
+					String line = scanner.nextLine();
+					if (line.startsWith("Username:") && line.substring(10).trim().equals(username)) {
+						while (scanner.hasNextLine()) {
+							line = scanner.nextLine();
+							if (line.startsWith("Role:")) {
+								role = line.substring(6).trim();
+								System.out.println(role);
+								if (role != null) {
+									if (role.equalsIgnoreCase("admin")) {
+										return "admin";
+									} else if (role.equalsIgnoreCase("user")) {
+										return "user";
+									} else {
+										return "invalid";
+									}
+								}
+								break;
+							}
+						}
+					}
+				}
+
+				scanner.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		// Check Login Credentials
 		public void checkCredentials() {
 			String filepath = "credentials.txt";
 			String usernameInput = UsernameTXT.getText();
@@ -166,12 +205,21 @@ public class LoginForm extends JFrame {
 
 				scanner.close();
 
-				// Check if credentials were found and matched
 				if (found) {
-					// If successful, go to Homepage.java
-					Homepage homepage = new Homepage(usernameInput);
-					homepage.setVisible(true);
-					dispose();
+					// Check the role
+					String role = getRoleFromCredentials(usernameInput);
+					if (role.equals("user")) {
+						Homepage homepage = new Homepage(usernameInput);
+						homepage.setVisible(true);
+						dispose();
+					} else if (role.equals("admin")) {
+						System.out.println(usernameInput);
+						AdminHomepage AdminHomepage = new AdminHomepage(usernameInput);
+						AdminHomepage.setVisible(true);
+						dispose();
+					} else {
+						JOptionPane.showMessageDialog(null, "Invalid role.", "Invalid Role", JOptionPane.ERROR_MESSAGE);
+					}
 				} else {
 					// If failed, display a popup message
 					JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
@@ -180,5 +228,5 @@ public class LoginForm extends JFrame {
 				e.printStackTrace();
 			}
 		}
-
 }
+
