@@ -173,6 +173,11 @@ public class RegisterForm extends JFrame {
 				return;
 			}
 
+			if (username.contains("admin")) {
+				JOptionPane.showMessageDialog(null, "Invalid username! Please choose another username.");
+				return;
+			}
+
 			BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
 			String line;
 			while ((line = reader.readLine()) != null) {

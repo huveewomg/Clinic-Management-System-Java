@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -47,7 +49,7 @@ public class AdminHomepage extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Welcome to Admin Page: "+ username);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 31));
-		lblNewLabel.setBounds(10, 25, 541, 85);
+		lblNewLabel.setBounds(10, 11, 541, 85);
 		contentPane.add(lblNewLabel);
 		
 		JButton ChangePassBTN = new JButton("Change Password");
@@ -58,11 +60,28 @@ public class AdminHomepage extends JFrame {
 		});
 		ChangePassBTN.setBounds(628, 75, 146, 23);
 		contentPane.add(ChangePassBTN);
+		
+		JButton LogoutBtn = new JButton("Logout");
+		LogoutBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Logout();
+			}
+		});
+		LogoutBtn.setBounds(628, 41, 146, 23);
+		contentPane.add(LogoutBtn);
 	}
 	
 	public void ChangePassForm() {
 		ChangePass ChangePass = new ChangePass(username);
 		ChangePass.setVisible(true);
 		dispose();
+	}	
+	
+	public void Logout() {
+		LoginForm loginForm = new LoginForm();
+		loginForm.setVisible(true);
+		dispose();
+		JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
+
 	}
 }

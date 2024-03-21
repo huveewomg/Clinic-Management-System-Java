@@ -97,11 +97,19 @@ public class ChangePass extends JFrame {
 		btnSubmit.setBounds(487, 480, 144, 70);
 		contentPane.add(btnSubmit);
 	}
-
+	// redirect to correct page based on username 
 	public void Homepage() {
-		Homepage Homepage = new Homepage(username);
-		Homepage.setVisible(true);
-		dispose();
+		if (username.contains("admin")) {
+			AdminHomepage AdminHomepage = new AdminHomepage(username);
+			AdminHomepage.setVisible(true);
+			dispose();
+			return;
+		}
+		else {
+			Homepage Homepage = new Homepage(username);
+			Homepage.setVisible(true);
+			dispose();
+		}
 	}
 
 	// change pass function
@@ -131,7 +139,7 @@ public class ChangePass extends JFrame {
 					}
 				}
 				reader.close();
-
+				// cant occur but just in case for debug purposes
 				if (!usernameFound) {
 					JOptionPane.showMessageDialog(null, "Username not found! Please Contact Admin");
 					return;
