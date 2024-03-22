@@ -52,14 +52,14 @@ public class Homepage extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 51));
 		contentPane.add(lblNewLabel);
 		
-		JButton LogoutBtn = new JButton("Logout");
-		LogoutBtn.addActionListener(new ActionListener() {
+		JButton LogOutBtn = new JButton("Logout");
+		LogOutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Logout();
 			}
 		});
-		LogoutBtn.setBounds(628, 34, 146, 23);
-		contentPane.add(LogoutBtn);
+		LogOutBtn.setBounds(628, 34, 146, 23);
+		contentPane.add(LogOutBtn);
 		
 		JButton AddBtn = new JButton("Add Item");
 		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -86,14 +86,14 @@ public class Homepage extends JFrame {
 		ViewBtn.setBounds(425, 344, 208, 70);
 		contentPane.add(ViewBtn);
 		
-		JButton ChangePassBTN = new JButton("Change Password");
-		ChangePassBTN.addActionListener(new ActionListener() {
+		JButton SettingBtn = new JButton("Setting");
+		SettingBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChangePassForm();
+				SettingForm();
 			}
 		});
-		ChangePassBTN.setBounds(628, 68, 146, 23);
-		contentPane.add(ChangePassBTN);
+		SettingBtn.setBounds(628, 68, 146, 23);
+		contentPane.add(SettingBtn);
 	}
 	
 		public void Logout() {
@@ -104,9 +104,9 @@ public class Homepage extends JFrame {
 
 		}
 		
-		public void ChangePassForm() {
-			ChangePass ChangePass = new ChangePass(username);
-			ChangePass.setVisible(true);
+		public void SettingForm() {
+			SettingPage SettingPage = new SettingPage(username);
+			SettingPage.setVisible(true);
 			dispose();
 		}
 }

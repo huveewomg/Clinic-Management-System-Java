@@ -52,28 +52,43 @@ public class AdminHomepage extends JFrame {
 		lblNewLabel.setBounds(10, 11, 541, 85);
 		contentPane.add(lblNewLabel);
 		
-		JButton ChangePassBTN = new JButton("Change Password");
-		ChangePassBTN.addActionListener(new ActionListener() {
+		JButton SettingBtn = new JButton("Setting");
+		SettingBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChangePassForm();
+				SettingForm();
 			}
 		});
-		ChangePassBTN.setBounds(628, 75, 146, 23);
-		contentPane.add(ChangePassBTN);
+		SettingBtn.setBounds(628, 75, 146, 23);
+		contentPane.add(SettingBtn);
 		
-		JButton LogoutBtn = new JButton("Logout");
-		LogoutBtn.addActionListener(new ActionListener() {
+		JButton LogOutBtn = new JButton("Logout");
+		LogOutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Logout();
 			}
 		});
-		LogoutBtn.setBounds(628, 41, 146, 23);
-		contentPane.add(LogoutBtn);
+		LogOutBtn.setBounds(628, 41, 146, 23);
+		contentPane.add(LogOutBtn);
+		
+		JButton ReportBtn = new JButton("View Report");
+		ReportBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		ReportBtn.setBounds(39, 154, 208, 70);
+		contentPane.add(ReportBtn);
+		
+		JButton AddBtn = new JButton("Edit Staff (add or remove)");
+		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		AddBtn.setBounds(39, 356, 369, 70);
+		contentPane.add(AddBtn);
+		
+		JLabel lblNewLabel_1 = new JLabel("Admin UI");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNewLabel_1.setBounds(289, 79, 87, 61);
+		contentPane.add(lblNewLabel_1);
 	}
 	
-	public void ChangePassForm() {
-		ChangePass ChangePass = new ChangePass(username);
-		ChangePass.setVisible(true);
+	public void SettingForm() {
+		SettingPage SettingPage = new SettingPage(username);
+		SettingPage.setVisible(true);
 		dispose();
 	}	
 	
