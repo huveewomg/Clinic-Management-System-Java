@@ -58,7 +58,7 @@ public class SettingPage extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Setting Page");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 43));
-		lblNewLabel.setBounds(249, 11, 284, 113);
+		lblNewLabel.setBounds(259, 11, 284, 113);
 		contentPane.add(lblNewLabel);
 		
 		JButton ChangeBtn = new JButton("Change Password");
@@ -68,7 +68,7 @@ public class SettingPage extends JFrame {
 			}
 		});
 		ChangeBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		ChangeBtn.setBounds(224, 167, 309, 64);
+		ChangeBtn.setBounds(224, 184, 309, 64);
 		contentPane.add(ChangeBtn);
 		
 		JButton DelBtn = new JButton("Delete Account");
@@ -78,8 +78,17 @@ public class SettingPage extends JFrame {
 			}
 		});
 		DelBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		DelBtn.setBounds(224, 396, 309, 64);
+		DelBtn.setBounds(224, 362, 309, 64);
 		contentPane.add(DelBtn);
+		
+		JButton HomepageBtn = new JButton("Return To Homepage");
+		HomepageBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Homepage();
+			}
+		});
+		HomepageBtn.setBounds(564, 69, 189, 23);
+		contentPane.add(HomepageBtn);
 	}
 	
 		public void ChangePassForm() {
@@ -128,5 +137,19 @@ public class SettingPage extends JFrame {
 				JOptionPane.showMessageDialog(null, "Account deletion cancelled.");
 			}
 		}
-
+//		return to homepage based on user roles
+		public void Homepage() {
+			if (username.contains("admin")) {
+				AdminHomepage AdminHomepage = new AdminHomepage(username);
+				AdminHomepage.setVisible(true);
+				dispose();
+				return;
+			}
+			else {
+				Homepage Homepage = new Homepage(username);
+				Homepage.setVisible(true);
+				dispose();
+			}
+		}
+		
 }
