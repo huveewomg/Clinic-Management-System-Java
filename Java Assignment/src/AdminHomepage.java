@@ -76,6 +76,11 @@ public class AdminHomepage extends JFrame {
 		contentPane.add(ReportBtn);
 		
 		JButton AddBtn = new JButton("Edit Staff (add or remove)");
+		AddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EditStaff();
+			}
+		});
 		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		AddBtn.setBounds(39, 356, 369, 70);
 		contentPane.add(AddBtn);
@@ -98,5 +103,11 @@ public class AdminHomepage extends JFrame {
 		dispose();
 		JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
 
+	}
+	
+	public void EditStaff() {
+		EditStaff editstaff = new EditStaff(username);
+		editstaff.setVisible(true);
+		dispose();
 	}
 }

@@ -58,7 +58,7 @@ public class SettingPage extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Setting Page");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 43));
-		lblNewLabel.setBounds(259, 11, 284, 113);
+		lblNewLabel.setBounds(249, 11, 284, 113);
 		contentPane.add(lblNewLabel);
 		
 		JButton ChangeBtn = new JButton("Change Password");
@@ -68,7 +68,7 @@ public class SettingPage extends JFrame {
 			}
 		});
 		ChangeBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		ChangeBtn.setBounds(224, 184, 309, 64);
+		ChangeBtn.setBounds(224, 167, 309, 64);
 		contentPane.add(ChangeBtn);
 		
 		JButton DelBtn = new JButton("Delete Account");
@@ -78,7 +78,7 @@ public class SettingPage extends JFrame {
 			}
 		});
 		DelBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		DelBtn.setBounds(224, 362, 309, 64);
+		DelBtn.setBounds(224, 396, 309, 64);
 		contentPane.add(DelBtn);
 		
 		JButton HomepageBtn = new JButton("Return To Homepage");
@@ -105,7 +105,7 @@ public class SettingPage extends JFrame {
 					String line;
 					boolean usernameFound = false;
 					StringBuilder fileContent = new StringBuilder();
-		            while ((line = reader.readLine()) != null) {
+					while ((line = reader.readLine()) != null) {
 		                String[] data = line.split(":");
 		                if (data[0].trim().equals("Username") && data[1].trim().equals(username)) {
 		                    // Skip lines associated with the username to be deleted
@@ -113,11 +113,11 @@ public class SettingPage extends JFrame {
 		                        reader.readLine();
 		                    }
 		                    usernameFound = true;
-		                } else {
-		                    fileContent.append(line).append("\n");
-		                }
-		            }
-		            reader.close();
+						} else {
+							fileContent.append(line).append("\n");
+						}
+					}
+					reader.close();
 					// debug purposes
 					if (!usernameFound) {
 						JOptionPane.showMessageDialog(null, "Account not found.");
@@ -151,5 +151,5 @@ public class SettingPage extends JFrame {
 				dispose();
 			}
 		}
-		
+
 }

@@ -140,6 +140,7 @@ public class LoginForm extends JFrame {
 							line = scanner.nextLine();
 							if (line.startsWith("Role:")) {
 								role = line.substring(6).trim();
+//								debug purposes v
 								System.out.println(role);
 								if (role != null) {
 									if (role.equalsIgnoreCase("admin")) {
@@ -213,7 +214,6 @@ public class LoginForm extends JFrame {
 						homepage.setVisible(true);
 						dispose();
 					} else if (role.equals("admin")) {
-						System.out.println(usernameInput);
 						AdminHomepage AdminHomepage = new AdminHomepage(usernameInput);
 						AdminHomepage.setVisible(true);
 						dispose();
