@@ -121,7 +121,7 @@ public class EditStaff extends JFrame {
         contentPane.add(DeleteStaffBtn);
         
         RolesBox = new JComboBox<>();
-        RolesBox.setModel(new DefaultComboBoxModel<>(new String[] {"Receptionist", "Test Role 1 ", "Test Role 2"}));
+        RolesBox.setModel(new DefaultComboBoxModel<>(new String[] {"receptionist", "Test Role 1 ", "Test Role 2"}));
         RolesBox.setBounds(494, 152, 201, 22);
         contentPane.add(RolesBox);
     }
@@ -130,6 +130,10 @@ public class EditStaff extends JFrame {
         AdminHomepage AdminHomepage = new AdminHomepage(username);
         AdminHomepage.setVisible(true);
         dispose();
+    }
+    
+    public void DeleteStaff() {
+        //WIP
     }
     
     public void AddStaff() {

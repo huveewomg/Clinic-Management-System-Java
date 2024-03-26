@@ -121,7 +121,7 @@ public class SettingPage extends JFrame {
 					// debug purposes
 					if (!usernameFound) {
 						JOptionPane.showMessageDialog(null, "Account not found.");
-					} else {
+					} else {	
 						BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
 						writer.write(fileContent.toString());
 						writer.close();

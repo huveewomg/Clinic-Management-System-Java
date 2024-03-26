@@ -147,6 +147,8 @@ public class LoginForm extends JFrame {
 										return "admin";
 									} else if (role.equalsIgnoreCase("user")) {
 										return "user";
+									} else if (role.equalsIgnoreCase("receptionist")) {
+										return "receptionist";
 									} else {
 										return "invalid";
 									}
@@ -217,7 +219,11 @@ public class LoginForm extends JFrame {
 						AdminHomepage AdminHomepage = new AdminHomepage(usernameInput);
 						AdminHomepage.setVisible(true);
 						dispose();
-					} else {
+					}else if (role.equals("receptionist")) {
+						RecepHomepage RecepHomepage = new RecepHomepage(usernameInput);
+						RecepHomepage.setVisible(true);
+						dispose();
+					}else {
 						JOptionPane.showMessageDialog(null, "Invalid role.", "Invalid Role", JOptionPane.ERROR_MESSAGE);
 					}
 				} else {
