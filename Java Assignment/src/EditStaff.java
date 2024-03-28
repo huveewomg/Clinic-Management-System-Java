@@ -8,6 +8,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -113,7 +114,7 @@ public class EditStaff extends JFrame {
         JButton DeleteStaffBtn = new JButton("Delete Staff WIP");
         DeleteStaffBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // DeleteStaff();
+                DeleteStaff();
             }
         });
         DeleteStaffBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -133,7 +134,41 @@ public class EditStaff extends JFrame {
     }
     
     public void DeleteStaff() {
-        //WIP
+        int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete your account?", "Confirmation", JOptionPane.YES_NO_OPTION);
+        if (confirm == JOptionPane.YES_OPTION) {
+            try {
+                BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+                String line;
+                String username = UsernameTXT.getText();
+                boolean usernameFound = false;
+                StringBuilder fileContent = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    String[] data = line.split(":");
+                    if (data[0].trim().equals("Username") && data[1].trim().equals(username)) {
+                        for (int i = 0; i < 3; i++) {
+                            reader.readLine();
+                        }
+                        usernameFound = true;
+                    } else {
+                        fileContent.append(line).append("\n");
+                    }
+                }
+                reader.close();
+                // debug purposes
+                if (!usernameFound) {
+                    JOptionPane.showMessageDialog(null, "Account not found.");
+                } else {	
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
+                    writer.write(fileContent.toString());
+                    writer.close();
+                    JOptionPane.showMessageDialog(null, "Staff Account deleted successfully.");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Account deletion cancelled.");
+        }
     }
     
     public void AddStaff() {
