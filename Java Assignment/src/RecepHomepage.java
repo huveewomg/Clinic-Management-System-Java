@@ -70,6 +70,16 @@ public class RecepHomepage extends JFrame {
 		});
 		LogOutBtn.setBounds(605, 31, 146, 23);
 		contentPane.add(LogOutBtn);
+		
+		JButton btnAddItemTo = new JButton("Add Item To Stock");
+		btnAddItemTo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddItem();
+			}
+		});
+		btnAddItemTo.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		btnAddItemTo.setBounds(47, 161, 335, 70);
+		contentPane.add(btnAddItemTo);
 	}
 	
 		public void Logout() {
@@ -85,5 +95,10 @@ public class RecepHomepage extends JFrame {
 			SettingPage.setVisible(true);
 			dispose();
 		}
-	
+		
+		public void AddItem() {
+			ItemPage ItemPage = new ItemPage();
+			ItemPage.setVisible(true);
+			dispose();
+		}
 }
