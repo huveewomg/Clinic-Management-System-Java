@@ -97,7 +97,7 @@ public class RecepHomepage extends JFrame {
 		}
 		
 		public void AddItem() {
-			ItemPage ItemPage = new ItemPage();
+			ItemPage ItemPage = new ItemPage(username);
 			ItemPage.setVisible(true);
 			dispose();
 		}

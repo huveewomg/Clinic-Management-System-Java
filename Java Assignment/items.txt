@@ -1,0 +1,12 @@
+ItemID: ID001
+ItemName: Banana
+ItemQuantity: 20
+
+ItemID: ID002
+ItemName: Bread
+ItemQuantity: 20
+
+ItemID: ID003
+ItemName: Paper
+ItemQuantity: 30
+
