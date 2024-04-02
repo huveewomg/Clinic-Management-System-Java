@@ -25,6 +25,7 @@ public class ItemPage extends JFrame {
 	private JPanel contentPane;
 	private JTextField ItemNameTXT;
 	private JTextField ItemQuantityTXT;
+	private JTextField PriceTXT;
 
 	/**
 	 * Launch the application.
@@ -67,7 +68,7 @@ public class ItemPage extends JFrame {
 		
 		JLabel lblItemQuantity = new JLabel("Item Quantity: ");
 		lblItemQuantity.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblItemQuantity.setBounds(69, 337, 187, 37);
+		lblItemQuantity.setBounds(69, 266, 187, 37);
 		contentPane.add(lblItemQuantity);
 		
 		ItemNameTXT = new JTextField();
@@ -77,7 +78,7 @@ public class ItemPage extends JFrame {
 		
 		ItemQuantityTXT = new JTextField();
 		ItemQuantityTXT.setColumns(10);
-		ItemQuantityTXT.setBounds(316, 344, 308, 34);
+		ItemQuantityTXT.setBounds(316, 273, 308, 34);
 		contentPane.add(ItemQuantityTXT);
 		
 		JButton backBtn = new JButton("Cancel");
@@ -99,6 +100,16 @@ public class ItemPage extends JFrame {
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnSubmit.setBounds(480, 480, 144, 70);
 		contentPane.add(btnSubmit);
+		
+		JLabel lblItemPrice = new JLabel("Item Price");
+		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblItemPrice.setBounds(69, 354, 187, 37);
+		contentPane.add(lblItemPrice);
+		
+		PriceTXT = new JTextField();
+		PriceTXT.setColumns(10);
+		PriceTXT.setBounds(316, 354, 308, 34);
+		contentPane.add(PriceTXT);
 	}
 	
 		public void Homepage() {
@@ -124,14 +135,15 @@ public class ItemPage extends JFrame {
 		public void AddItem() {
 			String ItemName = ItemNameTXT.getText();
 			String ItemQuantity = ItemQuantityTXT.getText();
+			String Price = PriceTXT.getText();
 
-			if (ItemName.equals("") || ItemQuantity.equals("")) {
+			if (ItemName.equals("") || ItemQuantity.equals("")|| Price.equals("")) {
 				JOptionPane.showMessageDialog(null, "Please fill in all fields!");
 				return;
 			}
 
-			if (!ItemQuantity.matches("[0-9]+")) {
-				JOptionPane.showMessageDialog(null, "Please enter a valid quantity!");
+			if (!ItemQuantity.matches("[0-9]+") || !Price.matches("[0-9]+")) {
+				JOptionPane.showMessageDialog(null, "Please enter a valid number!");
 				return;
 			}
 
@@ -162,6 +174,7 @@ public class ItemPage extends JFrame {
 				writer.write("ItemID: " + newItemId + "\n");
 				writer.write("ItemName: " + ItemName + "\n");
 				writer.write("ItemQuantity: " + ItemQuantity + "\n");
+				writer.write("Item Price: " + Price + "\n");
 				writer.write("\n");
 				writer.close();
 				JOptionPane.showMessageDialog(null, "Item added successfully!");

@@ -20,7 +20,6 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class LoginForm extends JFrame {
 
