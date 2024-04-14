@@ -62,6 +62,11 @@ public class Homepage extends JFrame {
 		contentPane.add(LogOutBtn);
 		
 		JButton AddBtn = new JButton("Add Item");
+		AddBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AddItem();
+			}
+		});
 		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		AddBtn.setBounds(34, 172, 208, 70);
 		contentPane.add(AddBtn);
@@ -107,6 +112,12 @@ public class Homepage extends JFrame {
 		public void SettingForm() {
 			SettingPage SettingPage = new SettingPage(username);
 			SettingPage.setVisible(true);
+			dispose();
+		}
+		
+		public void AddItem() {
+			AddItem AddItem = new AddItem(username);
+			AddItem.setVisible(true);
 			dispose();
 		}
 }
