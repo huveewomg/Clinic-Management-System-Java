@@ -18,6 +18,6 @@ Registration, Homepage, Change Password
 
 
 # Setup Configuration for JavaFX
-Reference:
-https://stackoverflow.com/questions/74758570/cant-create-new-fxml-file-in-eclipse
+Reference:<br>
+https://stackoverflow.com/questions/74758570/cant-create-new-fxml-file-in-eclipse <br>
 https://www.youtube.com/watch?v=Dbb69NiQHso
