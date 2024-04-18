@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+   <children>
+      <SplitPane layoutY="-9.0" prefHeight="609.0" prefWidth="294.0" />
+      <Button fx:id="registerNowBtn" layoutX="341.0" layoutY="440.0" mnemonicParsing="false" onAction="#register" prefHeight="58.0" prefWidth="390.0" text="Register Now">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
+      <Button fx:id="loginBtn" layoutX="572.0" layoutY="508.0" mnemonicParsing="false" onAction="#loginForm" prefHeight="58.0" prefWidth="158.0" text="Login">
+         <font>
+            <Font size="22.0" />
+         </font></Button>
+      <Label alignment="CENTER_RIGHT" layoutX="339.0" layoutY="520.0" prefHeight="34.0" prefWidth="198.0" text="Already Have An Account ?">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="366.0" layoutY="45.0" prefHeight="58.0" prefWidth="340.0" text="Register Now">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="393.0" layoutY="144.0" prefHeight="34.0" prefWidth="56.0" text="Username:">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </Label>
+      <Label alignment="BOTTOM_LEFT" layoutX="393.0" layoutY="205.0" prefHeight="34.0" prefWidth="56.0" text="Email:">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </Label>
+      <TextField fx:id="username" layoutX="393.0" layoutY="179.0" prefHeight="26.0" prefWidth="254.0" promptText="jasonTan123" />
+      <TextField fx:id="mail" layoutX="394.0" layoutY="239.0" prefHeight="26.0" prefWidth="254.0" promptText="xxx@mail.com" />
+      <Label alignment="BOTTOM_LEFT" layoutX="396.0" layoutY="262.0" prefHeight="34.0" prefWidth="56.0" text="Password:">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </Label>
+      <PasswordField fx:id="password" layoutX="395.0" layoutY="299.0" prefHeight="26.0" prefWidth="254.0" promptText="A3@B412" />
+      <Label alignment="BOTTOM_LEFT" layoutX="396.0" layoutY="329.0" prefHeight="34.0" prefWidth="99.0" text="Repeat Password:">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+      </Label>
+      <PasswordField fx:id="repeatPass" layoutX="395.0" layoutY="366.0" prefHeight="26.0" prefWidth="254.0" promptText="A3@B412" />
+   </children>
+</AnchorPane>
