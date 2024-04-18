@@ -1,0 +1,30 @@
+List of File 
+Role Requirements
+
+Admin 
+• manage user registration (UserData
+• manage walk-in appointment (Appointment
+• track patient's medical record (Medical Record 
+• track daily appointment (Appointment
+• collect payment (Payment + Receipt)
+
+Doctor 
+• upload daily schedule (Schedule 
+• track individual appointment (Appointment
+• cancel appointment (Appointment
+• track patients’ medical record (Medical Record)
+• add medical record (Medical Record)
+ 
+Patient 
+• view available timeslot (Schedule
+• make appointment (Appointment
+• cancel appointment (Appointment 
+• track personal medical record (Medical Record)
+• track personal historical appointment (Appointment)
+
+Database file 
+1) UserData (username password role)
+2) Appointment (date time patientName doctorName)
+3) Medical Record (id patientName condition doctorName(in-charge) Remark(optional)
+4) Schedule (Date Time doctorName)
+5) Payment ( id patientName Amount date) maybe can do summary of month 
