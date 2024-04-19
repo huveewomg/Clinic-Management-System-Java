@@ -70,25 +70,35 @@ public class AdminHomepage extends JFrame {
 		LogOutBtn.setBounds(628, 41, 146, 23);
 		contentPane.add(LogOutBtn);
 		
-		JButton ReportBtn = new JButton("View Report");
+		JButton ReportBtn = new JButton("Payment / Report");
 		ReportBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		ReportBtn.setBounds(39, 154, 208, 70);
+		ReportBtn.setBounds(22, 425, 369, 70);
 		contentPane.add(ReportBtn);
 		
-		JButton AddBtn = new JButton("Edit Staff (add or remove)");
+		JButton AddBtn = new JButton("New User");
 		AddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditStaff();
 			}
 		});
 		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		AddBtn.setBounds(39, 356, 369, 70);
+		AddBtn.setBounds(22, 132, 369, 70);
 		contentPane.add(AddBtn);
 		
 		JLabel lblNewLabel_1 = new JLabel("Admin UI");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel_1.setBounds(289, 79, 87, 61);
+		lblNewLabel_1.setBounds(304, 75, 87, 61);
 		contentPane.add(lblNewLabel_1);
+		
+		JButton AppointmentBtn = new JButton("Appointment");
+		AppointmentBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		AppointmentBtn.setBounds(22, 224, 369, 70);
+		contentPane.add(AppointmentBtn);
+		
+		JButton RecordBtn = new JButton("Medical Record");
+		RecordBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		RecordBtn.setBounds(22, 321, 369, 70);
+		contentPane.add(RecordBtn);
 	}
 	
 	public void SettingForm() {

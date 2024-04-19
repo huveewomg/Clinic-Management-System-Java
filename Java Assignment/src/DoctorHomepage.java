@@ -71,7 +71,7 @@ public class DoctorHomepage extends JFrame {
 		LogOutBtn.setBounds(605, 31, 146, 23);
 		contentPane.add(LogOutBtn);
 		
-		JButton btnAddItemTo = new JButton("Add Item To Stock");
+		JButton btnAddItemTo = new JButton("Schedule");
 		btnAddItemTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AddItem();
@@ -80,6 +80,16 @@ public class DoctorHomepage extends JFrame {
 		btnAddItemTo.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		btnAddItemTo.setBounds(47, 161, 335, 70);
 		contentPane.add(btnAddItemTo);
+		
+		JButton AppointmentBtn = new JButton("Appointment");
+		AppointmentBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		AppointmentBtn.setBounds(47, 287, 335, 70);
+		contentPane.add(AppointmentBtn);
+		
+		JButton btnCheckPatientRecord = new JButton("Patient Record");
+		btnCheckPatientRecord.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		btnCheckPatientRecord.setBounds(47, 401, 335, 70);
+		contentPane.add(btnCheckPatientRecord);
 	}
 	
 		public void Logout() {

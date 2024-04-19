@@ -1,3 +1,0 @@
-Username: test
-Logout Time: fetch from time
-Activity Performed: need to pass from function store in a public key + concatenate together and write here. 
