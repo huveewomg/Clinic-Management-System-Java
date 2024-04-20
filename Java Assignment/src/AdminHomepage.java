@@ -116,7 +116,7 @@ public class AdminHomepage extends JFrame {
 	}
 	
 	public void EditStaff() {
-		EditStaff editstaff = new EditStaff(username);
+		EditUser editstaff = new EditUser(username);
 		editstaff.setVisible(true);
 		dispose();
 	}

@@ -83,7 +83,7 @@ public class DoctorHomepage extends JFrame {
 		
 		JButton AppointmentBtn = new JButton("Appointment");
 		AppointmentBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		AppointmentBtn.setBounds(47, 287, 335, 70);
+		AppointmentBtn.setBounds(47, 280, 335, 70);
 		contentPane.add(AppointmentBtn);
 		
 		JButton btnCheckPatientRecord = new JButton("Patient Record");
