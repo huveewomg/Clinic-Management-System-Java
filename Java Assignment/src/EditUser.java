@@ -12,6 +12,10 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -162,7 +166,6 @@ public class EditUser extends JFrame {
         		UsernameTXT.setText(model.getValueAt(i, 0).toString());
         		NameTXT.setText(model.getValueAt(i, 1).toString());
         		PasswordTXT.setText(model.getValueAt(i, 2).toString());
-
         	}
         });
         table.setBackground(Color.PINK);
@@ -197,13 +200,18 @@ public class EditUser extends JFrame {
         JButton ImportPatientBtn = new JButton("Patient List");
         ImportPatientBtn.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		ImportPatient();
+        		ImportData("Patient");
         	}
         });
         ImportPatientBtn.setBounds(390, 105, 112, 23);
         contentPane.add(ImportPatientBtn);
         
         JButton ImportDoctorBtn = new JButton("Doctor List");
+        ImportDoctorBtn.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		ImportData("Doctor");
+        	}
+        });
         ImportDoctorBtn.setBounds(612, 105, 112, 23);
         contentPane.add(ImportDoctorBtn);
     }
@@ -259,7 +267,11 @@ public class EditUser extends JFrame {
 //  based on the username and update the other fields in the file
     public void UpdateUser() {
         try{
-            CheckUsername();
+            if (CheckUsername()) {
+            JOptionPane.showMessageDialog(null, "Username already exists. Please type again.");
+            return;
+            }
+
             BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
             StringBuilder fileContent = new StringBuilder();
             String line;
@@ -349,9 +361,41 @@ public class EditUser extends JFrame {
             e.printStackTrace();
         }
     }
-    
-    public void ImportPatient() {
-    	
+
+    private void ImportData(String role) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"))) {
+            String line;
+            List<String[]> data = new ArrayList<>();
+            Deque<String> previousLines = new ArrayDeque<>();
+
+            while ((line = reader.readLine()) != null) {
+                // Store the line into the deque
+                previousLines.addLast(line);
+                // If the deque contains more than 4 lines, remove the oldest line
+                if (previousLines.size() > 4) {
+                    previousLines.pollFirst();
+                }
+
+                if (line.startsWith("Role: " + role)) {
+                    // Once the specified role is found, retrieve the previous 3 lines in reverse order
+                    String[] currentRow = new String[4];
+                    for (int i = 0; i < 4; i++) {
+                        currentRow[i] = previousLines.pollFirst().split(": ")[1];
+                    }
+                    data.add(currentRow);
+                }
+            }
+
+            // Populate table
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0); // Clear existing data
+            for (String[] row : data) {
+                model.addRow(row);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     public boolean CheckUsername() {
