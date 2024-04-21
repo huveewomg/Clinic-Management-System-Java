@@ -32,6 +32,9 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime;    
+
 public class AppointmentForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -204,6 +207,10 @@ public class AppointmentForm extends JFrame {
 			writer.write("Username: " + username + "\n");
 			writer.write("Name: " + name + "\n");
 			writer.write("Severity: " + severity + "\n");
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+			LocalDateTime now = LocalDateTime.now();  
+			writer.write("Date: " + dtf.format(now) + "\n");
+			writer.write("Status: Pending\n");
 			writer.write("\n");
 			writer.close();
 			JOptionPane.showMessageDialog(this, "Added to queue successfully", "Success", JOptionPane.INFORMATION_MESSAGE);
