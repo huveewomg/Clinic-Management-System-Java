@@ -23,8 +23,7 @@ public class ItemPage extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private JPanel contentPane;
-	private JTextField ItemNameTXT;
-	private JTextField ItemQuantityTXT;
+	private JTextField PatientNameTXT;
 	private JTextField PriceTXT;
 
 	/**
@@ -34,7 +33,7 @@ public class ItemPage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ItemPage frame = new ItemPage(username);
+					ItemPage frame = new ItemPage();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +45,7 @@ public class ItemPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ItemPage(String username) {
-		this.username = username;
+	public ItemPage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
@@ -56,30 +54,20 @@ public class ItemPage extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Add Item to Store");
+		JLabel lblNewLabel = new JLabel("Payment");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
-		lblNewLabel.setBounds(268, 11, 241, 81);
+		lblNewLabel.setBounds(79, 11, 118, 81);
 		contentPane.add(lblNewLabel);
 		
-		JLabel ItemNameLbl = new JLabel("Item Name:");
-		ItemNameLbl.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		ItemNameLbl.setBounds(69, 176, 187, 37);
+		JLabel ItemNameLbl = new JLabel("Patient Name  :");
+		ItemNameLbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		ItemNameLbl.setBounds(10, 151, 187, 37);
 		contentPane.add(ItemNameLbl);
 		
-		JLabel lblItemQuantity = new JLabel("Item Quantity: ");
-		lblItemQuantity.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblItemQuantity.setBounds(69, 266, 187, 37);
-		contentPane.add(lblItemQuantity);
-		
-		ItemNameTXT = new JTextField();
-		ItemNameTXT.setBounds(316, 183, 308, 34);
-		contentPane.add(ItemNameTXT);
-		ItemNameTXT.setColumns(10);
-		
-		ItemQuantityTXT = new JTextField();
-		ItemQuantityTXT.setColumns(10);
-		ItemQuantityTXT.setBounds(316, 273, 308, 34);
-		contentPane.add(ItemQuantityTXT);
+		PatientNameTXT = new JTextField();
+		PatientNameTXT.setBounds(160, 156, 118, 34);
+		contentPane.add(PatientNameTXT);
+		PatientNameTXT.setColumns(10);
 		
 		JButton backBtn = new JButton("Cancel");
 		backBtn.addActionListener(new ActionListener() {
@@ -87,28 +75,28 @@ public class ItemPage extends JFrame {
 				Homepage();
 			}
 		});
-		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		backBtn.setBounds(121, 480, 144, 70);
+		backBtn.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		backBtn.setBounds(10, 406, 118, 57);
 		contentPane.add(backBtn);
 		
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddItem();
+				AddRecord();
 			}
 		});
-		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnSubmit.setBounds(480, 480, 144, 70);
+		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		btnSubmit.setBounds(149, 406, 125, 57);
 		contentPane.add(btnSubmit);
 		
-		JLabel lblItemPrice = new JLabel("Item Price");
-		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblItemPrice.setBounds(69, 354, 187, 37);
+		JLabel lblItemPrice = new JLabel("Price   :");
+		lblItemPrice.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblItemPrice.setBounds(20, 247, 81, 37);
 		contentPane.add(lblItemPrice);
 		
 		PriceTXT = new JTextField();
 		PriceTXT.setColumns(10);
-		PriceTXT.setBounds(316, 354, 308, 34);
+		PriceTXT.setBounds(160, 247, 118, 34);
 		contentPane.add(PriceTXT);
 	}
 	
@@ -120,47 +108,41 @@ public class ItemPage extends JFrame {
 
 		// get the last item id from the file
 		public String getLastItemId() throws IOException{
-			BufferedReader reader = new BufferedReader(new FileReader("items.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("Payment.txt"));
 			String line;
 			String lastItemId = "";
 			while ((line = reader.readLine()) != null) {
-				if (line.contains("ItemID: ")) {
+				if (line.contains("PaymentID: ")) {
 					lastItemId = line.split(" ")[1];
 				}
 			}
 			reader.close();
 			return lastItemId;
 		}
-		
-		public void AddItem() {
-			String ItemName = ItemNameTXT.getText();
-			String ItemQuantity = ItemQuantityTXT.getText();
+
+		public void AddRecord() {
+			String PatientName = PatientNameTXT.getText();
 			String Price = PriceTXT.getText();
 
-			if (ItemName.equals("") || ItemQuantity.equals("")|| Price.equals("")) {
+			if (PatientName.isEmpty() || Price.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Please fill in all fields!");
 				return;
 			}
 
-			if (!ItemQuantity.matches("[0-9]+") || !Price.matches("[0-9]+")) {
+			if (!Price.matches("[0-9]+")) {
 				JOptionPane.showMessageDialog(null, "Please enter a valid number!");
 				return;
 			}
 
-			try {
-				BufferedReader reader = new BufferedReader(new FileReader("items.txt"));
+			try (BufferedReader reader = new BufferedReader(new FileReader("Payment.txt"))) {
 				String line;
+				String lastItemId = null;
 				while ((line = reader.readLine()) != null) {
-					String[] parts = line.split(",");
-					if (parts[0].equals(ItemName)) {
-						JOptionPane.showMessageDialog(null, "Item already exists!");
-						reader.close();
-						return;
+					if (line.startsWith("PaymentID: ")) {
+						lastItemId = line.substring("PaymentID: ".length());
 					}
 				}
-				reader.close();
 
-				String lastItemId = getLastItemId();
 				String newItemId;
 				if (lastItemId == null) {
 					newItemId = "ID001"; // default ID if no ID was found
@@ -170,16 +152,18 @@ public class ItemPage extends JFrame {
 					newItemId = "ID" + String.format("%03d", idNumber); // create the new ID with leading zeros
 				}
 
-				FileWriter writer = new FileWriter("items.txt", true);
-				writer.write("ItemID: " + newItemId + "\n");
-				writer.write("ItemName: " + ItemName + "\n");
-				writer.write("ItemQuantity: " + ItemQuantity + "\n");
-				writer.write("Item Price: " + Price + "\n");
-				writer.write("\n");
-				writer.close();
-				JOptionPane.showMessageDialog(null, "Item added successfully!");
+				try (FileWriter writer = new FileWriter("Payment.txt", true)) {
+					writer.write("PaymentID: " + newItemId + "\n");
+					writer.write("Patient Name: " + PatientName + "\n");
+					writer.write("Price: " + Price + "\n");
+					writer.write("\n");
+					JOptionPane.showMessageDialog(null, "Item added successfully!");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-}
+	}
+

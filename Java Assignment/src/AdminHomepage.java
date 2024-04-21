@@ -99,6 +99,16 @@ public class AdminHomepage extends JFrame {
 		RecordBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		RecordBtn.setBounds(22, 321, 369, 70);
 		contentPane.add(RecordBtn);
+		
+		JButton QueueBtn = new JButton("Queue");
+		QueueBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		QueueBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				QueueForm();
+			}
+		});
+		QueueBtn.setBounds(591, 254, 146, 96);
+		contentPane.add(QueueBtn);
 	}
 	
 	public void SettingForm() {
