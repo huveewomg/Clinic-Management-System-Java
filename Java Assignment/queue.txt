@@ -1,4 +1,0 @@
-Username: DrChad
-Name: DrChad
-Severity: Major
-

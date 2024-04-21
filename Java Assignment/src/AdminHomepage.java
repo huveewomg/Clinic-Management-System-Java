@@ -104,7 +104,7 @@ public class AdminHomepage extends JFrame {
 		QueueBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		QueueBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				QueueForm();
+				AppointmentForm();
 			}
 		});
 		QueueBtn.setBounds(591, 254, 146, 96);
@@ -128,6 +128,12 @@ public class AdminHomepage extends JFrame {
 	public void EditStaff() {
 		EditUser editstaff = new EditUser(username);
 		editstaff.setVisible(true);
+		dispose();
+	}
+	
+	public void AppointmentForm() {
+		AppointmentForm AppointmentForm = new AppointmentForm(username);
+		AppointmentForm.setVisible(true);
 		dispose();
 	}
 }
