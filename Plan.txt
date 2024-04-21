@@ -2,10 +2,10 @@ List of File
 Role Requirements
 
 Admin 
-• manage user registration (UserData
-• manage walk-in appointment (Appointment
-• track patient's medical record (Medical Record 
-• track daily appointment (Appointment
+• manage user registration (UserData) Done EditUser
+• manage walk-in appointment (Appointment) Done AppointmentForm
+• track patient's medical record (Medical Record) 
+• track daily appointment (Appointment) TrackAppointment For those status in Pending use ArrayDeque
 • collect payment (Payment + Receipt)
 
 Doctor 
