@@ -9,18 +9,18 @@ Admin
 • collect payment (Payment + Receipt)
 
 Doctor 
-• upload daily schedule (Schedule 
+• upload daily schedule (Schedule) 
 • track individual appointment (Appointment)
 • cancel appointment (Appointment)
 • track patients’ medical record (Medical Record) Done
-• add medical record (Medical Record)
+• add medical record (Medical Record) Done 
  
 Patient 
-• view available timeslot (Schedule
+• view available timeslot (Schedule)
 • make appointment (Appointment)
 • cancel appointment (Appointment) 
 • track personal medical record (Medical Record) Done 
-• track personal historical appointment (Appointment)
+• track personal historical appointment (Appointment) 
 
 Database file 
 1) UserData (username password role)
