@@ -10,12 +10,14 @@ import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
 
 public class AdminHomepage extends JFrame {
 
 	private String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField searchField;
 	
 
 	/**
@@ -96,6 +98,16 @@ public class AdminHomepage extends JFrame {
 		contentPane.add(AppointmentBtn);
 		
 		JButton RecordBtn = new JButton("Medical Record");
+		RecordBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String PatientName = searchField.getText();
+				if (PatientName.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Please Enter Patient Name");
+				}
+				else
+					MedicalRecord(PatientName);
+			}
+		});
 		RecordBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		RecordBtn.setBounds(22, 321, 369, 70);
 		contentPane.add(RecordBtn);
@@ -107,8 +119,14 @@ public class AdminHomepage extends JFrame {
 				AppointmentForm();
 			}
 		});
-		QueueBtn.setBounds(591, 254, 146, 96);
+		QueueBtn.setBounds(628, 193, 146, 96);
 		contentPane.add(QueueBtn);
+		
+		searchField = new JTextField();
+		searchField.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		searchField.setBounds(403, 343, 181, 39);
+		contentPane.add(searchField);
+		searchField.setColumns(10);
 	}
 	
 	public void SettingForm() {
@@ -136,4 +154,10 @@ public class AdminHomepage extends JFrame {
 		AppointmentForm.setVisible(true);
 		dispose();
 	}
+
+	public void MedicalRecord(String PatientName) {
+		MedicalRecord MedicalRecord = new MedicalRecord(PatientName);
+		MedicalRecord.setVisible(true);
+	}
+	
 }

@@ -45,7 +45,7 @@ public class MedicalRecord extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MedicalRecord frame = new MedicalRecord("JasonTan123");
+					MedicalRecord frame = new MedicalRecord(PatientName);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,7 +59,7 @@ public class MedicalRecord extends JFrame {
 	 */
 	public MedicalRecord(String PatientName) {
 		this.PatientName = "PatientName";
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,7 +89,7 @@ public class MedicalRecord extends JFrame {
 		});
 		table.setBackground(Color.WHITE);
 		model= new DefaultTableModel();
-		Object[] column = {"Date", "Issue", "Medication", "Fee"};
+		Object[] column = {"Date", "Issue", "Medication", "Fees"};
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -124,7 +124,7 @@ public class MedicalRecord extends JFrame {
 		IssueField.setBounds(569, 240, 190, 77);
 		contentPane.add(IssueField);
 		
-		JLabel lblNewLabel_1_1_2 = new JLabel("Fee :");
+		JLabel lblNewLabel_1_1_2 = new JLabel("Fees :");
 		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1_2.setBounds(511, 483, 48, 29);
 		contentPane.add(lblNewLabel_1_1_2);
@@ -134,14 +134,7 @@ public class MedicalRecord extends JFrame {
 		FeeField.setBounds(569, 482, 190, 37);
 		contentPane.add(FeeField);
 		
-		JButton btnNewButton = new JButton("test");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				importRecord(PatientName);
-			}
-		});
-		btnNewButton.setBounds(500, 50, 89, 23);
-		contentPane.add(btnNewButton);
+		importRecord(PatientName);
 
 	}
 	
