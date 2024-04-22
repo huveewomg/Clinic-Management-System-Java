@@ -4,7 +4,7 @@ Role Requirements
 Admin 
 • manage user registration (UserData) Done EditUser
 • manage walk-in appointment (Appointment) Done AppointmentForm
-• track patient's medical record (Medical Record) 
+• track patient's medical record (Medical Record) Need to add search feature then PopUp
 • track daily appointment (Appointment) TrackAppointment For those status in Pending use ArrayDeque
 • collect payment (Payment + Receipt)
 
@@ -12,14 +12,14 @@ Doctor
 • upload daily schedule (Schedule 
 • track individual appointment (Appointment
 • cancel appointment (Appointment
-• track patients’ medical record (Medical Record)
+• track patients’ medical record (Medical Record) Need to add search feature and popup new window
 • add medical record (Medical Record)
  
 Patient 
 • view available timeslot (Schedule
 • make appointment (Appointment
 • cancel appointment (Appointment 
-• track personal medical record (Medical Record)
+• track personal medical record (Medical Record) Done 
 • track personal historical appointment (Appointment)
 
 Database file 
