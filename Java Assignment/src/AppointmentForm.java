@@ -75,8 +75,8 @@ public class AppointmentForm extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Appointment");
-		lblNewLabel.setBounds(71, 44, 180, 35);
+		JLabel lblNewLabel = new JLabel("Walk In Appointment");
+		lblNewLabel.setBounds(24, 47, 331, 35);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 29));
 		contentPane.add(lblNewLabel);
 		

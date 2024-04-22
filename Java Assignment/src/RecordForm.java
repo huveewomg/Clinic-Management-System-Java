@@ -129,7 +129,8 @@ public class RecordForm extends JFrame {
 			writer.write("\n");
 			writer.close();
 
-			File patientFile = new File(PatientName + ".txt");
+			String directoryPath = "PatientRecords/";
+			File patientFile = new File(directoryPath + PatientName + ".txt");
 			if (!patientFile.exists()) {
 				try {
 					patientFile.createNewFile();
@@ -139,7 +140,7 @@ public class RecordForm extends JFrame {
 					return;
 				}
 			}
-			FileWriter SecWriter = new FileWriter(PatientName + ".txt", true);
+			FileWriter SecWriter = new FileWriter(directoryPath + PatientName + ".txt", true);
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
 			LocalDateTime now = LocalDateTime.now();  
 			SecWriter.write("Date: " + dtf.format(now) + "\n");

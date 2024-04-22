@@ -18,3 +18,8 @@ Issue: Back Pain
 Medication: PainKiller
 Fees: 50
 
+Date: 22/04/2024 21:47:06
+Issue: Testicular Torsion
+Medication: Nah
+Fees: 120
+

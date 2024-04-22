@@ -114,6 +114,7 @@ public class DoctorHomepage extends JFrame {
 				}
 				else
 					MedicalRecord(PatientName);
+
 			}
 		});
 		btnCheckPatientRecord.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -192,7 +193,7 @@ public class DoctorHomepage extends JFrame {
 		});
 		AppointmentTable.setBackground(Color.WHITE);
 		model= new DefaultTableModel();
-		Object[] column = {"Username", "Date"};
+		Object[] column = {"Username", "Date", "Remark"};
 		model.setColumnIdentifiers(column);
 		AppointmentTable.setModel(model);
 		scrollPane_1.setViewportView(AppointmentTable);
@@ -230,6 +231,11 @@ public class DoctorHomepage extends JFrame {
 			RecordForm.setVisible(true);
 		}
 		
+		public void AppointmentEdit(String PatientName, String username) {
+			RecordForm RecordForm = new RecordForm(PatientName , username);
+			RecordForm.setVisible(true);
+		}
+		
 		public void queueList() {
 			try {
 				String filePath = "PatientQueue.txt";
@@ -257,26 +263,30 @@ public class DoctorHomepage extends JFrame {
 			}
 		}
 
+// can consider filter by time
 		public void appointmentList(){
 			try {
 				String filePath = "Appointment.txt";
 				BufferedReader reader = new BufferedReader(new FileReader(filePath));
 				String line;
 				List<String> data = new ArrayList<>();
-				String[] currentRow = new String[2];
+				String[] currentRow = new String[3];
 				while((line = reader.readLine()) != null) {
 					if (line.startsWith("Username")) {
 						currentRow[0] = line.substring(line.indexOf(":") + 1).trim();
 					} else if (line.startsWith("Date")) {
 						currentRow[1] = line.substring(line.indexOf(":") + 1).trim();
+					} else if (line.startsWith("Remark")) {
+						currentRow[2] = line.substring(line.indexOf(":") + 1).trim();
 						data.add(currentRow[0]);
 						data.add(currentRow[1]);
-						currentRow = new String[2]; // Reset currentRow
+						data.add(currentRow[2]);
+						currentRow = new String[3]; // Reset currentRow
 					}
 				}
 				// Populate the table
-				for (int j = 0; j < data.size(); j += 2) {
-					model.addRow(new Object[] {data.get(j), data.get(j + 1)});
+				for (int j = 0; j < data.size(); j += 3) {
+					model.addRow(new Object[] {data.get(j), data.get(j + 1) , data.get(j + 2)});
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

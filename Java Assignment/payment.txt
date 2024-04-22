@@ -8,3 +8,48 @@ Name: Desmond
 Medication: kys
 Fees: 120
 
+Name: John123
+Medication: Sugar
+Fees: 45
+Status: Pending
+
+Name: Desmond
+Medication: 12
+Fees: 12
+Status: Pending
+
+Name: John123
+Medication: 12
+Fees: 12
+Status: Pending
+
+Name: John123
+Medication: 12
+Fees: 12
+Status: Pending
+
+Name: Desmond
+Medication: aa
+Fees: a
+Status: Pending
+
+Name: John123
+Medication: 12
+Fees: 12
+Status: Pending
+
+Name: JasonTan123
+Medication: 21
+Fees: 12
+Status: Pending
+
+Name: Desmond
+Medication: 12
+Fees: 12
+Status: Pending
+
+Name: JasonTan123
+Medication: Nah
+Fees: 120
+Status: Pending
+
