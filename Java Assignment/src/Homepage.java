@@ -107,7 +107,6 @@ public class Homepage extends JFrame {
 		public void SettingForm() {
 			SettingPage SettingPage = new SettingPage(username);
 			SettingPage.setVisible(true);
-			dispose();
 		}
 		
 		public void AddItem() {

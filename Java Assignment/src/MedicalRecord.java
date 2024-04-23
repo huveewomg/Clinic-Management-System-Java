@@ -95,21 +95,26 @@ public class MedicalRecord extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		DateField = new JTextField();
+		DateField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		DateField.setBounds(569, 153, 190, 37);
 		contentPane.add(DateField);
 		DateField.setColumns(10);
+		DateField.setEditable(false);
 		
 		JLabel lblNewLabel_1 = new JLabel("Date of Visit :");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(453, 161, 115, 14);
 		contentPane.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Issue :");
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1.setBounds(488, 263, 80, 29);
 		contentPane.add(lblNewLabel_1_1);
 		
 		JLabel lblNewLabel_1_1_1 = new JLabel("Medication :");
+		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1_1.setBounds(465, 385, 103, 29);
 		contentPane.add(lblNewLabel_1_1_1);
@@ -118,21 +123,26 @@ public class MedicalRecord extends JFrame {
 		MedicationField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		MedicationField.setBounds(569, 355, 190, 83);
 		contentPane.add(MedicationField);
+		MedicationField.setEditable(false);
 		
 		IssueField = new JTextPane();
 		IssueField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		IssueField.setBounds(569, 240, 190, 77);
 		contentPane.add(IssueField);
+		IssueField.setEditable(false);
 		
 		JLabel lblNewLabel_1_1_2 = new JLabel("Fees :");
+		lblNewLabel_1_1_2.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_1_1_2.setBounds(511, 483, 48, 29);
+		lblNewLabel_1_1_2.setBounds(502, 483, 57, 29);
 		contentPane.add(lblNewLabel_1_1_2);
 		
 		FeeField = new JTextField();
+		FeeField.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		FeeField.setColumns(10);
 		FeeField.setBounds(569, 482, 190, 37);
 		contentPane.add(FeeField);
+		FeeField.setEditable(false);
 		
 		importRecord(PatientName);
 
@@ -140,7 +150,8 @@ public class MedicalRecord extends JFrame {
 	
 	public void importRecord(String PatientName) {
 		try {
-			String filePath = PatientName + ".txt";
+			String directoryPath = "PatientRecords/";
+			String filePath = directoryPath + PatientName + ".txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;
 			List<String[]> data = new ArrayList<>();

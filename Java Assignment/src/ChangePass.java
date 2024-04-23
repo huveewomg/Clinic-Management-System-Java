@@ -58,7 +58,7 @@ public class ChangePass extends JFrame {
 		contentPane.add(CurrentPassLabel);
 
 		JLabel PageTitle = new JLabel("Change Password");
-		PageTitle.setBounds(212, 11, 359, 56);
+		PageTitle.setBounds(212, 11, 407, 56);
 		PageTitle.setFont(new Font("Tahoma", Font.PLAIN, 46));
 		contentPane.add(PageTitle);
 

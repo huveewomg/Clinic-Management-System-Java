@@ -132,7 +132,6 @@ public class AdminHomepage extends JFrame {
 	public void SettingForm() {
 		SettingPage SettingPage = new SettingPage(username);
 		SettingPage.setVisible(true);
-		dispose();
 	}	
 	
 	public void Logout() {
