@@ -12,7 +12,9 @@ import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +40,13 @@ public class AppointmentEdit extends JFrame {
 	private JTable table;
 	private JTextField dateField;
 	private String username;
+	private JTextField RemarkField;
+	private JTextField doctorField;
+    private JComboBox<String> StatusBox; 
 
 	public static DefaultTableModel model;
 	List<String> data = new ArrayList<String>();
+
 
 	/**
 	 * Launch the application.
@@ -73,25 +79,25 @@ public class AppointmentEdit extends JFrame {
 
 		JLabel lblNewLabel = new JLabel("Edit Appointment");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(66, 11, 179, 80);
+		lblNewLabel.setBounds(302, 0, 179, 80);
 		contentPane.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Username :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1.setBounds(10, 171, 118, 39);
+		lblNewLabel_1.setBounds(10, 135, 118, 39);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel_1_1 = new JLabel("Details :");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1.setBounds(10, 315, 118, 39);
+		lblNewLabel_1_1.setBounds(10, 279, 118, 39);
 		contentPane.add(lblNewLabel_1_1);
 
 		JButton btnCompleteAppointment = new JButton("Update Appointment\r\n");
 		btnCompleteAppointment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// updateAppointment(PatientName);
+				updateAppointment();
 			}
 		});
 		btnCompleteAppointment.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -101,26 +107,26 @@ public class AppointmentEdit extends JFrame {
 		JLabel lblNewLabel_1_1_1 = new JLabel("Status :");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_1_1.setBounds(24, 392, 104, 39);
+		lblNewLabel_1_1_1.setBounds(25, 413, 104, 39);
 		contentPane.add(lblNewLabel_1_1_1);
 
 		usernameField = new JTextField();
-		usernameField.setBounds(149, 181, 144, 33);
+		usernameField.setBounds(149, 145, 144, 33);
 		contentPane.add(usernameField);
 		usernameField.setColumns(10);
 		usernameField.setEditable(false);
 
 		detailField = new JTextField();
 		detailField.setColumns(10);
-		detailField.setBounds(149, 327, 144, 33);
+		detailField.setBounds(149, 291, 144, 33);
 		contentPane.add(detailField);
 		detailField.setEditable(false);
 
-		JComboBox<Object> comboBox = new JComboBox<>();
-		comboBox.setEditable(true);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] { "Cancelled", "Completed" }));
-		comboBox.setBounds(148, 405, 144, 21);
-		contentPane.add(comboBox);
+		StatusBox = new JComboBox<>();
+		StatusBox.setModel(new DefaultComboBoxModel(new String[] { "Cancelled", "Completed" }));
+		StatusBox.setBounds(149, 426, 144, 21);
+		contentPane.add(StatusBox);
+		StatusBox.setEditable(true);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(334, 72, 442, 444);
@@ -146,14 +152,41 @@ public class AppointmentEdit extends JFrame {
 		dateField = new JTextField();
 		dateField.setEditable(false);
 		dateField.setColumns(10);
-		dateField.setBounds(149, 252, 144, 29);
+		dateField.setBounds(149, 216, 144, 29);
 		contentPane.add(dateField);
 
 		JLabel lblNewLabel_1_2 = new JLabel("Date :");
 		lblNewLabel_1_2.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_1_2.setBounds(10, 242, 118, 39);
+		lblNewLabel_1_2.setBounds(10, 206, 118, 39);
 		contentPane.add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_1_1_2 = new JLabel("Remark :");
+		lblNewLabel_1_1_2.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1_1_2.setBounds(10, 342, 118, 39);
+		contentPane.add(lblNewLabel_1_1_2);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(148, 348, 144, 33);
+		contentPane.add(scrollPane_1);
+		
+		RemarkField = new JTextField();
+		scrollPane_1.setViewportView(RemarkField);
+		RemarkField.setColumns(10);
+		
+		JLabel lblNewLabel_1_3 = new JLabel("Doctor :");
+		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.TRAILING);
+		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_1_3.setBounds(10, 72, 118, 39);
+		contentPane.add(lblNewLabel_1_3);
+		
+		doctorField = new JTextField();
+		doctorField.setText(username);
+		doctorField.setEditable(false);
+		doctorField.setColumns(10);
+		doctorField.setBounds(149, 82, 144, 33);
+		contentPane.add(doctorField);
 
 		AppointmentList(username, model);
 
@@ -212,5 +245,119 @@ public class AppointmentEdit extends JFrame {
 					JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
+// fetch from textfield and update the appointment if completed / cancelled store in Appointment folder patientname.txt and remove from appointment.txt
+	public void updateAppointment(){
+		try{
+			String Doctor = doctorField.getText();
+			String PatientName = usernameField.getText();
+			String Date = dateField.getText();
+			String Details = detailField.getText();
+			String Remark = RemarkField.getText();
+			String Status = (String) StatusBox.getSelectedItem();
+			if (Details.isEmpty() ||Remark.isEmpty() || Status.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "Please fill all the fields");
+				return;
+			}
+			// potential issue
+			File folder = new File("Appointment");
+			if (!folder.exists()) {
+				folder.mkdir();
+			}
+			
+			File appointmentFile = new File("Appointment/" + PatientName + ".txt");
+			if (!appointmentFile.exists()) {
+				try {
+					appointmentFile.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error creating appointment file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+			
+			FileWriter writer = new FileWriter(appointmentFile, true);
+			writer.write("Doctor: " + Doctor + "\n");
+			writer.write("Date: " + dateField.getText() + "\n");
+			writer.write("Details: " + detailField.getText() + "\n");
+			writer.write("Remark: " + Remark + "\n");
+			writer.write("Status: " + Status + "\n");
+			writer.write("\n");
+			writer.close();
+			
+			deleteFromAppointment(Doctor, PatientName, Date, Details);
+			JOptionPane.showMessageDialog(null, "Appointment Updated");
+			dispose();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error writing file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public void deleteFromAppointment(String doctorName, String patientName, String date, String details) {
+		try {
+			BufferedReader reader = new BufferedReader(new FileReader("Appointment.txt"));
+			StringBuilder fileContent = new StringBuilder();
+			String line;
+
+			boolean doctorFound = false;
+			boolean usernameFound = false;
+			boolean dateFound = false;
+			boolean detailsFound = false;
+			boolean entryDeleted = false;
+
+			while ((line = reader.readLine()) != null) {
+				// Check if the line contains Doctor's name
+				if (line.startsWith("Doctor: " + doctorName)) {
+					doctorFound = true;
+				}
+				// Check if the line contains Username
+				else if (line.startsWith("Username: " + patientName)) {
+					usernameFound = true;
+				}
+				// Check if the line contains Date
+				else if (line.startsWith("Date: " + date)) {
+					dateFound = true;
+				}
+				// Check if the line contains Details
+				else if (line.startsWith("Remark: " + details)) {
+					detailsFound = true;
+				}
+				// Check if all criteria are found
+				if (doctorFound && usernameFound && dateFound && detailsFound) {
+					entryDeleted = true; // Mark the entry for deletion
+					// Skip the next two lines (Remark and Status)
+					// reader.readLine(); // Skip Remark line
+					// reader.readLine(); // Skip Status line
+					// Reset the flags for the next entry
+					doctorFound = false;
+					usernameFound = false;
+					dateFound = false;
+					detailsFound = false;
+				}
+				// Append the line to the fileContent StringBuilder if not marked for deletion
+				else {
+					fileContent.append(line).append("\n");
+				}
+			}
+
+			reader.close();
+
+			if (entryDeleted) {
+				FileWriter writer = new FileWriter("Appointment.txt");
+				writer.write(fileContent.toString());
+				writer.close();
+				System.out.println("Entry removed successfully.");
+			} else {
+				System.out.println("No matching entry found.");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 }
 
