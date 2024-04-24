@@ -68,6 +68,7 @@ public class DoctorHomepage extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton SettingBtn = new JButton("Setting");
+		SettingBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		SettingBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				SettingForm();
@@ -82,6 +83,7 @@ public class DoctorHomepage extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		JButton LogOutBtn = new JButton("Logout");
+		LogOutBtn.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		LogOutBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Logout();
@@ -93,7 +95,6 @@ public class DoctorHomepage extends JFrame {
 		JButton btnAddItemTo = new JButton("Schedule");
 		btnAddItemTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddItem();
 			}
 		});
 		btnAddItemTo.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -101,6 +102,11 @@ public class DoctorHomepage extends JFrame {
 		contentPane.add(btnAddItemTo);
 		
 		JButton AppointmentBtn = new JButton("Appointment");
+		AppointmentBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppointmentEdit(username);
+			}
+		});
 		AppointmentBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		AppointmentBtn.setBounds(10, 253, 335, 70);
 		contentPane.add(AppointmentBtn);
@@ -199,7 +205,7 @@ public class DoctorHomepage extends JFrame {
 		scrollPane_1.setViewportView(AppointmentTable);
 
 		queueList();
-		appointmentList();
+		AppointmentEdit.AppointmentList(username, model);
 	}
 	
 		public void Logout() {
@@ -212,13 +218,6 @@ public class DoctorHomepage extends JFrame {
 		public void SettingForm() {
 			SettingPage SettingPage = new SettingPage(username);
 			SettingPage.setVisible(true);
-			dispose();
-		}
-//		remove this later
-		public void AddItem() {
-			ItemPage ItemPage = new ItemPage(username);
-			ItemPage.setVisible(true);
-			dispose();
 		}
 		
 		public void MedicalRecord(String PatientName) {
@@ -231,9 +230,9 @@ public class DoctorHomepage extends JFrame {
 			RecordForm.setVisible(true);
 		}
 		
-		public void AppointmentEdit(String PatientName, String username) {
-			RecordForm RecordForm = new RecordForm(PatientName , username);
-			RecordForm.setVisible(true);
+		public void AppointmentEdit(String username) {
+			AppointmentEdit AppointmentEdit = new AppointmentEdit(username);
+			AppointmentEdit.setVisible(true);
 		}
 		
 		public void queueList() {
@@ -263,37 +262,6 @@ public class DoctorHomepage extends JFrame {
 			}
 		}
 
-// can consider filter by time
-		public void appointmentList(){
-			try {
-				String filePath = "Appointment.txt";
-				BufferedReader reader = new BufferedReader(new FileReader(filePath));
-				String line;
-				List<String> data = new ArrayList<>();
-				String[] currentRow = new String[3];
-				while((line = reader.readLine()) != null) {
-					if (line.startsWith("Username")) {
-						currentRow[0] = line.substring(line.indexOf(":") + 1).trim();
-					} else if (line.startsWith("Date")) {
-						currentRow[1] = line.substring(line.indexOf(":") + 1).trim();
-					} else if (line.startsWith("Remark")) {
-						currentRow[2] = line.substring(line.indexOf(":") + 1).trim();
-						data.add(currentRow[0]);
-						data.add(currentRow[1]);
-						data.add(currentRow[2]);
-						currentRow = new String[3]; // Reset currentRow
-					}
-				}
-				// Populate the table
-				for (int j = 0; j < data.size(); j += 3) {
-					model.addRow(new Object[] {data.get(j), data.get(j + 1) , data.get(j + 2)});
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-				JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-			}
-		}
 }
 
-		// Remove listing from the queue
 
