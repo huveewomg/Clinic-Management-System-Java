@@ -126,7 +126,6 @@ public class AppointmentEdit extends JFrame {
 		StatusBox.setModel(new DefaultComboBoxModel(new String[] { "Cancelled", "Completed" }));
 		StatusBox.setBounds(149, 426, 144, 21);
 		contentPane.add(StatusBox);
-		StatusBox.setEditable(true);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(334, 72, 442, 444);
@@ -180,12 +179,12 @@ public class AppointmentEdit extends JFrame {
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_3.setBounds(10, 72, 118, 39);
 		contentPane.add(lblNewLabel_1_3);
-		
+				
 		doctorField = new JTextField();
 		doctorField.setText(username);
 		doctorField.setEditable(false);
 		doctorField.setColumns(10);
-		doctorField.setBounds(149, 82, 144, 33);
+		doctorField.setBounds(149, 89, 144, 33);
 		contentPane.add(doctorField);
 
 		AppointmentList(username, model);
@@ -285,7 +284,7 @@ public class AppointmentEdit extends JFrame {
 			writer.write("\n");
 			writer.close();
 			
-			deleteFromAppointment(Doctor, PatientName, Date, Details);
+			deleteFromAppointment(PatientName, Date, Details);
 			JOptionPane.showMessageDialog(null, "Appointment Updated");
 			dispose();
 
@@ -294,70 +293,50 @@ public class AppointmentEdit extends JFrame {
 			JOptionPane.showMessageDialog(null, "Error writing file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-
-	public void deleteFromAppointment(String doctorName, String patientName, String date, String details) {
+	
+	public void deleteFromAppointment(String patientName, String date, String details) {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("Appointment.txt"));
+			String filePath = "Appointment.txt";
+			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			StringBuilder fileContent = new StringBuilder();
 			String line;
-
-			boolean doctorFound = false;
-			boolean usernameFound = false;
-			boolean dateFound = false;
-			boolean detailsFound = false;
-			boolean entryDeleted = false;
-
+			int row = 0;
+	
+			// Read the file line by line
 			while ((line = reader.readLine()) != null) {
-				// Check if the line contains Doctor's name
-				if (line.startsWith("Doctor: " + doctorName)) {
-					doctorFound = true;
+				row++;
+	
+				// Check if the current row matches the criteria
+				if ((row == 1 && line.trim().equals("Username: " + patientName)) ||
+					(row == 2 && line.trim().equals("Date: " + date)) ||
+					(row == 3 && line.trim().equals("Remark: " + details))) {
+					// Replace the line with "\n"
+					fileContent.append("\n");
+					fileContent.append("\n");
+					fileContent.append("\n");
+				} else {
+					// Append the line to fileContent
+					fileContent.append(line).append(System.lineSeparator());
 				}
-				// Check if the line contains Username
-				else if (line.startsWith("Username: " + patientName)) {
-					usernameFound = true;
-				}
-				// Check if the line contains Date
-				else if (line.startsWith("Date: " + date)) {
-					dateFound = true;
-				}
-				// Check if the line contains Details
-				else if (line.startsWith("Remark: " + details)) {
-					detailsFound = true;
-				}
-				// Check if all criteria are found
-				if (doctorFound && usernameFound && dateFound && detailsFound) {
-					entryDeleted = true; // Mark the entry for deletion
-					// Skip the next two lines (Remark and Status)
-					// reader.readLine(); // Skip Remark line
-					// reader.readLine(); // Skip Status line
-					// Reset the flags for the next entry
-					doctorFound = false;
-					usernameFound = false;
-					dateFound = false;
-					detailsFound = false;
-				}
-				// Append the line to the fileContent StringBuilder if not marked for deletion
-				else {
-					fileContent.append(line).append("\n");
+	
+				// Reset the row counter after the third row
+				if (row == 3) {
+					row = 0;
 				}
 			}
-
+	
 			reader.close();
-
-			if (entryDeleted) {
-				FileWriter writer = new FileWriter("Appointment.txt");
-				writer.write(fileContent.toString());
-				writer.close();
-				System.out.println("Entry removed successfully.");
-			} else {
-				System.out.println("No matching entry found.");
-			}
-
+	
+			// Write the modified content back to the file
+			FileWriter writer = new FileWriter(filePath);
+			writer.write(fileContent.toString());
+			writer.close();
+	
+			System.out.println("Entries replaced successfully.");
+	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
-
 }
 

@@ -8,3 +8,12 @@ Username: John123
 Date: 21/04/2024 17:29:23
 Remark: Monthly Checkup
 
+Doctor: 12
+Username: Ben
+Date: 22/04/2024 17:29:23
+Remark: Monthly Checkup
+
+Doctor: 12
+Username: John123
+Date: 21/04/2024 17:29:23
+Remark: Prostate Check
