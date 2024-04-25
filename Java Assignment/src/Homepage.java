@@ -49,7 +49,7 @@ public class Homepage extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Welcome back " + username);
 		lblNewLabel.setBounds(10, 5, 618, 116);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 51));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
 		contentPane.add(lblNewLabel);
 		
 		JButton LogOutBtn = new JButton("Logout");
@@ -64,7 +64,6 @@ public class Homepage extends JFrame {
 		JButton AddBtn = new JButton("View Available Timeslot");
 		AddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AddItem();
 			}
 		});
 		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -82,6 +81,11 @@ public class Homepage extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton ViewBtn = new JButton("Track History");
+		ViewBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				HistoryPage();
+			}
+		});
 		ViewBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		ViewBtn.setBounds(34, 454, 321, 70);
 		contentPane.add(ViewBtn);
@@ -109,9 +113,8 @@ public class Homepage extends JFrame {
 			SettingPage.setVisible(true);
 		}
 		
-		public void AddItem() {
-			AddItem AddItem = new AddItem(username);
-			AddItem.setVisible(true);
-			dispose();
+		public void HistoryPage() {
+			HistoryPage HistoryPage = new HistoryPage(username);
+			HistoryPage.setVisible(true);
 		}
 }
