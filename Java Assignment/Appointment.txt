@@ -1,19 +1,3 @@
-Doctor: 12
-Username: JasonTan123
-Date: 21/04/2024 15:30:57
-Remark: Blood Test
+12,John123,12/02/2024 11:32:11,Prostate Exam
 
-Doctor: 12
-Username: John123
-Date: 21/04/2024 17:29:23
-Remark: Monthly Checkup
-
-Doctor: 12
-Username: Ben
-Date: 22/04/2024 17:29:23
-Remark: Monthly Checkup
-
-Doctor: 12
-Username: John123
-Date: 21/04/2024 17:29:23
-Remark: Prostate Check
+123,JasonTan123,22/02/2024 11:32:11,Annual Check

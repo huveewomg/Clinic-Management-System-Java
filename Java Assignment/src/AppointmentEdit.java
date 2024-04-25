@@ -16,8 +16,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -111,16 +113,16 @@ public class AppointmentEdit extends JFrame {
 		contentPane.add(lblNewLabel_1_1_1);
 
 		usernameField = new JTextField();
+		usernameField.setEditable(false);
 		usernameField.setBounds(149, 145, 144, 33);
 		contentPane.add(usernameField);
 		usernameField.setColumns(10);
-		usernameField.setEditable(false);
 
 		detailField = new JTextField();
+		detailField.setEditable(false);
 		detailField.setColumns(10);
 		detailField.setBounds(149, 291, 144, 33);
 		contentPane.add(detailField);
-		detailField.setEditable(false);
 
 		StatusBox = new JComboBox<>();
 		StatusBox.setModel(new DefaultComboBoxModel(new String[] { "Cancelled", "Completed" }));
@@ -181,8 +183,8 @@ public class AppointmentEdit extends JFrame {
 		contentPane.add(lblNewLabel_1_3);
 				
 		doctorField = new JTextField();
-		doctorField.setText(username);
 		doctorField.setEditable(false);
+		doctorField.setText(username);
 		doctorField.setColumns(10);
 		doctorField.setBounds(149, 89, 144, 33);
 		contentPane.add(doctorField);
@@ -192,58 +194,41 @@ public class AppointmentEdit extends JFrame {
 	}
 
 	// filter by doctor name
-	public static void AppointmentList(String username, DefaultTableModel model) {
-		try {
-			String filePath = "Appointment.txt";
-			BufferedReader reader = new BufferedReader(new FileReader(filePath));
-			String line;
-			List<String[]> data = new ArrayList<>(); // List to store appointment data
-			String[] currentRow = new String[3];
+	public static void AppointmentList(String doctorName, DefaultTableModel model) {
+        try {
+            String filePath = "Appointment.txt";
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            String line;
+            List<String[]> data = new ArrayList<>(); // List to store appointment data
 
-			// Create a regex pattern to match the doctor's name
-			Pattern pattern = Pattern.compile("Doctor: " + username);
+            // Create a regex pattern to match the doctor's name
+            Pattern pattern = Pattern.compile(doctorName + ",");
 
-			boolean skipRow = true; // Flag to skip the row with doctor's name
-
-			while ((line = reader.readLine()) != null) {
-				if (skipRow) {
-					Matcher matcher = pattern.matcher(line);
-					if (matcher.find()) {
-						skipRow = false; // Stop skipping rows
-					}
-				} else {
-					// Split the line by colon to separate key and value
-					String[] parts = line.split(": ", 2);
-					if (parts.length == 2) { // Ensure there are two parts
-						String key = parts[0].trim();
-						String value = parts[1].trim();
-						// Process only if the key is one of the expected fields (Username, Date, Remark)
-						if (key.equals("Username")) {
-							currentRow[0] = value;
-						} else if (key.equals("Date")) {
-							currentRow[1] = value;
-						} else if (key.equals("Remark")) {
-							currentRow[2] = value;
-							// Add the current appointment data to the list
-							data.add(currentRow.clone()); // Add a clone of the currentRow to avoid overwriting
-							currentRow = new String[3]; // Clear currentRow for the next appointment
-						}
-					}
-				}
-			}
-
-			// Populate the table with the appointment data
-			for (String[] row : data) {
-				model.addRow(row);
-			}
-
-			reader.close(); // Close the reader
-		} catch (IOException e) {
-			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
-		}
-	}
+            while ((line = reader.readLine()) != null) {
+                Matcher matcher = pattern.matcher(line);
+                if (matcher.find()) {
+                    // Split the line by comma to separate doctor name, patient name, date, and remark
+                    String[] parts = line.split(",", 4);
+                    if (parts.length == 4) { // Ensure there are four parts
+                        String patientName = parts[1].trim();
+                        String date = parts[2].trim();
+                        String remark = parts[3].trim();
+                        // Add the appointment data to the list
+                        data.add(new String[]{patientName, date, remark});
+                    }
+                }
+            }
+            // Populate the table with the appointment data
+            for (String[] row : data) {
+                model.addRow(row);
+            }	
+            reader.close(); // Close the reader
+        } catch (IOException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
 // fetch from textfield and update the appointment if completed / cancelled store in Appointment folder patientname.txt and remove from appointment.txt
 	public void updateAppointment(){
@@ -284,7 +269,7 @@ public class AppointmentEdit extends JFrame {
 			writer.write("\n");
 			writer.close();
 			
-			deleteFromAppointment(PatientName, Date, Details);
+			deleteFromAppointment(Doctor, PatientName, Date, Details );
 			JOptionPane.showMessageDialog(null, "Appointment Updated");
 			dispose();
 
@@ -293,50 +278,37 @@ public class AppointmentEdit extends JFrame {
 			JOptionPane.showMessageDialog(null, "Error writing file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-	
-	public void deleteFromAppointment(String patientName, String date, String details) {
+
+	// delete from appointment.txt
+	public void deleteFromAppointment(String doctorName, String patientName, String date, String remark) {
 		try {
-			String filePath = "Appointment.txt";
-			BufferedReader reader = new BufferedReader(new FileReader(filePath));
-			StringBuilder fileContent = new StringBuilder();
+			File appointmentFile = new File("Appointment.txt");
+
+			String lineToRemove = doctorName + "," + patientName + "," + date + "," + remark;
+
+			StringBuilder updatedContent = new StringBuilder();
 			String line;
-			int row = 0;
-	
-			// Read the file line by line
+			BufferedReader reader = new BufferedReader(new FileReader(appointmentFile));
+			System.out.println(lineToRemove);
+
 			while ((line = reader.readLine()) != null) {
-				row++;
-	
-				// Check if the current row matches the criteria
-				if ((row == 1 && line.trim().equals("Username: " + patientName)) ||
-					(row == 2 && line.trim().equals("Date: " + date)) ||
-					(row == 3 && line.trim().equals("Remark: " + details))) {
-					// Replace the line with "\n"
-					fileContent.append("\n");
-					fileContent.append("\n");
-					fileContent.append("\n");
-				} else {
-					// Append the line to fileContent
-					fileContent.append(line).append(System.lineSeparator());
+				if (line.equals(lineToRemove)) {
+					continue; // Skip line if it matches the lineToRemove
 				}
-	
-				// Reset the row counter after the third row
-				if (row == 3) {
-					row = 0;
-				}
+
+				updatedContent.append(line).append(System.getProperty("line.separator"));
 			}
-	
 			reader.close();
-	
-			// Write the modified content back to the file
-			FileWriter writer = new FileWriter(filePath);
-			writer.write(fileContent.toString());
+			System.out.println("Debug2");
+
+			FileWriter writer = new FileWriter(appointmentFile);
+			writer.write(updatedContent.toString());
 			writer.close();
-	
-			System.out.println("Entries replaced successfully.");
-	
+			System.out.println("Debug end");
 		} catch (IOException e) {
 			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error deleting appointment: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
-}
 
+}
