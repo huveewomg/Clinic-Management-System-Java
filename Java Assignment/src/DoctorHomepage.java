@@ -95,6 +95,7 @@ public class DoctorHomepage extends JFrame {
 		JButton btnAddItemTo = new JButton("Schedule");
 		btnAddItemTo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				NewSchedule();
 			}
 		});
 		btnAddItemTo.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -203,6 +204,15 @@ public class DoctorHomepage extends JFrame {
 		model.setColumnIdentifiers(column);
 		AppointmentTable.setModel(model);
 		scrollPane_1.setViewportView(AppointmentTable);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AppointmentEdit.AppointmentList(username, model);
+			}
+		});
+		btnNewButton.setBounds(335, 109, 89, 23);
+		contentPane.add(btnNewButton);
 
 		queueList();
 		AppointmentEdit.AppointmentList(username, model);
@@ -235,6 +245,11 @@ public class DoctorHomepage extends JFrame {
 			AppointmentEdit.setVisible(true);
 		}
 		
+		public void NewSchedule() {
+			NewSchedule NewSchedule = new NewSchedule(username);
+			NewSchedule.setVisible(true);
+		}
+		
 		public void queueList() {
 			try {
 				String filePath = "PatientQueue.txt";
@@ -261,7 +276,6 @@ public class DoctorHomepage extends JFrame {
 				JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-
 }
 
 
