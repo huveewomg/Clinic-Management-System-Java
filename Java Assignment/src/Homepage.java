@@ -61,16 +61,17 @@ public class Homepage extends JFrame {
 		LogOutBtn.setBounds(628, 34, 146, 23);
 		contentPane.add(LogOutBtn);
 		
-		JButton AddBtn = new JButton("View Available Timeslot");
+		JButton AddBtn = new JButton("Cancel Appointment");
 		AddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CancelAppointment();
 			}
 		});
 		AddBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		AddBtn.setBounds(34, 172, 321, 70);
 		contentPane.add(AddBtn);
 		
-		JButton EditBtn = new JButton("Appointment");
+		JButton EditBtn = new JButton("Make Appointment");
 		EditBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MakeAppointment();
@@ -126,5 +127,10 @@ public class Homepage extends JFrame {
 		public void MakeAppointment() {
 			MakeAppointment MakeAppointment = new MakeAppointment(username);
 			MakeAppointment.setVisible(true);
+		}
+		
+		public void CancelAppointment() {
+			CancelAppointment CancelAppointment = new CancelAppointment(username);
+			CancelAppointment.setVisible(true);
 		}
 }

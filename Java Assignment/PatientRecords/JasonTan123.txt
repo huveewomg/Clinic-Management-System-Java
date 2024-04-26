@@ -23,3 +23,8 @@ Issue: Testicular Torsion
 Medication: Nah
 Fees: 120
 
+Date: 26/04/2024 21:16:25
+Issue: Constipation
+Medication: Laxative
+Fees: 80
+

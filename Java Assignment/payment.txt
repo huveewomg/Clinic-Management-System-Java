@@ -1,55 +1,15 @@
-Name: JasonTan123
+Name: Desmond
+Medication: PainKiller
+Fees: 90
+Status: Pending
+
+Name: John123
+Medication: Fentanyl
 Fees: 120
-
-Name: JasonTan123
-Fees: 50
-
-Name: Desmond
-Medication: kys
-Fees: 120
-
-Name: John123
-Medication: Sugar
-Fees: 45
-Status: Pending
-
-Name: Desmond
-Medication: 12
-Fees: 12
-Status: Pending
-
-Name: John123
-Medication: 12
-Fees: 12
-Status: Pending
-
-Name: John123
-Medication: 12
-Fees: 12
-Status: Pending
-
-Name: Desmond
-Medication: aa
-Fees: a
-Status: Pending
-
-Name: John123
-Medication: 12
-Fees: 12
 Status: Pending
 
 Name: JasonTan123
-Medication: 21
-Fees: 12
-Status: Pending
-
-Name: Desmond
-Medication: 12
-Fees: 12
-Status: Pending
-
-Name: JasonTan123
-Medication: Nah
-Fees: 120
+Medication: Laxative
+Fees: 80
 Status: Pending
 

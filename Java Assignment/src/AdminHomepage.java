@@ -73,6 +73,11 @@ public class AdminHomepage extends JFrame {
 		contentPane.add(LogOutBtn);
 		
 		JButton ReportBtn = new JButton("Payment / Report");
+		ReportBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CollectPayment();
+			}
+		});
 		ReportBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		ReportBtn.setBounds(22, 425, 369, 70);
 		contentPane.add(ReportBtn);
@@ -93,6 +98,11 @@ public class AdminHomepage extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		JButton AppointmentBtn = new JButton("Appointment");
+		AppointmentBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TodayAppointment();
+			}
+		});
 		AppointmentBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		AppointmentBtn.setBounds(22, 224, 369, 70);
 		contentPane.add(AppointmentBtn);
@@ -159,4 +169,13 @@ public class AdminHomepage extends JFrame {
 		MedicalRecord.setVisible(true);
 	}
 	
+	public void TodayAppointment() {
+		TodayAppointment TodayAppointment = new TodayAppointment();
+		TodayAppointment.setVisible(true);
+	}
+	
+	public void CollectPayment() {
+		CollectPayment CollectPayment = new CollectPayment();
+		CollectPayment.setVisible(true);
+	}
 }
