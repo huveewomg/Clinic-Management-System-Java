@@ -71,6 +71,11 @@ public class Homepage extends JFrame {
 		contentPane.add(AddBtn);
 		
 		JButton EditBtn = new JButton("Appointment");
+		EditBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				MakeAppointment();
+			}
+		});
 		EditBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		EditBtn.setBounds(34, 308, 321, 70);
 		contentPane.add(EditBtn);
@@ -116,5 +121,10 @@ public class Homepage extends JFrame {
 		public void HistoryPage() {
 			HistoryPage HistoryPage = new HistoryPage(username);
 			HistoryPage.setVisible(true);
+		}
+		
+		public void MakeAppointment() {
+			MakeAppointment MakeAppointment = new MakeAppointment(username);
+			MakeAppointment.setVisible(true);
 		}
 }
