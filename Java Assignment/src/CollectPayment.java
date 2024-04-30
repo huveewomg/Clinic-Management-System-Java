@@ -153,7 +153,7 @@ public class CollectPayment extends JFrame {
 	// fetch from payment.txt and plot into table
 	public void ShowPendingList() {
 		try {
-			File file = new File("payment.txt");
+			File file = new File("Java Assignment\\\\payment.txt");
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line;
 			String[] dataRow = new String[4];
@@ -185,8 +185,8 @@ public class CollectPayment extends JFrame {
 	}
 
 	public void StoreData() {
-		String filePath = "payment.txt";
-		String incomeReportPath = "incomeReport.txt";
+		String filePath = "Java Assignment\\\\credentials.txt";
+		String incomeReportPath = "Java Assignment\\\\incomeReport.txt";
 		String name = nameField.getText();
 		String fee = feeField.getText();
 

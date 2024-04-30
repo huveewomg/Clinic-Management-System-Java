@@ -65,7 +65,7 @@ public class NewSchedule extends JFrame {
 	private JButton SubmitButton;
     private ArrayList<String> selectedTimes = new ArrayList<>();
     private JTextField textField;
-	private String username;
+	private static String username;
 
 
 
@@ -353,7 +353,7 @@ public class NewSchedule extends JFrame {
             return;
         }
 
-		String directoryPath = "Schedule/";
+		String directoryPath = "Java Assignment\\Schedule\\";
 		File directory = new File(directoryPath + username + "Schedule.txt");
 		if (!directory.exists()) {
 			try {

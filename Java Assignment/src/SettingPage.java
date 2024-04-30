@@ -23,7 +23,7 @@ import java.util.Scanner;
 
 public class SettingPage extends JFrame {
 
-	private String username;
+	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
@@ -101,7 +101,7 @@ public class SettingPage extends JFrame {
 			int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete your account?", "Confirmation", JOptionPane.YES_NO_OPTION);
 			if (confirm == JOptionPane.YES_OPTION) {
 				try {
-					BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+					BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
 					String line;
 					boolean usernameFound = false;
 					StringBuilder fileContent = new StringBuilder();
@@ -122,7 +122,7 @@ public class SettingPage extends JFrame {
 					if (!usernameFound) {
 						JOptionPane.showMessageDialog(null, "Account not found.");
 					} else {	
-						BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
+						BufferedWriter writer = new BufferedWriter(new FileWriter("Java Assignment\\credentials.txt"));
 						writer.write(fileContent.toString());
 						writer.close();
 						JOptionPane.showMessageDialog(null, "Account deleted successfully.");

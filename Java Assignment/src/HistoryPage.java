@@ -11,7 +11,7 @@ public class HistoryPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private String username;
+	private static String username;
 
 	/**
 	 * Launch the application.

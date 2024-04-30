@@ -38,6 +38,7 @@ import java.time.LocalDateTime;
 public class AppointmentForm extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	private static String username;
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField NameTXT;
@@ -168,7 +169,7 @@ public class AppointmentForm extends JFrame {
 	}
 	
 	public void Search(String username) {
-		try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"))) {
 			String line;
 			List<String[]> data = new ArrayList<>();
 			while ((line = reader.readLine()) != null) {
@@ -194,7 +195,7 @@ public class AppointmentForm extends JFrame {
 	
 	public void addToQueue() {
 		try {
-			String username = UsernameTXT.getText();
+			username = UsernameTXT.getText();
 			String name = NameTXT.getText();
 			String severity = (String) severityBox.getSelectedItem();
 
@@ -203,7 +204,7 @@ public class AppointmentForm extends JFrame {
 				return;
 			}
 
-			FileWriter writer = new FileWriter("PatientQueue.txt", true);
+			FileWriter writer = new FileWriter("Java Assignment\\PatientQueue.txt", true);
 			writer.write("Username: " + username + "\n");
 			writer.write("Name: " + name + "\n");
 			writer.write("Severity: " + severity + "\n");
