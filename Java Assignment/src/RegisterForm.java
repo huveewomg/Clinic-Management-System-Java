@@ -156,7 +156,7 @@ public class RegisterForm extends JFrame {
 			String email = EmailTXT.getText();
 			String password = new String(PasswordTXT.getPassword());
 			String confirmPassword = new String(CpasswordTXT.getPassword());
-			String role = "user";
+			String role = "Patient";
 
 			if (username.equals("") || email.equals("") || password.equals("") || confirmPassword.equals("")) {
 				JOptionPane.showMessageDialog(null, "Please fill in all fields!");
@@ -187,9 +187,18 @@ public class RegisterForm extends JFrame {
 					return;
 				}
 			}
+
+			//Write new line to file
+			FileWriter writer = new FileWriter("Java Assignment\\credentials.txt", true);
+	
+			if (reader.readLine() == null) {
+				writer.write("\n");
+			} else {
+				writer.write("");
+			}
 			reader.close();
 
-			FileWriter writer = new FileWriter("credentials.txt", true);
+
 			writer.write("Username: " + username + "\n");
 			writer.write("Email: " + email + "\n");
 			writer.write("Password: " + password + "\n");
