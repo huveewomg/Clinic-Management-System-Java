@@ -187,14 +187,16 @@ public class RegisterForm extends JFrame {
 					return;
 				}
 			}
+			reader.close();
 
 			//Write new line to file
+			BufferedReader newReader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
 			FileWriter writer = new FileWriter("Java Assignment\\credentials.txt", true);
-	
-			if (reader.readLine() == null) {
-				writer.write("\n");
+
+			if (newReader.readLine() != null) {
+				System.out.println("File is not empty");
 			} else {
-				writer.write("");
+				System.out.println("File is empty");
 			}
 			reader.close();
 
@@ -203,7 +205,6 @@ public class RegisterForm extends JFrame {
 			writer.write("Email: " + email + "\n");
 			writer.write("Password: " + password + "\n");
 			writer.write("Role: " + role + "\n");
-			writer.write("\n");
 
 			writer.close();
 			JOptionPane.showMessageDialog(null, "Account created successfully!");
