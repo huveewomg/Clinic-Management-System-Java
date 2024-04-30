@@ -27,7 +27,7 @@ public class AppointmentRecord extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private String username;
+	private static String username;
 	private JTable table;
 	private JTextField dateField;
 	private JTextField statusField;
@@ -162,7 +162,7 @@ public class AppointmentRecord extends JFrame {
 	
 	public void importAppointment(String username) {
 		try{
-			String directoryPath = "Appointment/";
+			String directoryPath = "Java Assignment\\Appointment\\";
 			String filePath = directoryPath + username + ".txt";
 			BufferedReader	reader = new BufferedReader(new FileReader(filePath));
 			String line;

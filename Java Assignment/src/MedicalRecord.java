@@ -34,7 +34,7 @@ public class MedicalRecord extends JFrame {
 	private JTextPane IssueField;
 	private JTextPane MedicationField;
 	private JTable table;
-	private String PatientName;
+	private static String PatientName;
 	
 	DefaultTableModel model;
 
@@ -150,7 +150,7 @@ public class MedicalRecord extends JFrame {
 	
 	public void importRecord(String PatientName) {
 		try {
-			String directoryPath = "PatientRecords/";
+			String directoryPath = "Java Assignment\\PatientRecords\\";
 			String filePath = directoryPath + PatientName + ".txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;

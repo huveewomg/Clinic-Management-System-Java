@@ -108,7 +108,7 @@ public class ItemPage extends JFrame {
 
 		// get the last item id from the file
 		public String getLastItemId() throws IOException{
-			BufferedReader reader = new BufferedReader(new FileReader("Payment.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\\\Payment.txt"));
 			String line;
 			String lastItemId = "";
 			while ((line = reader.readLine()) != null) {
@@ -134,7 +134,7 @@ public class ItemPage extends JFrame {
 				return;
 			}
 
-			try (BufferedReader reader = new BufferedReader(new FileReader("Payment.txt"))) {
+			try (BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\Payment.txt"))) {
 				String line;
 				String lastItemId = null;
 				while ((line = reader.readLine()) != null) {
@@ -152,7 +152,7 @@ public class ItemPage extends JFrame {
 					newItemId = "ID" + String.format("%03d", idNumber); // create the new ID with leading zeros
 				}
 
-				try (FileWriter writer = new FileWriter("Payment.txt", true)) {
+				try (FileWriter writer = new FileWriter("Java Assignment\\Payment.txt", true)) {
 					writer.write("PaymentID: " + newItemId + "\n");
 					writer.write("Patient Name: " + PatientName + "\n");
 					writer.write("Price: " + Price + "\n");

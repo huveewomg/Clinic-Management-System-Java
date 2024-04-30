@@ -41,7 +41,7 @@ public class AppointmentEdit extends JFrame {
 	private JTextField detailField;
 	private JTable table;
 	private JTextField dateField;
-	private String username;
+	private static String username;
 	private JTextField RemarkField;
 	private JTextField doctorField;
     private JComboBox<String> StatusBox; 
@@ -196,7 +196,7 @@ public class AppointmentEdit extends JFrame {
 	// filter by doctor name
 	public static void AppointmentList(String doctorName, DefaultTableModel model) {
         try {
-            String filePath = "Appointment.txt";
+            String filePath = "Java Assignment\\Appointment.txt";
             BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             List<String[]> data = new ArrayList<>(); // List to store appointment data
@@ -249,7 +249,7 @@ public class AppointmentEdit extends JFrame {
 				folder.mkdir();
 			}
 			
-			File appointmentFile = new File("Appointment/" + PatientName + ".txt");
+			File appointmentFile = new File("Java Assignment\\Appointment\\" + PatientName + ".txt");
 			if (!appointmentFile.exists()) {
 				try {
 					appointmentFile.createNewFile();
@@ -282,7 +282,7 @@ public class AppointmentEdit extends JFrame {
 	// delete from appointment.txt
 	public void deleteFromAppointment(String doctorName, String patientName, String date, String remark) {
 		try {
-			File appointmentFile = new File("Appointment.txt");
+			File appointmentFile = new File("Java Assignment\\Appointment.txt");
 
 			String lineToRemove = doctorName + "," + patientName + "," + date + "," + remark;
 

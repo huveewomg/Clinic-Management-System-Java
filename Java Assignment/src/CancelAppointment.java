@@ -32,7 +32,7 @@ public class CancelAppointment extends JFrame {
 	private JTextField timeField;
 	private JTextField detailField;
 	private JTable table;
-	private String username;
+	private static String username;
 
 	DefaultTableModel model;
 
@@ -154,7 +154,7 @@ public class CancelAppointment extends JFrame {
 	}
 
 	public void showAppointment(String username) {
-		String filePath = "Appointment.txt";
+		String filePath = "Java Assignment\\Appointment.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));
 			for (String line : lines) {
@@ -169,7 +169,7 @@ public class CancelAppointment extends JFrame {
 	}
 
 	public void cancelBooking(){
-		String filePath = "Appointment.txt";
+		String filePath = "Java Assignment\\Appointment.txt";
 		String doctor = doctorField.getText();
 		String patient = patientField.getText();
 		String time = timeField.getText();

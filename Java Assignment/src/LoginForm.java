@@ -96,9 +96,10 @@ public class LoginForm extends JFrame {
 				checkCredentials();
 			}
 		});
-		LoginBtn.setForeground(Color.WHITE);
-		LoginBtn.setBackground(UIManager.getColor("CheckBoxMenuItem.selectionBackground"));
+		LoginBtn.setForeground(Color.BLACK);
+		LoginBtn.setBackground(Color.YELLOW);
 		LoginBtn.setBounds(372, 441, 386, 48);
+		LoginBtn.setFont(new Font("Arial", Font.PLAIN, 30));
 		contentPane.add(LoginBtn);
 		
 		JLabel lblNewLabel_1 = new JLabel("DON'T HAVE AN ACCOUNT ?");
@@ -126,7 +127,7 @@ public class LoginForm extends JFrame {
 			dispose(); 
 		}
 		public String getRoleFromCredentials(String username) {
-			String filepath = "credentials.txt";
+			String filepath = "Java Assignment\\credentials.txt";
 			try {
 				File file = new File(filepath);
 				Scanner scanner = new Scanner(file);
@@ -167,7 +168,7 @@ public class LoginForm extends JFrame {
 
 		// Check Login Credentials
 		public void checkCredentials() {
-			String filepath = "credentials.txt";
+			String filepath = "Java Assignment\\credentials.txt";
 			String usernameInput = UsernameTXT.getText();
 			String passwordInput = PasswordTXT.getText();
 

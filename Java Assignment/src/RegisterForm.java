@@ -178,7 +178,7 @@ public class RegisterForm extends JFrame {
 				return;
 			}
 
-			BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
 			String line;
 			while ((line = reader.readLine()) != null) {
 				if (line.contains("Username: " + username)) {

@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 public class AdminHomepage extends JFrame {
 
-	private String username;
+	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField searchField;
@@ -159,7 +159,7 @@ public class AdminHomepage extends JFrame {
 	}
 	
 	public void AppointmentForm() {
-		AppointmentForm AppointmentForm = new AppointmentForm(username);
+		AppointmentForm AppointmentForm = new AppointmentForm();
 		AppointmentForm.setVisible(true);
 		dispose();
 	}

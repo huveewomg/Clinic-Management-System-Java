@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class DoctorHomepage extends JFrame {
 	
-	private String username;
+	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField searchField;
@@ -252,7 +252,7 @@ public class DoctorHomepage extends JFrame {
 		
 		public void queueList() {
 			try {
-				String filePath = "PatientQueue.txt";
+				String filePath = "Java Assignment\\\\PatientQueue.txt";
 				BufferedReader reader = new BufferedReader(new FileReader(filePath));
 				String line;
 				List<String> data = new ArrayList<>();

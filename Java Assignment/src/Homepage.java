@@ -14,7 +14,7 @@ import java.awt.event.ActionEvent;
 
 public class Homepage extends JFrame {
 
-	private String username;
+	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 

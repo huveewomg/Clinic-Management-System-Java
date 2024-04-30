@@ -27,11 +27,9 @@ public class RecordForm extends JFrame {
 	private JTextField FeesField;
 	private JTextPane IssueField;
 	private JTextPane MedicationField; 
-	private String PatientName;
+	private static String PatientName;
 	
 
-	
-	private 
 	/**
 	 * Launch the application.
 	 */
@@ -121,7 +119,7 @@ public class RecordForm extends JFrame {
 				return;
 			}
 
-			FileWriter writer = new FileWriter("Payment.txt", true);
+			FileWriter writer = new FileWriter("Java Assignment\\Payment.txt\\", true);
 			writer.write("Name: "+ PatientName + "\n");
 			writer.write("Medication: " + Medication + "\n");
 			writer.write("Fees: " + Fees + "\n");
@@ -129,7 +127,7 @@ public class RecordForm extends JFrame {
 			writer.write("\n");
 			writer.close();
 
-			String directoryPath = "PatientRecords/";
+			String directoryPath = "Java Assignment\\PatientRecords\\";
 			File patientFile = new File(directoryPath + PatientName + ".txt");
 			if (!patientFile.exists()) {
 				try {
