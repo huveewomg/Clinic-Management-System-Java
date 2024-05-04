@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class MedicalRecord extends JFrame {
 	private JTextPane MedicationField;
 	private JTable table;
 	private static String PatientName;
-	
+
 	DefaultTableModel model;
 
 	/**
@@ -66,21 +67,21 @@ public class MedicalRecord extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel(PatientName + "s Medical Record");
 		lblNewLabel.setBounds(38, 35, 402, 37);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		contentPane.add(lblNewLabel);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 106, 442, 444);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int i=table.getSelectedRow();
+				int i = table.getSelectedRow();
 				DateField.setText(model.getValueAt(i, 0).toString());
 				IssueField.setText(model.getValueAt(i, 1).toString());
 				MedicationField.setText(model.getValueAt(i, 2).toString());
@@ -88,66 +89,66 @@ public class MedicalRecord extends JFrame {
 			}
 		});
 		table.setBackground(Color.WHITE);
-		model= new DefaultTableModel();
-		Object[] column = {"Date", "Issue", "Medication", "Fees"};
+		model = new DefaultTableModel();
+		Object[] column = { "Date", "Issue", "Medication", "Fees" };
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
-		
+
 		DateField = new JTextField();
 		DateField.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		DateField.setBounds(569, 153, 190, 37);
 		contentPane.add(DateField);
 		DateField.setColumns(10);
 		DateField.setEditable(false);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Date of Visit :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1.setBounds(453, 161, 115, 14);
 		contentPane.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("Issue :");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1.setBounds(488, 263, 80, 29);
 		contentPane.add(lblNewLabel_1_1);
-		
+
 		JLabel lblNewLabel_1_1_1 = new JLabel("Medication :");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1_1.setBounds(465, 385, 103, 29);
 		contentPane.add(lblNewLabel_1_1_1);
-		
+
 		MedicationField = new JTextPane();
 		MedicationField.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		MedicationField.setBounds(569, 355, 190, 83);
 		contentPane.add(MedicationField);
 		MedicationField.setEditable(false);
-		
+
 		IssueField = new JTextPane();
 		IssueField.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		IssueField.setBounds(569, 240, 190, 77);
 		contentPane.add(IssueField);
 		IssueField.setEditable(false);
-		
+
 		JLabel lblNewLabel_1_1_2 = new JLabel("Fees :");
 		lblNewLabel_1_1_2.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_1_1_2.setBounds(502, 483, 57, 29);
 		contentPane.add(lblNewLabel_1_1_2);
-		
+
 		FeeField = new JTextField();
 		FeeField.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		FeeField.setColumns(10);
 		FeeField.setBounds(569, 482, 190, 37);
 		contentPane.add(FeeField);
 		FeeField.setEditable(false);
-		
+
 		importRecord(PatientName);
 
 	}
-	
+
 	public void importRecord(String PatientName) {
 		try {
 			String directoryPath = "Java Assignment\\PatientRecords\\";
@@ -181,7 +182,9 @@ public class MedicalRecord extends JFrame {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, "File Not Found: " + e.getMessage(),
+					"Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
 }
