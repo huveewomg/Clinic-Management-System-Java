@@ -36,7 +36,7 @@ public class CollectPayment extends JFrame {
 	private JTextField feeField;
 	private JTextField statusField;
 	private JTable table;
-	
+
 	DefaultTableModel model;
 
 	/**
@@ -66,51 +66,51 @@ public class CollectPayment extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Name :");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(10, 164, 131, 41);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblMedication = new JLabel("Medication :");
 		lblMedication.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblMedication.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblMedication.setBounds(10, 237, 131, 41);
 		contentPane.add(lblMedication);
-		
+
 		JLabel lblFees = new JLabel("Fees :");
 		lblFees.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblFees.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblFees.setBounds(10, 318, 131, 41);
 		contentPane.add(lblFees);
-		
+
 		JLabel lblStatus = new JLabel("Status :");
 		lblStatus.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblStatus.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblStatus.setBounds(10, 397, 131, 41);
 		contentPane.add(lblStatus);
-		
+
 		nameField = new JTextField();
 		nameField.setBounds(146, 175, 146, 27);
 		contentPane.add(nameField);
 		nameField.setColumns(10);
-		
+
 		medicationField = new JTextField();
 		medicationField.setColumns(10);
 		medicationField.setBounds(146, 248, 146, 27);
 		contentPane.add(medicationField);
-		
+
 		feeField = new JTextField();
 		feeField.setColumns(10);
 		feeField.setBounds(146, 329, 146, 27);
 		contentPane.add(feeField);
-		
+
 		statusField = new JTextField();
 		statusField.setColumns(10);
 		statusField.setBounds(146, 408, 146, 27);
 		contentPane.add(statusField);
-		
+
 		JButton btnNewButton = new JButton("Complete Payment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,16 +119,16 @@ public class CollectPayment extends JFrame {
 		});
 		btnNewButton.setBounds(102, 484, 146, 47);
 		contentPane.add(btnNewButton);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Collect Payment");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel_1.setBounds(46, 44, 246, 97);
 		contentPane.add(lblNewLabel_1);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(329, 11, 445, 539);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -141,19 +141,19 @@ public class CollectPayment extends JFrame {
 			}
 		});
 		table.setBackground(Color.WHITE);
-		model= new DefaultTableModel();
-		Object[] column = {"Name", "Medication", "Fees", "Status"};
+		model = new DefaultTableModel();
+		Object[] column = { "Name", "Medication", "Fees", "Status" };
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
-		
+
 		ShowPendingList();
 	}
 
 	// fetch from payment.txt and plot into table
 	public void ShowPendingList() {
 		try {
-			File file = new File("Java Assignment\\\\payment.txt");
+			File file = new File("Java Assignment\\payment.txt");
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line;
 			String[] dataRow = new String[4];
@@ -185,12 +185,13 @@ public class CollectPayment extends JFrame {
 	}
 
 	public void StoreData() {
-		String filePath = "Java Assignment\\\\credentials.txt";
-		String incomeReportPath = "Java Assignment\\\\incomeReport.txt";
+		String filePath = "Java Assignment\\credentials.txt";
+		String incomeReportPath = "Java Assignment\\incomeReport.txt";
 		String name = nameField.getText();
 		String fee = feeField.getText();
 
-		int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to proceed?", "Confirmation", JOptionPane.YES_NO_OPTION);
+		int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to proceed?", "Confirmation",
+				JOptionPane.YES_NO_OPTION);
 		if (dialogResult == JOptionPane.YES_OPTION) {
 			try {
 				// Read the existing lines
@@ -217,7 +218,8 @@ public class CollectPayment extends JFrame {
 				Files.write(Paths.get(incomeReportPath), incomeReport.getBytes(), StandardOpenOption.APPEND);
 
 				// Show success message
-				JOptionPane.showMessageDialog(null, "Operation completed successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Operation completed successfully.", "Success",
+						JOptionPane.INFORMATION_MESSAGE);
 				this.dispose();
 			} catch (IOException e) {
 				e.printStackTrace();

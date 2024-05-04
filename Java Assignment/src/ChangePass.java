@@ -90,22 +90,22 @@ public class ChangePass extends JFrame {
 		JButton btnSubmit = new JButton("Submit");
 		btnSubmit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 ChangePass();
+				ChangePass();
 			}
 		});
 		btnSubmit.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnSubmit.setBounds(487, 480, 144, 70);
 		contentPane.add(btnSubmit);
 	}
-	// redirect to correct page based on username 
+
+	// redirect to correct page based on username
 	public void Homepage() {
 		if (username.contains("admin")) {
 			AdminHomepage AdminHomepage = new AdminHomepage(username);
 			AdminHomepage.setVisible(true);
 			dispose();
 			return;
-		}
-		else {
+		} else {
 			Homepage Homepage = new Homepage(username);
 			Homepage.setVisible(true);
 			dispose();
@@ -156,7 +156,7 @@ public class ChangePass extends JFrame {
 				}
 
 				// Write the updated content back to the file
-				BufferedWriter writer = new BufferedWriter(new FileWriter("Java Assignment\\\\credentials.txt"));
+				BufferedWriter writer = new BufferedWriter(new FileWriter("Java Assignment\\credentials.txt"));
 				writer.write(fileContent.toString());
 				writer.close();
 
