@@ -44,11 +44,10 @@ public class AppointmentEdit extends JFrame {
 	private static String username;
 	private JTextField RemarkField;
 	private JTextField doctorField;
-    private JComboBox<String> StatusBox; 
+	private JComboBox<String> StatusBox;
 
 	public static DefaultTableModel model;
 	List<String> data = new ArrayList<String>();
-
 
 	/**
 	 * Launch the application.
@@ -71,7 +70,7 @@ public class AppointmentEdit extends JFrame {
 	 */
 	public AppointmentEdit(String username) {
 		this.username = username;
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -161,27 +160,27 @@ public class AppointmentEdit extends JFrame {
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_2.setBounds(10, 206, 118, 39);
 		contentPane.add(lblNewLabel_1_2);
-		
+
 		JLabel lblNewLabel_1_1_2 = new JLabel("Remark :");
 		lblNewLabel_1_1_2.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_1_2.setBounds(10, 342, 118, 39);
 		contentPane.add(lblNewLabel_1_1_2);
-		
+
 		JScrollPane scrollPane_1 = new JScrollPane();
 		scrollPane_1.setBounds(148, 348, 144, 33);
 		contentPane.add(scrollPane_1);
-		
+
 		RemarkField = new JTextField();
 		scrollPane_1.setViewportView(RemarkField);
 		RemarkField.setColumns(10);
-		
+
 		JLabel lblNewLabel_1_3 = new JLabel("Doctor :");
 		lblNewLabel_1_3.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_3.setBounds(10, 72, 118, 39);
 		contentPane.add(lblNewLabel_1_3);
-				
+
 		doctorField = new JTextField();
 		doctorField.setEditable(false);
 		doctorField.setText(username);
@@ -195,51 +194,53 @@ public class AppointmentEdit extends JFrame {
 
 	// filter by doctor name
 	public static void AppointmentList(String doctorName, DefaultTableModel model) {
-        try {
-            String filePath = "Java Assignment\\Appointment.txt";
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
-            String line;
-            List<String[]> data = new ArrayList<>(); // List to store appointment data
+		try {
+			String filePath = "Appointment.txt";
+			BufferedReader reader = new BufferedReader(new FileReader(filePath));
+			String line;
+			List<String[]> data = new ArrayList<>(); // List to store appointment data
 
-            // Create a regex pattern to match the doctor's name
-            Pattern pattern = Pattern.compile(doctorName + ",");
+			// Create a regex pattern to match the doctor's name
+			Pattern pattern = Pattern.compile(doctorName + ",");
 
-            while ((line = reader.readLine()) != null) {
-                Matcher matcher = pattern.matcher(line);
-                if (matcher.find()) {
-                    // Split the line by comma to separate doctor name, patient name, date, and remark
-                    String[] parts = line.split(",", 4);
-                    if (parts.length == 4) { // Ensure there are four parts
-                        String patientName = parts[1].trim();
-                        String date = parts[2].trim();
-                        String remark = parts[3].trim();
-                        // Add the appointment data to the list
-                        data.add(new String[]{patientName, date, remark});
-                    }
-                }
-            }
-            // Populate the table with the appointment data
-            for (String[] row : data) {
-                model.addRow(row);
-            }	
-            reader.close(); // Close the reader
-        } catch (IOException e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
+			while ((line = reader.readLine()) != null) {
+				Matcher matcher = pattern.matcher(line);
+				if (matcher.find()) {
+					// Split the line by comma to separate doctor name, patient name, date, and
+					// remark
+					String[] parts = line.split(",", 4);
+					if (parts.length == 4) { // Ensure there are four parts
+						String patientName = parts[1].trim();
+						String date = parts[2].trim();
+						String remark = parts[3].trim();
+						// Add the appointment data to the list
+						data.add(new String[] { patientName, date, remark });
+					}
+				}
+			}
+			// Populate the table with the appointment data
+			for (String[] row : data) {
+				model.addRow(row);
+			}
+			reader.close(); // Close the reader
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
+	}
 
-// fetch from textfield and update the appointment if completed / cancelled store in Appointment folder patientname.txt and remove from appointment.txt
-	public void updateAppointment(){
-		try{
+	// fetch from textfield and update the appointment if completed / cancelled
+	// store in Appointment folder patientname.txt and remove from appointment.txt
+	public void updateAppointment() {
+		try {
 			String Doctor = doctorField.getText();
 			String PatientName = usernameField.getText();
 			String Date = dateField.getText();
 			String Details = detailField.getText();
 			String Remark = RemarkField.getText();
 			String Status = (String) StatusBox.getSelectedItem();
-			if (Details.isEmpty() ||Remark.isEmpty() || Status.isEmpty()) {
+			if (Details.isEmpty() || Remark.isEmpty() || Status.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "Please fill all the fields");
 				return;
 			}
@@ -248,18 +249,19 @@ public class AppointmentEdit extends JFrame {
 			if (!folder.exists()) {
 				folder.mkdir();
 			}
-			
-			File appointmentFile = new File("Java Assignment\\Appointment\\" + PatientName + ".txt");
+
+			File appointmentFile = new File("Appointment/" + PatientName + ".txt");
 			if (!appointmentFile.exists()) {
 				try {
 					appointmentFile.createNewFile();
 				} catch (IOException e) {
 					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Error creating appointment file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error creating appointment file: " + e.getMessage(), "Error",
+							JOptionPane.ERROR_MESSAGE);
 					return;
 				}
 			}
-			
+
 			FileWriter writer = new FileWriter(appointmentFile, true);
 			writer.write("Doctor: " + Doctor + "\n");
 			writer.write("Date: " + dateField.getText() + "\n");
@@ -268,21 +270,24 @@ public class AppointmentEdit extends JFrame {
 			writer.write("Status: " + Status + "\n");
 			writer.write("\n");
 			writer.close();
-			
-			deleteFromAppointment(Doctor, PatientName, Date, Details );
+
+			deleteFromAppointment(Doctor, PatientName, Date, Details);
 			JOptionPane.showMessageDialog(null, "Appointment Updated");
+			DoctorHomepage doctorHomepage = new DoctorHomepage(username);
+			doctorHomepage.setVisible(true);
 			dispose();
 
 		} catch (IOException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error writing file: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error writing file: " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	// delete from appointment.txt
 	public void deleteFromAppointment(String doctorName, String patientName, String date, String remark) {
 		try {
-			File appointmentFile = new File("Java Assignment\\Appointment.txt");
+			File appointmentFile = new File("Appointment.txt");
 
 			String lineToRemove = doctorName + "," + patientName + "," + date + "," + remark;
 
@@ -307,7 +312,8 @@ public class AppointmentEdit extends JFrame {
 			System.out.println("Debug end");
 		} catch (IOException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(null, "Error deleting appointment: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Error deleting appointment: " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 

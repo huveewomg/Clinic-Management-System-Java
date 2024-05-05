@@ -202,15 +202,6 @@ public class DoctorHomepage extends JFrame {
 		AppointmentTable.setModel(model);
 		scrollPane_1.setViewportView(AppointmentTable);
 
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				AppointmentEdit.AppointmentList(username, model);
-			}
-		});
-		btnNewButton.setBounds(335, 109, 89, 23);
-		contentPane.add(btnNewButton);
-
 		queueList();
 		AppointmentEdit.AppointmentList(username, model);
 	}
@@ -240,6 +231,7 @@ public class DoctorHomepage extends JFrame {
 	public void AppointmentEdit(String username) {
 		AppointmentEdit AppointmentEdit = new AppointmentEdit(username);
 		AppointmentEdit.setVisible(true);
+		dispose();
 	}
 
 	public void NewSchedule() {
@@ -249,7 +241,7 @@ public class DoctorHomepage extends JFrame {
 
 	public void queueList() {
 		try {
-			String filePath = "Java Assignment\\PatientQueue.txt";
+			String filePath = "PatientQueue.txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;
 			List<String> data = new ArrayList<>();

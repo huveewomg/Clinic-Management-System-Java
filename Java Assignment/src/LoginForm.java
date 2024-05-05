@@ -127,7 +127,7 @@ public class LoginForm extends JFrame {
 	}
 
 	public String getRoleFromCredentials(String username) {
-		String filepath = "Java Assignment\\credentials.txt";
+		String filepath = "credentials.txt";
 		try {
 			File file = new File(filepath);
 			Scanner scanner = new Scanner(file);
@@ -168,7 +168,7 @@ public class LoginForm extends JFrame {
 
 	// Check Login Credentials
 	public void checkCredentials() {
-		String filepath = "Java Assignment\\credentials.txt";
+		String filepath = "credentials.txt";
 		String usernameInput = UsernameTXT.getText();
 		String passwordInput = PasswordTXT.getText();
 
