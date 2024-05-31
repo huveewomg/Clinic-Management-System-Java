@@ -81,14 +81,6 @@ public class SettingPage extends JFrame {
 		DelBtn.setBounds(224, 396, 309, 64);
 		contentPane.add(DelBtn);
 		
-		JButton HomepageBtn = new JButton("Return To Homepage");
-		HomepageBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Homepage();
-			}
-		});
-		HomepageBtn.setBounds(564, 69, 189, 23);
-		contentPane.add(HomepageBtn);
 	}
 	
 		public void ChangePassForm() {
@@ -137,19 +129,4 @@ public class SettingPage extends JFrame {
 				JOptionPane.showMessageDialog(null, "Account deletion cancelled.");
 			}
 		}
-//		return to homepage based on user roles
-		public void Homepage() {
-			if (username.contains("admin")) {
-				AdminHomepage AdminHomepage = new AdminHomepage(username);
-				AdminHomepage.setVisible(true);
-				dispose();
-				return;
-			}
-			else {
-				Homepage Homepage = new Homepage(username);
-				Homepage.setVisible(true);
-				dispose();
-			}
-		}
-
 }
