@@ -98,18 +98,8 @@ public class ChangePass extends JFrame {
 		contentPane.add(btnSubmit);
 	}
 
-	// redirect to correct page based on username
-	public void Homepage() {
-		if (username.contains("admin")) {
-			AdminHomepage AdminHomepage = new AdminHomepage(username);
-			AdminHomepage.setVisible(true);
-			dispose();
-			return;
-		} else {
-			Homepage Homepage = new Homepage(username);
-			Homepage.setVisible(true);
-			dispose();
-		}
+	public void Homepage(){
+		dispose();
 	}
 
 	// change pass function
