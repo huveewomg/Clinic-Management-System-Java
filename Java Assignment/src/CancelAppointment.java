@@ -154,7 +154,7 @@ public class CancelAppointment extends JFrame {
 	}
 
 	public void showAppointment(String username) {
-		String filePath = "Java Assignment\\Appointment.txt";
+		String filePath = "Appointment.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));
 			for (String line : lines) {
@@ -169,7 +169,7 @@ public class CancelAppointment extends JFrame {
 	}
 
 	public void cancelBooking(){
-		String filePath = "Java Assignment\\Appointment.txt";
+		String filePath = "Appointment.txt";
 		String doctor = doctorField.getText();
 		String patient = patientField.getText();
 		String time = timeField.getText();

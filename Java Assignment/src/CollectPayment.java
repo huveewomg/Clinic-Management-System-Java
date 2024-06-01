@@ -94,21 +94,25 @@ public class CollectPayment extends JFrame {
 		nameField = new JTextField();
 		nameField.setBounds(146, 175, 146, 27);
 		contentPane.add(nameField);
+		nameField.setEditable(false);
 		nameField.setColumns(10);
 
 		medicationField = new JTextField();
 		medicationField.setColumns(10);
 		medicationField.setBounds(146, 248, 146, 27);
+		medicationField.setEditable(false);
 		contentPane.add(medicationField);
 
 		feeField = new JTextField();
 		feeField.setColumns(10);
 		feeField.setBounds(146, 329, 146, 27);
+		feeField.setEditable(false);
 		contentPane.add(feeField);
 
 		statusField = new JTextField();
 		statusField.setColumns(10);
 		statusField.setBounds(146, 408, 146, 27);
+		statusField.setEditable(false);
 		contentPane.add(statusField);
 
 		JButton btnNewButton = new JButton("Complete Payment");
@@ -153,7 +157,7 @@ public class CollectPayment extends JFrame {
 	// fetch from payment.txt and plot into table
 	public void ShowPendingList() {
 		try {
-			File file = new File("Java Assignment\\payment.txt");
+			File file = new File("payment.txt");
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line;
 			String[] dataRow = new String[4];
@@ -185,8 +189,8 @@ public class CollectPayment extends JFrame {
 	}
 
 	public void StoreData() {
-		String filePath = "Java Assignment\\credentials.txt";
-		String incomeReportPath = "Java Assignment\\incomeReport.txt";
+		String filePath = "credentials.txt";
+		String incomeReportPath = "incomeReport.txt";
 		String name = nameField.getText();
 		String fee = feeField.getText();
 

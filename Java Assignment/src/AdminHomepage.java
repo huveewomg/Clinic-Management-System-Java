@@ -140,16 +140,11 @@ public class AdminHomepage extends JFrame {
 	}
 	
 	public void SettingForm() {
-		SettingPage SettingPage = new SettingPage(username);
-		SettingPage.setVisible(true);
+		MainClass.SettingForm(username);
 	}	
-	
-	public void Logout() {
-		LoginForm loginForm = new LoginForm();
-		loginForm.setVisible(true);
-		dispose();
-		JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
 
+	public void Logout() {
+		MainClass.Logout();
 	}
 	
 	public void EditStaff() {

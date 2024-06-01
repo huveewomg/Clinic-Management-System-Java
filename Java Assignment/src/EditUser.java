@@ -232,7 +232,7 @@ public class EditUser extends JFrame {
             if (confirm == JOptionPane.YES_OPTION) {
                 model.removeRow(i);
                 try {
-                    BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
+                    BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
                     boolean usernameFound = false;
                     StringBuilder fileContent = new StringBuilder();
                     String line;
@@ -250,7 +250,7 @@ public class EditUser extends JFrame {
                     reader.close();
                     if (usernameFound) {
                         // write the new content to the file
-                        FileWriter writer = new FileWriter("Java Assignment\\credentials.txt");
+                        FileWriter writer = new FileWriter("credentials.txt");
                         JOptionPane.showMessageDialog(null, "Account deleted successfully!");
                         writer.write(fileContent.toString());
                         writer.close();
@@ -268,12 +268,8 @@ public class EditUser extends JFrame {
     // based on the username and update the other fields in the file
     public void UpdateUser() {
         try {
-            if (CheckUsername()) {
-                JOptionPane.showMessageDialog(null, "Username already exists. Please type again.");
-                return;
-            }
-
-            BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
+            
+            BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
             StringBuilder fileContent = new StringBuilder();
             String line;
             int i = table.getSelectedRow();
@@ -299,9 +295,9 @@ public class EditUser extends JFrame {
             }
             reader.close();
 
-            CheckUsername();
+            // CheckUsername();
 
-            FileWriter writer = new FileWriter("Java Assignment\\credentials.txt");
+            FileWriter writer = new FileWriter("credentials.txt");
             writer.write(fileContent.toString());
             writer.close();
             model.setValueAt(UsernameTXT.getText(), i, 0);
@@ -336,7 +332,7 @@ public class EditUser extends JFrame {
                 return;
             }
 
-            FileWriter writer = new FileWriter("Java Assignment\\credentials.txt", true);
+            FileWriter writer = new FileWriter("credentials.txt", true);
             writer.write("Username: " + username + "\n");
             writer.write("Name: " + name + "\n");
             writer.write("Password: " + password + "\n");
@@ -363,7 +359,7 @@ public class EditUser extends JFrame {
     }
 
     private void ImportData(String role) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"))) {
             String line;
             List<String[]> data = new ArrayList<>();
             Deque<String> previousLines = new ArrayDeque<>();
@@ -402,7 +398,7 @@ public class EditUser extends JFrame {
 
     public boolean CheckUsername() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.contains("Username: " + UsernameTXT.getText())) {

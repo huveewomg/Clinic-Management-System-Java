@@ -162,7 +162,7 @@ public class AppointmentRecord extends JFrame {
 
 	public void importAppointment(String username) {
 		try {
-			String directoryPath = "Java Assignment\\Appointment\\";
+			String directoryPath = "Appointment\\";
 			String filePath = directoryPath + username + ".txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;

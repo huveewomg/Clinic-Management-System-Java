@@ -151,7 +151,7 @@ public class MedicalRecord extends JFrame {
 
 	public void importRecord(String PatientName) {
 		try {
-			String directoryPath = "Java Assignment\\PatientRecords\\";
+			String directoryPath = "PatientRecords\\";
 			String filePath = directoryPath + PatientName + ".txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;

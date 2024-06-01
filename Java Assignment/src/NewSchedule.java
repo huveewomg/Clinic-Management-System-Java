@@ -353,7 +353,7 @@ public class NewSchedule extends JFrame {
             return;
         }
 
-		String directoryPath = "Java Assignment\\Schedule\\";
+		String directoryPath = "Schedule\\";
 		File directory = new File(directoryPath + username + "Schedule.txt");
 		if (!directory.exists()) {
 			try {
