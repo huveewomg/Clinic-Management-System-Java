@@ -92,7 +92,7 @@ public class MakeAppointment extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		comboBox = new JComboBox();
-		List<String> doctorUsernames = getDoctorUsernames("Java Assignment\\credentials.txt");
+		List<String> doctorUsernames = getDoctorUsernames("credentials.txt");
 		comboBox.setModel(new DefaultComboBoxModel(doctorUsernames.toArray(new String[0])));
 		comboBox.setBounds(548, 92, 140, 22);
 		contentPane.add(comboBox);
@@ -224,7 +224,7 @@ public class MakeAppointment extends JFrame {
 
 	public void searchSlot(List<String> doctorUsernames) {
 		String doctorUsername = comboBox.getSelectedItem().toString();
-		String directoryPath = "Java Assignment\\Schedule\\";
+		String directoryPath = "Schedule\\";
 		String filePath = directoryPath + doctorUsername + "Schedule.txt";
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -253,7 +253,7 @@ public class MakeAppointment extends JFrame {
 
     public void updateSchedule(String doctorName, String time, String status) {
         // Construct the file path
-        String directoryPath = "Java Assignment\\Schedule\\";
+        String directoryPath = "Schedule\\";
         String filePath = directoryPath + doctorName + "Schedule.txt";
 
         // Create a list to store the updated schedule
@@ -288,7 +288,7 @@ public class MakeAppointment extends JFrame {
 		String time = timeField.getText();
 		String details = detailsField.getText();
 		String status = "Booked";
-		String filePath = "Java Assignment\\Appointment.txt";
+		String filePath = "Appointment.txt";
 		String data = doctorName + "," + patientName + "," + time + "," + details + "\n"; // Removed extra newline
 
 		try {

@@ -169,7 +169,7 @@ public class AppointmentForm extends JFrame {
 	}
 
 	public void Search(String username) {
-		try (BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"))) {
+		try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"))) {
 			String line;
 			List<String[]> data = new ArrayList<>();
 			while ((line = reader.readLine()) != null) {
@@ -205,7 +205,7 @@ public class AppointmentForm extends JFrame {
 				return;
 			}
 
-			FileWriter writer = new FileWriter("Java Assignment\\PatientQueue.txt", true);
+			FileWriter writer = new FileWriter("PatientQueue.txt", true);
 			writer.write("Username: " + username + "\n");
 			writer.write("Name: " + name + "\n");
 			writer.write("Severity: " + severity + "\n");

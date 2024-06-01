@@ -112,7 +112,7 @@ public class ChangePass extends JFrame {
 			if (oldPass.equals("") || newPass.equals("")) {
 				JOptionPane.showMessageDialog(null, "Please fill in all fields");
 			} else {
-				BufferedReader reader = new BufferedReader(new FileReader("Java Assignment\\credentials.txt"));
+				BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
 				String line;
 				boolean usernameFound = false;
 				boolean oldPassCorrect = false;
@@ -146,7 +146,7 @@ public class ChangePass extends JFrame {
 				}
 
 				// Write the updated content back to the file
-				BufferedWriter writer = new BufferedWriter(new FileWriter("Java Assignment\\credentials.txt"));
+				BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
 				writer.write(fileContent.toString());
 				writer.close();
 

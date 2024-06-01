@@ -207,15 +207,11 @@ public class DoctorHomepage extends JFrame {
 	}
 
 	public void Logout() {
-		LoginForm loginForm = new LoginForm();
-		loginForm.setVisible(true);
-		dispose();
-		JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
+		MainClass.Logout();
 	}
 
 	public void SettingForm() {
-		SettingPage SettingPage = new SettingPage(username);
-		SettingPage.setVisible(true);
+		MainClass.SettingForm(username);
 	}
 
 	public void MedicalRecord(String PatientName) {
