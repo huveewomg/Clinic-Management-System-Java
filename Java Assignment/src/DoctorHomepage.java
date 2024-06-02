@@ -207,6 +207,7 @@ public class DoctorHomepage extends JFrame {
 	}
 
 	public void Logout() {
+		dispose();
 		MainClass.Logout();
 	}
 
