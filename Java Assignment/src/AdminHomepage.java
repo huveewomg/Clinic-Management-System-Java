@@ -144,6 +144,7 @@ public class AdminHomepage extends JFrame {
 	}	
 
 	public void Logout() {
+		dispose();
 		MainClass.Logout();
 	}
 	

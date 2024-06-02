@@ -107,6 +107,7 @@ public class Homepage extends JFrame {
 	}
 	
 		public void Logout() {
+			dispose();
 			MainClass.Logout();
 		}
 		
