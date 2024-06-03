@@ -12,7 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Homepage extends JFrame {
+public class PatientHomepage extends JFrame {
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class Homepage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Homepage frame = new Homepage(username);
+					PatientHomepage frame = new PatientHomepage(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class Homepage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Homepage(String username) {
+	public PatientHomepage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);

@@ -213,7 +213,7 @@ public class LoginForm extends JFrame {
 				// Check the role
 				String role = getRoleFromCredentials(usernameInput);
 				if (role.equals("Patient")) {
-					Homepage homepage = new Homepage(usernameInput);
+					PatientHomepage homepage = new PatientHomepage(usernameInput);
 					homepage.setVisible(true);
 					dispose();
 				} else if (role.equals("Admin")) {
