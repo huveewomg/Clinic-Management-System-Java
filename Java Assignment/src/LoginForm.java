@@ -101,30 +101,14 @@ public class LoginForm extends JFrame {
 		LoginBtn.setFont(new Font("Arial", Font.PLAIN, 30));
 		contentPane.add(LoginBtn);
 
-		JLabel lblNewLabel_1 = new JLabel("DON'T HAVE AN ACCOUNT ?");
+		JLabel lblNewLabel_1 = new JLabel("DON'T HAVE AN ACCOUNT ? VISIT THE COUNTER TO REGISTER !");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setForeground(Color.RED);
-		lblNewLabel_1.setBounds(372, 495, 200, 38);
+		lblNewLabel_1.setBounds(372, 495, 400, 38);
 		contentPane.add(lblNewLabel_1);
-
-		Button ToRegisterBtn = new Button("SIGN UP NOW !");
-		ToRegisterBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				RegisterForm();
-			}
-		});
-		ToRegisterBtn.setForeground(Color.WHITE);
-		ToRegisterBtn.setBackground(Color.BLUE);
-		ToRegisterBtn.setBounds(578, 495, 180, 38);
-		contentPane.add(ToRegisterBtn);
 	}
 
 	// Functions starts here
-	public void RegisterForm() {
-		RegisterForm RegisterForm = new RegisterForm();
-		RegisterForm.setVisible(true);
-		dispose();
-	}
 
 	public String getRoleFromCredentials(String username) {
 		String filepath = "credentials.txt";

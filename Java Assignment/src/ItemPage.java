@@ -1,4 +1,6 @@
-// might be a useless file to delete
+// might be a useless file  
+// Can change to medication store file if time allows
+// Or can be write under limitation
 
 import java.awt.EventQueue;
 
