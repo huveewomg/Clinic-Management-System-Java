@@ -70,7 +70,7 @@ public class AppointmentEdit extends JFrame {
 	 */
 	public AppointmentEdit(String username) {
 		this.username = username;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -104,6 +104,18 @@ public class AppointmentEdit extends JFrame {
 		btnCompleteAppointment.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnCompleteAppointment.setBounds(65, 493, 195, 23);
 		contentPane.add(btnCompleteAppointment);
+
+		JButton btnBack = new JButton("Go Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DoctorHomepage doctorHomepage = new DoctorHomepage(username);
+				doctorHomepage.setVisible(true);
+				dispose();
+			}
+		});
+		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		btnBack.setBounds(65, 530, 195, 23);
+		contentPane.add(btnBack);
 
 		JLabel lblNewLabel_1_1_1 = new JLabel("Status :");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.TRAILING);

@@ -1,0 +1,24 @@
+Test Plan In Sequence
+
+Admin :
+1. New User (Show Case Patient List/ Doctor List)
+2. Update Any User then add a new user
+3. Queue Feature ( Search and Add New User into queue) Use Go Back
+4. Medical Record Function (Fill Box First: JasonTan123) Press Around
+5. Collect Payment
+6. Show Report (In Development)
+
+Doctor:
+1. Explain UI Approach (Click the table and show)
+2. Make Schedule
+3. Go to Appointment ( Cancel Someone) Show them the table will update instantly
+4. Check Patient Record 
+5. New Record
+
+Patient
+1. Make Appointment (can show on doctor side if requested)
+2. Cancel It 
+3. Track history
+4. Setting
+5. Change Password
+6. Delete Account

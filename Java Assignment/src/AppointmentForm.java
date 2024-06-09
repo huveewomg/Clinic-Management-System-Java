@@ -130,7 +130,7 @@ public class AppointmentForm extends JFrame {
 		btnAddToQueue.setBounds(199, 486, 142, 23);
 		contentPane.add(btnAddToQueue);
 
-		JButton btnNewButton_1_2 = new JButton("Cancel");
+		JButton btnNewButton_1_2 = new JButton("Go Back");
 		btnNewButton_1_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Homepage();
