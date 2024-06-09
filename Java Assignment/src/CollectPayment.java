@@ -224,10 +224,35 @@ public class CollectPayment extends JFrame {
 				// Show success message
 				JOptionPane.showMessageDialog(null, "Operation completed successfully.", "Success",
 						JOptionPane.INFORMATION_MESSAGE);
+				// Clear the payment details from the payment.txt file
+				clearPayment(name);
 				this.dispose();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	public void clearPayment(String name) {
+		String filePath = "payment.txt";
+		try {
+			List<String> lines = Files.readAllLines(Paths.get(filePath));
+			int index = -1;
+			for (int i = 0; i < lines.size(); i++) {
+				if (lines.get(i).contains("Name: " + name)) {
+					index = i;
+					break;
+				}
+			}
+			// If name was found, remove it and the next three lines
+			if (index != -1) {
+				for (int i = 0; i < 4 && index < lines.size(); i++) {
+					lines.remove(index); // Remove the line
+				}
+			}
+			Files.write(Paths.get(filePath), lines);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

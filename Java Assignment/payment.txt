@@ -8,8 +8,4 @@ Medication: Fentanyl
 Fees: 120
 Status: Pending
 
-Name: JasonTan123
-Medication: Laxative
-Fees: 80
-Status: Pending
 
