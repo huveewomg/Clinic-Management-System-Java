@@ -72,7 +72,7 @@ public class AdminHomepage extends JFrame {
 		LogOutBtn.setBounds(628, 41, 146, 23);
 		contentPane.add(LogOutBtn);
 		
-		JButton ReportBtn = new JButton("Payment / Report");
+		JButton ReportBtn = new JButton("Collect Payment");
 		ReportBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CollectPayment();
@@ -137,6 +137,17 @@ public class AdminHomepage extends JFrame {
 		searchField.setBounds(403, 343, 181, 39);
 		contentPane.add(searchField);
 		searchField.setColumns(10);
+
+		JButton IncomeReportBtn = new JButton("Report");
+		IncomeReportBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IncomeReport IncomeReport = new IncomeReport();
+				IncomeReport.setVisible(true);
+			}
+		});
+		IncomeReportBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		IncomeReportBtn.setBounds(620, 400, 150, 96);
+		contentPane.add(IncomeReportBtn);
 	}
 	
 	public void SettingForm() {
