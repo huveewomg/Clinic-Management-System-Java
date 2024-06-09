@@ -59,7 +59,7 @@ public class CollectPayment extends JFrame {
 	 * Create the frame.
 	 */
 	public CollectPayment() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -118,7 +118,13 @@ public class CollectPayment extends JFrame {
 		JButton btnNewButton = new JButton("Complete Payment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StoreData();
+				if (nameField.getText().isEmpty() || medicationField.getText().isEmpty() || feeField.getText().isEmpty()
+						|| statusField.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Please select a record from the table.", "Error",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					StoreData();
+				}
 			}
 		});
 		btnNewButton.setBounds(102, 484, 146, 47);

@@ -162,7 +162,12 @@ public class AdminHomepage extends JFrame {
 
 	public void MedicalRecord(String PatientName) {
 		MedicalRecord MedicalRecord = new MedicalRecord(PatientName);
-		MedicalRecord.setVisible(true);
+		if (MedicalRecord.importRecord(PatientName)){
+			MedicalRecord.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Patient Not Found");
+		}
 	}
 	
 	public void TodayAppointment() {

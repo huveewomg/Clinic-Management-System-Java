@@ -47,7 +47,9 @@ public class MedicalRecord extends JFrame {
 			public void run() {
 				try {
 					MedicalRecord frame = new MedicalRecord(PatientName);
-					frame.setVisible(true);
+					if (frame.importRecord(PatientName)){
+						frame.setVisible(true);
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -149,7 +151,7 @@ public class MedicalRecord extends JFrame {
 
 	}
 
-	public void importRecord(String PatientName) {
+	public boolean importRecord(String PatientName) {
 		try {
 			String directoryPath = "PatientRecords\\";
 			String filePath = directoryPath + PatientName + ".txt";
@@ -180,10 +182,12 @@ public class MedicalRecord extends JFrame {
 			for (String[] row : data) {
 				model.addRow(row);
 			}
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "File Not Found: " + e.getMessage(),
-					"Error", JOptionPane.ERROR_MESSAGE);
+			// JOptionPane.showMessageDialog(this, "File Not Found: " + e.getMessage(),
+			// 		"Error", JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 	}
 
