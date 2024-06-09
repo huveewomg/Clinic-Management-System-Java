@@ -103,6 +103,16 @@ public class NewSchedule extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(35, 121, 143, 38);
 		contentPane.add(lblNewLabel);
+
+		JButton ClearButton = new JButton("Clear Schedule");
+		ClearButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				clearSchedule(username);
+			}
+		});
+		ClearButton.setBounds(500, 130, 130, 23);
+		contentPane.add(ClearButton);
 		
 		JLabel lblTime = new JLabel("Time Open For Booking :");
 		lblTime.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -370,8 +380,30 @@ public class NewSchedule extends JFrame {
             }
             writer.close();
             JOptionPane.showMessageDialog(null, "Schedule saved successfully!");
+			dispose();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Error saving schedule: " + ex.getMessage());
         }
     }
+
+	private void clearSchedule(String username){
+		String directoryPath = "Schedule\\";
+		File directory = new File(directoryPath + username + "Schedule.txt");
+		if (!directory.exists()) {
+			try {
+				directory.createNewFile();
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Error creating schedule file: " + e.getMessage());
+				return;
+			}
+		}
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter( directoryPath+ username + "Schedule.txt", false))) {
+			writer.write("");
+			writer.close();
+			JOptionPane.showMessageDialog(null, "Schedule cleared successfully!");
+			dispose();
+		} catch (IOException ex) {
+			JOptionPane.showMessageDialog(null, "Error clearing schedule: " + ex.getMessage());
+		}
+	}
 }
