@@ -226,28 +226,34 @@ public class MakeAppointment extends JFrame {
 		String doctorUsername = comboBox.getSelectedItem().toString();
 		String directoryPath = "Schedule\\";
 		String filePath = directoryPath + doctorUsername + "Schedule.txt";
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(filePath));
-			String line;
-			List<String[]> data = new ArrayList<>();
-			while ((line = reader.readLine()) != null) {
-				String[] lineSplit = line.split(",");
-				String[] currentRow = new String[2];
-				currentRow[0] = lineSplit[0]; // Time slot
-				if (lineSplit.length > 1) {
-					currentRow[1] = lineSplit[1]; // Status
-				} else {
-					currentRow[1] = ""; // Empty status
+		File file = new File(filePath);
+		if (file.exists()) {
+			try {
+				BufferedReader reader = new BufferedReader(new FileReader(filePath));
+				String line;
+				List<String[]> data = new ArrayList<>();
+				while ((line = reader.readLine()) != null) {
+					String[] lineSplit = line.split(",");
+					String[] currentRow = new String[2];
+					currentRow[0] = lineSplit[0]; // Time slot
+					if (lineSplit.length > 1) {
+						currentRow[1] = lineSplit[1]; // Status
+					} else {
+						currentRow[1] = ""; // Empty status
+					}
+					data.add(currentRow);
 				}
-				data.add(currentRow);
+				DefaultTableModel model = (DefaultTableModel) table.getModel();
+				model.setRowCount(0);
+				for (String[] row : data) {
+					model.addRow(row);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
+		} else {
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
-			model.setRowCount(0);
-			for (String[] row : data) {
-				model.addRow(row);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+			model.setRowCount(0); 
 		}
 	}
 
@@ -281,7 +287,6 @@ public class MakeAppointment extends JFrame {
     }
 
 
-	// make appointment take doctorname and patientname and import time for DD/MM/YYYY + time and details then store in Appointment.txt
 	public void submitAppointment() {
 		String doctorName = doctorField.getText();
 		String patientName = patientField.getText();
