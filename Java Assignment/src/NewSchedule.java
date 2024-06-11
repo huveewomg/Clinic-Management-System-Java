@@ -108,6 +108,11 @@ public class NewSchedule extends JFrame {
 		ClearButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// debug purpose
+				if (doctorField.getText().isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Please enter a doctor ID.");
+					return;
+				}
 				clearSchedule(username);
 			}
 		});
