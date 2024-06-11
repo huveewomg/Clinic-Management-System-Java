@@ -17,9 +17,13 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -168,7 +172,7 @@ public class CancelAppointment extends JFrame {
 		}
 	}
 
-	public void cancelBooking(){
+	private void cancelBooking(){
 		String filePath = "Appointment.txt";
 		String doctor = doctorField.getText();
 		String patient = patientField.getText();
@@ -193,10 +197,48 @@ public class CancelAppointment extends JFrame {
 				}
 			}
 			Files.write(Paths.get(filePath), lines);
+			JOptionPane.showMessageDialog(this, "Appointment cancelled successfully!");
+			AddToRecord();
+			dispose();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		model.setRowCount(0);
 		showAppointment(username);
+	}
+
+	private void AddToRecord(){
+		String Doctor = doctorField.getText();
+		String PatientName = patientField.getText();
+		String Date = timeField.getText();
+		String Details = detailField.getText();
+	
+		File appointmentFile = new File("Appointment/" + PatientName + ".txt");
+			if (!appointmentFile.exists()) {
+				try {
+					appointmentFile.createNewFile();
+				} catch (IOException e) {
+					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "Error creating appointment file: " + e.getMessage(), "Error",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
+			}
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String currentDate = LocalDate.now().format(formatter);
+			try {
+				FileWriter writer = new FileWriter(appointmentFile, true);
+				writer.write("Doctor: " + Doctor + "\n");
+				writer.write("Date: " + currentDate + " " + Date + "\n");
+				writer.write("Details: " + Details + "\n");
+				writer.write("Remark: Private Reason" + "\n");
+				writer.write("Status: Cancelled" + "\n");
+				writer.write("\n");
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "Error writing to appointment file: " + e.getMessage(), "Error",
+						JOptionPane.ERROR_MESSAGE);
+			}
 	}
 }
