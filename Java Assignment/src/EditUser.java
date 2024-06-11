@@ -223,10 +223,10 @@ public class EditUser extends JFrame {
     }
 
     // need to rename this method to DeleteUser
-    public void DeleteUser() {
+    private void DeleteUser() {
         int i = table.getSelectedRow();
         if (i >= 0) { // make sure a row is actually selected
-            String username = (String) model.getValueAt(i, 0); // get the username from the selected row
+            String username = (String) model.getValueAt(i, 0); 
             int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete your account?",
                     "Confirmation", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
