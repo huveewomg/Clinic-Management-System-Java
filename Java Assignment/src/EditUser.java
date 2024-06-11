@@ -310,7 +310,7 @@ public class EditUser extends JFrame {
         }
     }
 
-    public void AddUser() {
+    private void AddUser() {
         try {
             String role = (String) RolesBox.getSelectedItem();
             String username = UsernameTXT.getText();
@@ -396,7 +396,7 @@ public class EditUser extends JFrame {
         }
     }
 
-    public boolean CheckUsername() {
+    private boolean CheckUsername() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
             String line;

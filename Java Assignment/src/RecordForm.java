@@ -108,7 +108,7 @@ public class RecordForm extends JFrame {
 		contentPane.add(btnNewButton);
 	}
 	
-	public void WriteRecord(String PatientName) {
+	private void WriteRecord(String PatientName) {
 		try {
 			String Issue = IssueField.getText();
 			String Medication = MedicationField.getText();
@@ -155,7 +155,4 @@ public class RecordForm extends JFrame {
 		}
 	}
 
-//	public void RemoveFromQueue() {
-//		
-//	}
 }

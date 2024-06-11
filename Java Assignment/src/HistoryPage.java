@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
@@ -61,12 +62,17 @@ public class HistoryPage extends JFrame {
 		contentPane.add(btnAppointment);
 	}
 	
-	public void MedicalRecord(String username) {
+	private void MedicalRecord(String username) {
 		MedicalRecord MedicalRecord = new MedicalRecord(username);
-		MedicalRecord.setVisible(true);
+		if (MedicalRecord.importRecord(username)){
+			MedicalRecord.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No Record Found");
+		}
 	}
 	
-	public void AppointmentRecord(String username) {
+	private void AppointmentRecord(String username) {
 		AppointmentRecord AppointmentRecord = new AppointmentRecord(username);
 		AppointmentRecord.setVisible(true);
 	}

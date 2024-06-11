@@ -106,26 +106,26 @@ public class PatientHomepage extends JFrame {
 		contentPane.add(SettingBtn);
 	}
 	
-		public void Logout() {
+		private void Logout() {
 			dispose();
 			MainClass.Logout();
 		}
 		
-		public void SettingForm() {
+		private void SettingForm() {
 			MainClass.SettingForm(username);
 		}
 		
-		public void HistoryPage() {
+		private void HistoryPage() {
 			HistoryPage HistoryPage = new HistoryPage(username);
 			HistoryPage.setVisible(true);
 		}
 		
-		public void MakeAppointment() {
+		private void MakeAppointment() {
 			MakeAppointment MakeAppointment = new MakeAppointment(username);
 			MakeAppointment.setVisible(true);
 		}
 		
-		public void CancelAppointment() {
+		private void CancelAppointment() {
 			CancelAppointment CancelAppointment = new CancelAppointment(username);
 			CancelAppointment.setVisible(true);
 		}

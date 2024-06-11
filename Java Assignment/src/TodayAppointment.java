@@ -142,7 +142,7 @@ public class TodayAppointment extends JFrame {
 	}
 
 	// fetch all the appointments for today from appointment.txt
-	public void showAppointment() {
+	private void showAppointment() {
 		try {
 			File file = new File("Appointment.txt");
 			BufferedReader br = new BufferedReader(new FileReader(file));

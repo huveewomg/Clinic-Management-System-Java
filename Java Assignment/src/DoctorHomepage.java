@@ -206,37 +206,42 @@ public class DoctorHomepage extends JFrame {
 		AppointmentEdit.AppointmentList(username, model);
 	}
 
-	public void Logout() {
+	private void Logout() {
 		dispose();
 		MainClass.Logout();
 	}
 
-	public void SettingForm() {
+	private void SettingForm() {
 		MainClass.SettingForm(username);
 	}
 
-	public void MedicalRecord(String PatientName) {
+	private void MedicalRecord(String PatientName) {
 		MedicalRecord MedicalRecord = new MedicalRecord(PatientName);
-		MedicalRecord.setVisible(true);
+		if (MedicalRecord.importRecord(PatientName)){
+			MedicalRecord.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No Record Found");
+		}
 	}
 
-	public void RecordForm(String PatientName) {
+	private void RecordForm(String PatientName) {
 		RecordForm RecordForm = new RecordForm(PatientName);
 		RecordForm.setVisible(true);
 	}
 
-	public void AppointmentEdit(String username) {
+	private void AppointmentEdit(String username) {
 		AppointmentEdit AppointmentEdit = new AppointmentEdit(username);
 		AppointmentEdit.setVisible(true);
 		dispose();
 	}
 
-	public void NewSchedule() {
+	private void NewSchedule() {
 		NewSchedule NewSchedule = new NewSchedule(username);
 		NewSchedule.setVisible(true);
 	}
 
-	public void queueList() {
+	private void queueList() {
 		try {
 			String filePath = "PatientQueue.txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));

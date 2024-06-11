@@ -160,7 +160,7 @@ public class AppointmentRecord extends JFrame {
 		importAppointment(username);
 	}
 
-	public void importAppointment(String username) {
+	private void importAppointment(String username) {
 		try {
 			String directoryPath = "Appointment\\";
 			String filePath = directoryPath + username + ".txt";

@@ -83,13 +83,13 @@ public class SettingPage extends JFrame {
 		
 	}
 	
-		public void ChangePassForm() {
+		private void ChangePassForm() {
 			ChangePass ChangePass = new ChangePass(username);
 			ChangePass.setVisible(true);
 			dispose();
 		}
 		
-		public void DeleteAcc() {
+		private void DeleteAcc() {
 			int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete your account?", "Confirmation", JOptionPane.YES_NO_OPTION);
 			if (confirm == JOptionPane.YES_OPTION) {
 				try {

@@ -247,7 +247,7 @@ public class AppointmentEdit extends JFrame {
 
 	// fetch from textfield and update the appointment if completed / cancelled
 	// store in Appointment folder patientname.txt and remove from appointment.txt
-	public void updateAppointment() {
+	private void updateAppointment() {
 		try {
 			String Doctor = doctorField.getText();
 			String PatientName = usernameField.getText();
@@ -301,7 +301,7 @@ public class AppointmentEdit extends JFrame {
 	}
 
 	// delete from appointment.txt
-	public void deleteFromAppointment(String doctorName, String patientName, String date, String remark) {
+	private void deleteFromAppointment(String doctorName, String patientName, String date, String remark) {
 		try {
 			File appointmentFile = new File("Appointment.txt");
 

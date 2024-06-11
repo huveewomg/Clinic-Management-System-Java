@@ -161,7 +161,7 @@ public class CollectPayment extends JFrame {
 	}
 
 	// fetch from payment.txt and plot into table
-	public void ShowPendingList() {
+	private void ShowPendingList() {
 		try {
 			File file = new File("payment.txt");
 			BufferedReader br = new BufferedReader(new FileReader(file));

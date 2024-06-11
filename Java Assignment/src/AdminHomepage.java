@@ -150,43 +150,43 @@ public class AdminHomepage extends JFrame {
 		contentPane.add(IncomeReportBtn);
 	}
 	
-	public void SettingForm() {
+	private void SettingForm() {
 		MainClass.SettingForm(username);
 	}	
 
-	public void Logout() {
+	private void Logout() {
 		dispose();
 		MainClass.Logout();
 	}
 	
-	public void EditStaff() {
+	private void EditStaff() {
 		EditUser editstaff = new EditUser(username);
 		editstaff.setVisible(true);
 		dispose();
 	}
 	
-	public void AppointmentForm() {
+	private void AppointmentForm() {
 		AppointmentForm AppointmentForm = new AppointmentForm();
 		AppointmentForm.setVisible(true);
 		dispose();
 	}
 
-	public void MedicalRecord(String PatientName) {
+	private void MedicalRecord(String PatientName) {
 		MedicalRecord MedicalRecord = new MedicalRecord(PatientName);
 		if (MedicalRecord.importRecord(PatientName)){
 			MedicalRecord.setVisible(true);
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "Patient Not Found");
+			JOptionPane.showMessageDialog(null, "No Record Found");
 		}
 	}
 	
-	public void TodayAppointment() {
+	private void TodayAppointment() {
 		TodayAppointment TodayAppointment = new TodayAppointment();
 		TodayAppointment.setVisible(true);
 	}
 	
-	public void CollectPayment() {
+	private void CollectPayment() {
 		CollectPayment CollectPayment = new CollectPayment();
 		CollectPayment.setVisible(true);
 	}

@@ -122,7 +122,7 @@ public class IncomeReport extends JFrame {
 		importData();
 	}
 
-	public void importData() {
+	private void importData() {
 		String filePath = "incomereport.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));
@@ -144,14 +144,14 @@ public class IncomeReport extends JFrame {
 		}
 	}
 
-	public void calculateProfit() {
+	private void calculateProfit() {
 		double income = Double.parseDouble(IncomeField.getText());
 		double expenses = Double.parseDouble(ExpenseField.getText());
 		double profit = income - expenses;
 		ProfitField.setText(String.format("%.2f", profit));
 	}
 
-	public void goBack() {
+	private void goBack() {
 		this.dispose();
 	}
 

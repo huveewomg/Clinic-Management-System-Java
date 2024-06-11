@@ -222,7 +222,7 @@ public class MakeAppointment extends JFrame {
 		return doctorUsernames;
 	}
 
-	public void searchSlot(List<String> doctorUsernames) {
+	private void searchSlot(List<String> doctorUsernames) {
 		String doctorUsername = comboBox.getSelectedItem().toString();
 		String directoryPath = "Schedule\\";
 		String filePath = directoryPath + doctorUsername + "Schedule.txt";
@@ -257,7 +257,7 @@ public class MakeAppointment extends JFrame {
 		}
 	}
 
-    public void updateSchedule(String doctorName, String time, String status) {
+    private void updateSchedule(String doctorName, String time, String status) {
         // Construct the file path
         String directoryPath = "Schedule\\";
         String filePath = directoryPath + doctorName + "Schedule.txt";
@@ -287,7 +287,7 @@ public class MakeAppointment extends JFrame {
     }
 
 
-	public void submitAppointment() {
+	private void submitAppointment() {
 		String doctorName = doctorField.getText();
 		String patientName = patientField.getText();
 		String time = timeField.getText();

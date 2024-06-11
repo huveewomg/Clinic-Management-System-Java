@@ -103,7 +103,7 @@ public class ChangePass extends JFrame {
 	}
 
 	// change pass function
-	public void ChangePass() {
+	private void ChangePass() {
 		try {
 			String username = this.username;
 			String oldPass = OldPassBox.getText();

@@ -157,7 +157,7 @@ public class CancelAppointment extends JFrame {
 		showAppointment(username);
 	}
 
-	public void showAppointment(String username) {
+	private void showAppointment(String username) {
 		String filePath = "Appointment.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));

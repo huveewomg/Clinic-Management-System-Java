@@ -168,7 +168,7 @@ public class AppointmentForm extends JFrame {
 		contentPane.add(UsernameTXT);
 	}
 
-	public void Search(String username) {
+	private void Search(String username) {
 		try (BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"))) {
 			String line;
 			List<String[]> data = new ArrayList<>();
@@ -224,7 +224,7 @@ public class AppointmentForm extends JFrame {
 		}
 	}
 
-	public void Homepage() {
+	private void Homepage() {
 		AdminHomepage AdminHomepage = new AdminHomepage(username);
 		AdminHomepage.setVisible(true);
 		dispose();
