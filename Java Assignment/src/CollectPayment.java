@@ -194,7 +194,7 @@ public class CollectPayment extends JFrame {
 		}
 	}
 
-	public void StoreData() {
+	private void StoreData() {
 		String filePath = "credentials.txt";
 		String incomeReportPath = "incomeReport.txt";
 		String name = nameField.getText();
@@ -239,7 +239,7 @@ public class CollectPayment extends JFrame {
 		}
 	}
 
-	public void clearPayment(String name) {
+	private void clearPayment(String name) {
 		String filePath = "payment.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));

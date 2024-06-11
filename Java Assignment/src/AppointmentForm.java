@@ -194,7 +194,7 @@ public class AppointmentForm extends JFrame {
 		}
 	}
 
-	public void addToQueue() {
+	private void addToQueue() {
 		try {
 			username = UsernameTXT.getText();
 			String name = NameTXT.getText();

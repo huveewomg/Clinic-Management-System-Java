@@ -110,7 +110,7 @@ public class LoginForm extends JFrame {
 
 	// Functions starts here
 
-	public String getRoleFromCredentials(String username) {
+	private String getRoleFromCredentials(String username) {
 		String filepath = "credentials.txt";
 		try {
 			File file = new File(filepath);
@@ -151,7 +151,7 @@ public class LoginForm extends JFrame {
 	}
 
 	// Check Login Credentials
-	public void checkCredentials() {
+	private void checkCredentials() {
 		String filepath = "credentials.txt";
 		String usernameInput = UsernameTXT.getText();
 		String passwordInput = PasswordTXT.getText();
