@@ -33,6 +33,9 @@ import javax.swing.JTable;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class AppointmentEdit extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -273,10 +276,11 @@ public class AppointmentEdit extends JFrame {
 					return;
 				}
 			}
-
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			String currentDate = LocalDate.now().format(formatter);
 			FileWriter writer = new FileWriter(appointmentFile, true);
 			writer.write("Doctor: " + Doctor + "\n");
-			writer.write("Date: " + dateField.getText() + "\n");
+			writer.write("Date: " + currentDate + " " + dateField.getText() + "\n");
 			writer.write("Details: " + detailField.getText() + "\n");
 			writer.write("Remark: " + Remark + "\n");
 			writer.write("Status: " + Status + "\n");
