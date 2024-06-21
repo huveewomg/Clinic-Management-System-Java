@@ -12,31 +12,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PatientHomepage extends JFrame {
+public class PatientHomepage extends JFrame implements UserHomepage {
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PatientHomepage frame = new PatientHomepage(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public PatientHomepage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,5 +109,10 @@ public class PatientHomepage extends JFrame {
 		private void CancelAppointment() {
 			CancelAppointment CancelAppointment = new CancelAppointment(username);
 			CancelAppointment.setVisible(true);
+		}
+
+		@Override
+		public void setVisible(boolean visible) {
+			super.setVisible(visible);
 		}
 }

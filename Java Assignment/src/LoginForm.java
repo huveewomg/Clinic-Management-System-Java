@@ -111,113 +111,100 @@ public class LoginForm extends JFrame {
 	// Functions starts here
 
 	private String getRoleFromCredentials(String username) {
-		String filepath = "credentials.txt";
-		try {
-			File file = new File(filepath);
-			Scanner scanner = new Scanner(file);
-			String role = null;
+        String filepath = "credentials.txt";
+        try {
+            File file = new File(filepath);
+            Scanner scanner = new Scanner(file);
+            String role = null;
 
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if (line.startsWith("Username:") && line.substring(10).trim().equals(username)) {
-					while (scanner.hasNextLine()) {
-						line = scanner.nextLine();
-						if (line.startsWith("Role:")) {
-							role = line.substring(6).trim();
-							// debug purposes v
-							System.out.println(role);
-							if (role != null) {
-								if (role.equalsIgnoreCase("Admin")) {
-									return "Admin";
-								} else if (role.equalsIgnoreCase("Patient")) {
-									return "Patient";
-								} else if (role.equalsIgnoreCase("Doctor")) {
-									return "Doctor";
-								} else {
-									return "invalid";
-								}
-							}
-							break;
-						}
-					}
-				}
-			}
-
-			scanner.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("Username:") && line.substring(10).trim().equals(username)) {
+                    while (scanner.hasNextLine()) {
+                        line = scanner.nextLine();
+                        if (line.startsWith("Role:")) {
+                            role = line.substring(6).trim();
+                            return role;  // Return the role directly
+                        }
+                    }
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 	// Check Login Credentials
 	private void checkCredentials() {
-		String filepath = "credentials.txt";
-		String usernameInput = UsernameTXT.getText();
-		String passwordInput = PasswordTXT.getText();
+        String filepath = "credentials.txt";
+        String usernameInput = UsernameTXT.getText();
+        String passwordInput = PasswordTXT.getText();
 
-		try {
-			File file = new File(filepath);
-			Scanner scanner = new Scanner(file);
-			String username = null;
-			String password = null;
-			boolean found = false;
+        try {
+            File file = new File(filepath);
+            Scanner scanner = new Scanner(file);
+            String username = null;
+            String password = null;
+            boolean found = false;
 
-			if (usernameInput.isEmpty() || passwordInput.isEmpty()) {
-				JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Empty Fields",
-						JOptionPane.ERROR_MESSAGE);
-				return;
-			}
-			// Read each line and search for username and password
-			while (scanner.hasNextLine()) {
-				String line = scanner.nextLine();
-				if (line.startsWith("Username:")) {
-					username = line.substring(10).trim(); // Extract username
-				} else if (line.startsWith("Password:")) {
-					password = line.substring(10).trim(); // Extract password
-				}
+            if (usernameInput.isEmpty() || passwordInput.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Please fill in all fields.", "Empty Fields", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-				// Check if both username and password are found
-				if (username != null && password != null) {
-					// Check if the found credentials match the input
-					if (username.equals(usernameInput) && password.equals(passwordInput)) {
-						found = true;
-						break;
-					} else {
-						// Reset the found credentials and continue searching
-						username = null;
-						password = null;
-					}
-				}
-			}
+            // Read each line and search for username and password
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("Username:")) {
+                    username = line.substring(10).trim(); // Extract username
+                } else if (line.startsWith("Password:")) {
+                    password = line.substring(10).trim(); // Extract password
+                }
 
-			scanner.close();
+                // Check if both username and password are found
+                if (username != null && password != null) {
+                    // Check if the found credentials match the input
+                    if (username.equals(usernameInput) && password.equals(passwordInput)) {
+                        found = true;
+                        break;
+                    } else {
+                        // Reset the found credentials and continue searching
+                        username = null;
+                        password = null;
+                    }
+                }
+            }
 
-			if (found) {
-				// Check the role
-				String role = getRoleFromCredentials(usernameInput);
-				if (role.equals("Patient")) {
-					PatientHomepage homepage = new PatientHomepage(usernameInput);
-					homepage.setVisible(true);
-					dispose();
-				} else if (role.equals("Admin")) {
-					AdminHomepage AdminHomepage = new AdminHomepage(usernameInput);
-					AdminHomepage.setVisible(true);
-					dispose();
-				} else if (role.equals("Doctor")) {
-					DoctorHomepage DoctorHomepage = new DoctorHomepage(usernameInput);
-					DoctorHomepage.setVisible(true);
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Invalid role.", "Invalid Role", JOptionPane.ERROR_MESSAGE);
-				}
-			} else {
-				// If failed, display a popup message
-				JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Login Failed",
-						JOptionPane.ERROR_MESSAGE);
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+            scanner.close();
+
+            if (found) {
+                // Check the role
+                String role = getRoleFromCredentials(usernameInput);
+                UserHomepage homepage = null;
+
+                if (role.equals("Patient")) {
+                    homepage = new PatientHomepage(usernameInput);
+                } else if (role.equals("Admin")) {
+                    homepage = new AdminHomepage(usernameInput);
+                } else if (role.equals("Doctor")) {
+                    homepage = new DoctorHomepage(usernameInput);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid role.", "Invalid Role", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                if (homepage != null) {
+                    homepage.setVisible(true);
+                    dispose(); 
+                }
+            } else {
+                // If failed, display a popup message
+                JOptionPane.showMessageDialog(null, "Login failed. Please try again.", "Login Failed", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 }

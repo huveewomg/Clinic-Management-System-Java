@@ -12,33 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class AdminHomepage extends JFrame {
+public class AdminHomepage extends JFrame implements UserHomepage{
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField searchField;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AdminHomepage frame = new AdminHomepage(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public AdminHomepage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -189,5 +169,10 @@ public class AdminHomepage extends JFrame {
 	private void CollectPayment() {
 		CollectPayment CollectPayment = new CollectPayment();
 		CollectPayment.setVisible(true);
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
 	}
 }

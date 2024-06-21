@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 
 import javax.swing.table.DefaultTableModel;
 
-public class DoctorHomepage extends JFrame {
+public class DoctorHomepage extends JFrame implements UserHomepage {
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
@@ -37,25 +37,6 @@ public class DoctorHomepage extends JFrame {
 	DefaultTableModel PatientModel;
 	DefaultTableModel model;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					DoctorHomepage frame = new DoctorHomepage(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public DoctorHomepage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -267,5 +248,10 @@ public class DoctorHomepage extends JFrame {
 			JOptionPane.showMessageDialog(this, "Error reading file: " + e.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		super.setVisible(visible);
 	}
 }
