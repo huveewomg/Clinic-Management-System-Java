@@ -42,7 +42,8 @@ public class MedicalRecord extends JFrame {
 	public MedicalRecord(String PatientName) {
 		this.PatientName = "PatientName";
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setTitle(PatientName + "s Medical Record");
+		setBounds(550, 300, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class AdminHomepage extends JFrame implements UserHomepage{
+public class AdminHomepage extends BaseFrame implements UserHomepage{
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
@@ -20,9 +20,13 @@ public class AdminHomepage extends JFrame implements UserHomepage{
 	private JTextField searchField;
 	
 	public AdminHomepage(String username) {
+		super(false);	
 		this.username = username;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		initialize();
+	}
+		@Override
+		protected void initialize() {
+		setTitle("Admin Homepage");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -30,8 +34,8 @@ public class AdminHomepage extends JFrame implements UserHomepage{
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Welcome to Admin Page: "+ username);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 31));
-		lblNewLabel.setBounds(10, 11, 541, 85);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblNewLabel.setBounds(97, 31, 457, 54);
 		contentPane.add(lblNewLabel);
 		
 		JButton SettingBtn = new JButton("Setting");

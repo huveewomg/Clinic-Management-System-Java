@@ -40,8 +40,9 @@ public class CollectPayment extends JFrame {
 	DefaultTableModel model;
 
 	public CollectPayment() {
+		setTitle("Collect Payment");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(550, 300, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -189,18 +190,15 @@ public class CollectPayment extends JFrame {
 						break;
 					}
 				}
-				// If the line with the name was found, remove it and the next three lines
+				// remove line after found name
 				if (index != -1) {
 					for (int i = 0; i < 4 && index < lines.size(); i++) {
-						lines.remove(index); // Remove the line
+						lines.remove(index); 
 					}
 				}
-				// Write the lines back to the file
 				Files.write(Paths.get(filePath), lines);
 				String incomeReport = name + ": " + fee + "\n";
 				Files.write(Paths.get(incomeReportPath), incomeReport.getBytes(), StandardOpenOption.APPEND);
-
-				// Show success message
 				JOptionPane.showMessageDialog(null, "Operation completed successfully.", "Success",
 						JOptionPane.INFORMATION_MESSAGE);
 				clearPayment(name);

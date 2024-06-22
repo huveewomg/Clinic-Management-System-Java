@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.awt.Window;
 
 public class SettingPage extends JFrame {
 
@@ -30,7 +31,8 @@ public class SettingPage extends JFrame {
 	public SettingPage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(550, 300, 800, 600);
+		setTitle("Setting Page");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -61,7 +63,7 @@ public class SettingPage extends JFrame {
 		DelBtn.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		DelBtn.setBounds(224, 396, 309, 64);
 		contentPane.add(DelBtn);
-		
+
 	}
 	
 		private void ChangePassForm() {
@@ -99,7 +101,12 @@ public class SettingPage extends JFrame {
 						writer.write(fileContent.toString());
 						writer.close();
 						JOptionPane.showMessageDialog(null, "Account deleted successfully.");
-						LoginForm LoginForm = new LoginForm();
+						
+						for (Window window : Window.getWindows()) {
+							window.dispose();
+						}	
+						
+						LoginForm LoginForm = new LoginForm(false);
 						LoginForm.setVisible(true);
 						dispose();
 					}

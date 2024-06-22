@@ -18,7 +18,8 @@ public class IncomeReport extends JFrame {
 
     public IncomeReport() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 600);
+        setBounds(550, 300, 800, 600);
+        setTitle("Income Report");
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

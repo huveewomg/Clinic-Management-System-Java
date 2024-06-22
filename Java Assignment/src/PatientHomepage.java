@@ -12,25 +12,29 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class PatientHomepage extends JFrame implements UserHomepage {
+public class PatientHomepage extends BaseFrame implements UserHomepage {
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
 	public PatientHomepage(String username) {
+		super(false);	
 		this.username = username;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		initialize();
+	}
+		@Override
+		protected void initialize() {
+		setTitle(username + " Homepage");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Welcome back " + username);
-		lblNewLabel.setBounds(10, 5, 618, 116);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 40));
+		JLabel lblNewLabel = new JLabel("Welcome Back: " + username);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 32));
+		lblNewLabel.setBounds(97, 31, 457, 54);
 		contentPane.add(lblNewLabel);
 		
 		JButton LogOutBtn = new JButton("Logout");

@@ -39,8 +39,9 @@ public class AppointmentRecord extends JFrame {
 
 	public AppointmentRecord(String username) {
 		this.username = username;
+		setTitle("Appointment Record");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(550, 300, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

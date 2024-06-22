@@ -48,7 +48,8 @@ public class EditUser extends JFrame {
     public EditUser(String username) {
         this.username = username;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 800, 600);
+        setTitle("Edit User");
+        setBounds(550, 300, 800, 600);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

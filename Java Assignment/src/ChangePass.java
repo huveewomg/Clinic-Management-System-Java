@@ -25,8 +25,9 @@ public class ChangePass extends JFrame {
 
 	public ChangePass(String username) {
 		this.username = username;
+		setTitle("Change Password");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(550, 300, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

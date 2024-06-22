@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 
 import javax.swing.table.DefaultTableModel;
 
-public class DoctorHomepage extends JFrame implements UserHomepage {
+public class DoctorHomepage extends BaseFrame implements UserHomepage {
 
 	private static String username;
 	private static final long serialVersionUID = 1L;
@@ -38,9 +38,13 @@ public class DoctorHomepage extends JFrame implements UserHomepage {
 	DefaultTableModel model;
 
 	public DoctorHomepage(String username) {
+		super(false);	
 		this.username = username;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		initialize();
+	}
+		@Override
+		protected void initialize() {
+		setTitle(username + " Homepage");	
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

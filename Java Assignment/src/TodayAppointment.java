@@ -32,7 +32,8 @@ public class TodayAppointment extends JFrame {
 
 	public TodayAppointment() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(550, 300, 800, 600);
+		setTitle("Today's Appointment");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

@@ -42,8 +42,9 @@ public class CancelAppointment extends JFrame {
 
 	public CancelAppointment(String username) {
 		this.username = username;
+		setTitle("Cancel Appointment");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+		setBounds(550, 300, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -223,6 +224,7 @@ public class CancelAppointment extends JFrame {
 	}
 
 	private void UpdateDocSchedule(){
+		
 		
 	}
 }

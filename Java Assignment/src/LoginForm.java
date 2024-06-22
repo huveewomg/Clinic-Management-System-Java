@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public class LoginForm extends JFrame {
+public class LoginForm extends BaseFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -35,7 +35,7 @@ public class LoginForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginForm frame = new LoginForm();
+					LoginForm frame = new LoginForm(false);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,12 +44,13 @@ public class LoginForm extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public LoginForm() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 600);
+	public LoginForm(boolean disposeOnClose) {
+        super(disposeOnClose);
+    }
+
+    @Override
+    protected void initialize() {
+        setTitle("Login Form");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
