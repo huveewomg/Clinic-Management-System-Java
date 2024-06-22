@@ -10,3 +10,21 @@ Details: Annual Checkup
 Remark: Didnt Show Up
 Status: Cancelled
 
+Doctor: DrJohn
+Date: 21/06/2024 10:45
+Details: Annual Checkup
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrJohn
+Date: 21/06/2024 8:45
+Details: 845
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrJohn
+Date: 21/06/2024 10:45
+Details: 
+Remark: Private Reason
+Status: Cancelled
+

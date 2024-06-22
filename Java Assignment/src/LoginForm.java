@@ -1,5 +1,6 @@
 import java.awt.EventQueue;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -66,10 +67,10 @@ public class LoginForm extends JFrame {
 		LoginTitle.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		contentPane.add(LoginTitle);
 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(152, 251, 152));
-		panel_1.setBounds(0, 0, 330, 561);
-		contentPane.add(panel_1);
+        JLabel logoImage = new JLabel("");
+        logoImage.setIcon(new ImageIcon(LoginForm.class.getResource("/images/ClinicLogo.png")));		
+        logoImage.setBounds(-120, 0, 460, 561);
+        contentPane.add(logoImage);
 
 		JLabel lblNewLabel = new JLabel("USERNAME");
 		lblNewLabel.setBounds(455, 243, 69, 14);

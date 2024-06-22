@@ -27,25 +27,6 @@ public class SettingPage extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					SettingPage frame = new SettingPage(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public SettingPage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

@@ -39,27 +39,6 @@ public class MedicalRecord extends JFrame {
 
 	DefaultTableModel model;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MedicalRecord frame = new MedicalRecord(PatientName);
-					if (frame.importRecord(PatientName)){
-						frame.setVisible(true);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public MedicalRecord(String PatientName) {
 		this.PatientName = "PatientName";
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

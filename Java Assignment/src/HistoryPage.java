@@ -14,25 +14,6 @@ public class HistoryPage extends JFrame {
 	private JPanel contentPane;
 	private static String username;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HistoryPage frame = new HistoryPage(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public HistoryPage(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

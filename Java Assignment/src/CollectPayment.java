@@ -39,25 +39,6 @@ public class CollectPayment extends JFrame {
 
 	DefaultTableModel model;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CollectPayment frame = new CollectPayment();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public CollectPayment() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -160,7 +141,6 @@ public class CollectPayment extends JFrame {
 		ShowPendingList();
 	}
 
-	// fetch from payment.txt and plot into table
 	private void ShowPendingList() {
 		try {
 			File file = new File("payment.txt");
@@ -169,22 +149,19 @@ public class CollectPayment extends JFrame {
 			String[] dataRow = new String[4];
 			int i = 0;
 			while ((line = br.readLine()) != null) {
-				// Ignore blank lines
 				if (line.trim().isEmpty()) {
 					continue;
 				}
-				// Split the line into name and value, and store the value in dataRow
 				String[] parts = line.split(": ");
 				if (parts.length > 1) {
 					dataRow[i] = parts[1];
 				}
 				i++;
-				// If we've read 5 lines (one record plus one empty line), reset i and dataRow
 				if (i == 4) {
 					model.addRow(dataRow);
 					dataRow = new String[4];
 					i = 0;
-					// Skip the next line (the empty line)
+					// Skip emoty line
 					br.readLine();
 				}
 			}
@@ -204,9 +181,7 @@ public class CollectPayment extends JFrame {
 				JOptionPane.YES_NO_OPTION);
 		if (dialogResult == JOptionPane.YES_OPTION) {
 			try {
-				// Read the existing lines
 				List<String> lines = Files.readAllLines(Paths.get(filePath));
-				// Find the index of the line with the name
 				int index = -1;
 				for (int i = 0; i < lines.size(); i++) {
 					if (lines.get(i).contains("Name: " + name)) {
@@ -222,15 +197,12 @@ public class CollectPayment extends JFrame {
 				}
 				// Write the lines back to the file
 				Files.write(Paths.get(filePath), lines);
-
-				// Write the name and fee to the incomeReport.txt file
 				String incomeReport = name + ": " + fee + "\n";
 				Files.write(Paths.get(incomeReportPath), incomeReport.getBytes(), StandardOpenOption.APPEND);
 
 				// Show success message
 				JOptionPane.showMessageDialog(null, "Operation completed successfully.", "Success",
 						JOptionPane.INFORMATION_MESSAGE);
-				// Clear the payment details from the payment.txt file
 				clearPayment(name);
 				this.dispose();
 			} catch (IOException e) {

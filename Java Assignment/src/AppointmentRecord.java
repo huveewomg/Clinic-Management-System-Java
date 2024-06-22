@@ -37,25 +37,6 @@ public class AppointmentRecord extends JFrame {
 
 	DefaultTableModel model;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AppointmentRecord frame = new AppointmentRecord(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public AppointmentRecord(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

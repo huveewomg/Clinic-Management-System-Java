@@ -23,25 +23,6 @@ public class ChangePass extends JFrame {
 	private JPasswordField OldPassBox;
 	private JPasswordField NewPassBox;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChangePass frame = new ChangePass(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ChangePass(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -130,7 +111,7 @@ public class ChangePass extends JFrame {
 					String passLine = reader.readLine();
 					String roleLine = reader.readLine();
 	
-					// Check if the old password matches
+
 					if (passLine.startsWith("Password: " + oldPass)) {
 						oldPassCorrect = true;
 						fileContent.append(nameLine).append(System.lineSeparator());

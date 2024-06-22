@@ -45,25 +45,6 @@ public class EditUser extends JFrame {
     DefaultTableModel model;
     private JTable table;
 
-    /**
-     * Launch the application.
-     */
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    EditUser frame = new EditUser(username);
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
-    /**
-     * Create the frame.
-     */
     public EditUser(String username) {
         this.username = username;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

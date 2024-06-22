@@ -14,6 +14,5 @@ public class MainClass {
         LoginForm loginForm = new LoginForm();
         loginForm.setVisible(true);
         JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
-        frame.dispose();
     }
 }

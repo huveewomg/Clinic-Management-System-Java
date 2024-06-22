@@ -67,28 +67,6 @@ public class NewSchedule extends JFrame {
     private JTextField textField;
 	private static String username;
 
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-//        EventQueue.invokeLater(() -> new NewSchedule().setVisible(true));
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					NewSchedule frame = new NewSchedule(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public NewSchedule(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

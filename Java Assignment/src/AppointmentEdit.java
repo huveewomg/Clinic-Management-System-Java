@@ -52,25 +52,6 @@ public class AppointmentEdit extends JFrame {
 	public static DefaultTableModel model;
 	List<String> data = new ArrayList<String>();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					AppointmentEdit frame = new AppointmentEdit(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public AppointmentEdit(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -245,8 +226,6 @@ public class AppointmentEdit extends JFrame {
 		}
 	}
 
-	// fetch from textfield and update the appointment if completed / cancelled
-	// store in Appointment folder patientname.txt and remove from appointment.txt
 	private void updateAppointment() {
 		try {
 			String Doctor = doctorField.getText();

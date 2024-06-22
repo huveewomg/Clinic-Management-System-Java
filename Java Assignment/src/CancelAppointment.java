@@ -40,26 +40,6 @@ public class CancelAppointment extends JFrame {
 
 	DefaultTableModel model;
 
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CancelAppointment frame = new CancelAppointment(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public CancelAppointment(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -240,5 +220,9 @@ public class CancelAppointment extends JFrame {
 				JOptionPane.showMessageDialog(null, "Error writing to appointment file: " + e.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
 			}
+	}
+
+	private void UpdateDocSchedule(){
+		
 	}
 }

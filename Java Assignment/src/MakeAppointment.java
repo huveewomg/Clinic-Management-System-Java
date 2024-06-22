@@ -52,30 +52,8 @@ public class MakeAppointment extends JFrame {
 	private JButton submitBtn;
 	private JTextField statusField;
 
-	
 	DefaultTableModel model;
 
-
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					MakeAppointment frame = new MakeAppointment(username);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public MakeAppointment(String username) {
 		this.username = username;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -88,7 +66,7 @@ public class MakeAppointment extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Book An Appointment ");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		lblNewLabel.setBounds(53, 11, 266, 64);
+		lblNewLabel.setBounds(53, 11, 280, 64);
 		contentPane.add(lblNewLabel);
 		
 		comboBox = new JComboBox();
