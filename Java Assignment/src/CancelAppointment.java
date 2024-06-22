@@ -24,6 +24,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
@@ -161,7 +162,6 @@ public class CancelAppointment extends JFrame {
 		String detail = detailField.getText();
 		String newLine = doctor + "," + patient + "," + time + "," + detail;
 
-		// Ask for confirmation before deleting
 		int response = JOptionPane.showConfirmDialog(this,
 				"Are you sure you want to cancel this booking?",
 				"Confirm Cancel", JOptionPane.YES_NO_OPTION);
@@ -180,6 +180,7 @@ public class CancelAppointment extends JFrame {
 			Files.write(Paths.get(filePath), lines);
 			JOptionPane.showMessageDialog(this, "Appointment cancelled successfully!");
 			AddToRecord();
+			ClearBooking(doctor, time);
 			dispose();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -188,6 +189,28 @@ public class CancelAppointment extends JFrame {
 		showAppointment(username);
 	}
 
+	private void ClearBooking(String Doctor, String Time) {
+		String DocSchedule = "Schedule/" + Doctor + "Schedule.txt";
+		String bookedLine = Time + "," + "Booked";
+		String cancelledLine = Time; // Assuming you 
+		List<String> updatedSchedule = new ArrayList<>();
+
+		try {
+			List<String> scheduleLines = Files.readAllLines(Paths.get(DocSchedule));
+			for (String line : scheduleLines) {
+				if (line.equals(bookedLine)) {
+					updatedSchedule.add(cancelledLine); 
+				} else {
+					updatedSchedule.add(line); 
+				}
+			}
+			Files.write(Paths.get(DocSchedule), updatedSchedule); 
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+		// add to show they cancelled
 	private void AddToRecord(){
 		String Doctor = doctorField.getText();
 		String PatientName = patientField.getText();
@@ -222,9 +245,5 @@ public class CancelAppointment extends JFrame {
 						JOptionPane.ERROR_MESSAGE);
 			}
 	}
-
-	private void UpdateDocSchedule(){
-		
-		
-	}
+	
 }
