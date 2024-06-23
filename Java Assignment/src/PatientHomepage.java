@@ -66,10 +66,6 @@ public class PatientHomepage extends BaseFrame implements UserHomepage {
 		EditBtn.setBounds(34, 308, 321, 70);
 		contentPane.add(EditBtn);
 		
-		JLabel lblNewLabel_1 = new JLabel("Patient UI");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel_1.setBounds(297, 87, 87, 61);
-		contentPane.add(lblNewLabel_1);
 		
 		JButton ViewBtn = new JButton("Track History");
 		ViewBtn.addActionListener(new ActionListener() {

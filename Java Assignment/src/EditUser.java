@@ -209,7 +209,6 @@ public class EditUser extends JFrame {
         dispose();
     }
 
-    // need to rename this method to DeleteUser
     private void DeleteUser() {
         int i = table.getSelectedRow();
         if (i >= 0) { // make sure a row is actually selected
@@ -252,7 +251,7 @@ public class EditUser extends JFrame {
         }
     }
 
-    // based on the username and update the other fields in the file
+    
     public void UpdateUser() {
         try {
             
@@ -352,16 +351,12 @@ public class EditUser extends JFrame {
             Deque<String> previousLines = new ArrayDeque<>();
 
             while ((line = reader.readLine()) != null) {
-                // Store the line into the deque
                 previousLines.addLast(line);
-                // If the deque contains more than 4 lines, remove the oldest line
                 if (previousLines.size() > 4) {
                     previousLines.pollFirst();
                 }
 
                 if (line.startsWith("Role: " + role)) {
-                    // Once the specified role is found, retrieve the previous 3 lines in reverse
-                    // order
                     String[] currentRow = new String[4];
                     for (int i = 0; i < 4; i++) {
                         currentRow[i] = previousLines.pollFirst().split(": ")[1];
@@ -370,9 +365,8 @@ public class EditUser extends JFrame {
                 }
             }
 
-            // Populate table
             DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0); // Clear existing data
+            model.setRowCount(0); 
             for (String[] row : data) {
                 model.addRow(row);
             }

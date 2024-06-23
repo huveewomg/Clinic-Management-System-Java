@@ -54,6 +54,7 @@ public class AppointmentEdit extends JFrame {
 
 	public AppointmentEdit(String username) {
 		this.username = username;
+		setTitle("Edit Appointment");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
 		contentPane = new JPanel();

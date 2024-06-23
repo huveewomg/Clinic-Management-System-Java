@@ -66,7 +66,7 @@ public class AdminHomepage extends BaseFrame implements UserHomepage{
 		ReportBtn.setBounds(22, 425, 369, 70);
 		contentPane.add(ReportBtn);
 		
-		JButton AddBtn = new JButton("New User");
+		JButton AddBtn = new JButton("Edit User");
 		AddBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EditStaff();
@@ -76,10 +76,6 @@ public class AdminHomepage extends BaseFrame implements UserHomepage{
 		AddBtn.setBounds(22, 132, 369, 70);
 		contentPane.add(AddBtn);
 		
-		JLabel lblNewLabel_1 = new JLabel("Admin UI");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel_1.setBounds(304, 75, 87, 61);
-		contentPane.add(lblNewLabel_1);
 		
 		JButton AppointmentBtn = new JButton("Appointment");
 		AppointmentBtn.addActionListener(new ActionListener() {
