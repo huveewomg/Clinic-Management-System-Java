@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.awt.Window;
 
 public class MainClass {
 
@@ -11,8 +12,12 @@ public class MainClass {
     }
 
     public static void Logout() {
+        for (Window window : Window.getWindows()) {
+            window.dispose();
+        }
         LoginForm loginForm = new LoginForm(false);
         loginForm.setVisible(true);
         JOptionPane.showMessageDialog(null, "Logout Successfully Thank You For using The System!");
+
     }
 }
