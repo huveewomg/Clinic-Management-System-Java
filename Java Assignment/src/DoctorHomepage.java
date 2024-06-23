@@ -152,7 +152,12 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 			}
 		});
 		PatientTable.setBackground(Color.GRAY);
-		PatientModel = new DefaultTableModel();
+		PatientModel = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 		Object[] PatientColumn = { "Username", "Severity" };
 		PatientModel.setColumnIdentifiers(PatientColumn);
 		PatientTable.setModel(PatientModel);
@@ -181,7 +186,12 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 			}
 		});
 		AppointmentTable.setBackground(Color.WHITE);
-		model = new DefaultTableModel();
+		model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 		Object[] column = { "Username", "Date", "Remark" };
 		model.setColumnIdentifiers(column);
 		AppointmentTable.setModel(model);

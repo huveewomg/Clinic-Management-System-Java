@@ -71,7 +71,12 @@ public class MedicalRecord extends JFrame {
 			}
 		});
 		table.setBackground(Color.WHITE);
-		model = new DefaultTableModel();
+		model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 		Object[] column = { "Date", "Issue", "Medication", "Fees" };
 		model.setColumnIdentifiers(column);
 		table.setModel(model);

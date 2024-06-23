@@ -77,7 +77,12 @@ public class AppointmentForm extends JFrame {
 			}
 		});
 		table.setBackground(Color.PINK);
-		model = new DefaultTableModel();
+		model = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 		Object[] column = { "Username", "Name" };
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
