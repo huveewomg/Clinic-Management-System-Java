@@ -2,14 +2,3 @@ Name: Desmond
 Medication: PainKiller
 Fees: 90
 Status: Pending
-
-Name: John123
-Medication: Fentanyl
-Fees: 120
-Status: Pending
-
-Name: Desmond
-Medication: PainKiller
-Fees: 60
-Status: Pending
-

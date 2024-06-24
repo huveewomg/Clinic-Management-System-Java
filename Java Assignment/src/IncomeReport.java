@@ -130,17 +130,27 @@ public class IncomeReport extends JFrame {
     private void calculateProfit(double income, double expenses) {
         double profit = income - expenses;
         ProfitField.setText(String.format("%.2f", profit));
-    }
-
-    private void calculateProfitFromFields() {
+      }
+      
+      private void calculateProfit(int income, int expenses) {
+        double profit = income - expenses; 
+        ProfitField.setText(String.format("%.0f", profit)); 
+      }
+      
+      private void calculateProfitFromFields() {
         try {
-            double income = Double.parseDouble(IncomeField.getText());
-            double expenses = Double.parseDouble(ExpenseField.getText());
-            calculateProfit(income, expenses); 
+          double income = Double.parseDouble(IncomeField.getText());
+          double expenses = Double.parseDouble(ExpenseField.getText());
+          
+          if (income % 1 == 0 && expenses % 1 == 0) {
+            calculateProfit((int) income, (int) expenses); 
+          } else {
+            calculateProfit(income, expenses);
+          }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Invalid input in fields.", "Error", JOptionPane.ERROR_MESSAGE);
-        } 
-    }
+          JOptionPane.showMessageDialog(null, "Invalid input in fields.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+      }
 
 	private void goBack() {
 		this.dispose();
