@@ -37,12 +37,11 @@ public class CancelAppointment extends JFrame {
 	private JTextField timeField;
 	private JTextField detailField;
 	private JTable table;
-	private static String username;
 
 	DefaultTableModel model;
 
-	public CancelAppointment(String username) {
-		this.username = username;
+	public CancelAppointment() {
+		String username = UserSession.getInstance().getUsername();
 		setTitle("Cancel Appointment");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
@@ -108,7 +107,7 @@ public class CancelAppointment extends JFrame {
 		JButton btnNewButton = new JButton("Cancel Appointment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cancelBooking();
+				cancelBooking(username);
 			}
 		});
 		btnNewButton.setBounds(58, 478, 199, 50);
@@ -140,8 +139,8 @@ public class CancelAppointment extends JFrame {
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
-
-		showAppointment(username);
+		String CurrentUsername = UserSession.getInstance().getUsername();
+		showAppointment(CurrentUsername);
 	}
 
 	private void showAppointment(String username) {
@@ -159,7 +158,7 @@ public class CancelAppointment extends JFrame {
 		}
 	}
 
-	private void cancelBooking(){
+	private void cancelBooking(String username){
 		String filePath = "Appointment.txt";
 		String doctor = doctorField.getText();
 		String patient = patientField.getText();
@@ -197,7 +196,7 @@ public class CancelAppointment extends JFrame {
 	private void ClearBooking(String Doctor, String Time) {
 		String DocSchedule = "Schedule/" + Doctor + "Schedule.txt";
 		String bookedLine = Time + "," + "Booked";
-		String cancelledLine = Time; // Assuming you 
+		String cancelledLine = Time; // 
 		List<String> updatedSchedule = new ArrayList<>();
 
 		try {

@@ -44,7 +44,6 @@ public class AppointmentEdit extends JFrame {
 	private JTextField detailField;
 	private JTable table;
 	private JTextField dateField;
-	private static String username;
 	private JTextField RemarkField;
 	private JTextField doctorField;
 	private JComboBox<String> StatusBox;
@@ -52,8 +51,8 @@ public class AppointmentEdit extends JFrame {
 	public static DefaultTableModel model;
 	List<String> data = new ArrayList<String>();
 
-	public AppointmentEdit(String username) {
-		this.username = username;
+	public AppointmentEdit() {
+		String DoctorUsername = UserSession.getInstance().getUsername();
 		setTitle("Edit Appointment");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
@@ -93,7 +92,7 @@ public class AppointmentEdit extends JFrame {
 		JButton btnBack = new JButton("Go Back");
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DoctorHomepage doctorHomepage = new DoctorHomepage(username);
+				DoctorHomepage doctorHomepage = new DoctorHomepage();
 				doctorHomepage.setVisible(true);
 				dispose();
 			}
@@ -185,17 +184,17 @@ public class AppointmentEdit extends JFrame {
 
 		doctorField = new JTextField();
 		doctorField.setEditable(false);
-		doctorField.setText(username);
+		doctorField.setText(DoctorUsername);
 		doctorField.setColumns(10);
 		doctorField.setBounds(149, 89, 144, 33);
 		contentPane.add(doctorField);
 
-		AppointmentList(username, model);
+		AppointmentList(DoctorUsername, model);
 
 	}
 
 	// filter by doctor name
-	public static void AppointmentList(String doctorName, DefaultTableModel model) {
+	public static void AppointmentList(String DoctorName, DefaultTableModel model) {
 		try {
 			String filePath = "Appointment.txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
@@ -203,12 +202,11 @@ public class AppointmentEdit extends JFrame {
 			List<String[]> data = new ArrayList<>(); // List to store appointment data
 
 			// Create a regex pattern to match the doctor's name
-			Pattern pattern = Pattern.compile(doctorName + ",");
+			Pattern pattern = Pattern.compile(DoctorName + ",");
 
 			while ((line = reader.readLine()) != null) {
 				Matcher matcher = pattern.matcher(line);
 				if (matcher.find()) {
-					// Split the line by comma to separate doctor name, patient name, date, and
 					// remark
 					String[] parts = line.split(",", 4);
 					if (parts.length == 4) { // Ensure there are four parts
@@ -224,7 +222,6 @@ public class AppointmentEdit extends JFrame {
 			for (String[] row : data) {
 				model.addRow(row);
 			}
-			reader.close(); // Close the reader
 		} catch (IOException e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error reading file: " + e.getMessage(), "Error",
@@ -274,7 +271,7 @@ public class AppointmentEdit extends JFrame {
 
 			deleteFromAppointment(Doctor, PatientName, Date, Details);
 			JOptionPane.showMessageDialog(null, "Appointment Updated");
-			DoctorHomepage doctorHomepage = new DoctorHomepage(username);
+			DoctorHomepage doctorHomepage = new DoctorHomepage();
 			doctorHomepage.setVisible(true);
 			dispose();
 

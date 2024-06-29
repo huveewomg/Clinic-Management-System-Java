@@ -12,10 +12,9 @@ public class HistoryPage extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private static String username;
+	String username = UserSession.getInstance().getUsername();
 
-	public HistoryPage(String username) {
-		this.username = username;
+	public HistoryPage() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("History Page");
 		setBounds(550, 300, 800, 600);
@@ -37,7 +36,7 @@ public class HistoryPage extends JFrame {
 		JButton btnAppointment = new JButton("Appointment");
 		btnAppointment.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppointmentRecord(username);
+				AppointmentRecord();
 			}
 		});
 		btnAppointment.setBounds(290, 354, 202, 70);
@@ -54,8 +53,14 @@ public class HistoryPage extends JFrame {
 		}
 	}
 	
-	private void AppointmentRecord(String username) {
-		AppointmentRecord AppointmentRecord = new AppointmentRecord(username);
+	private void AppointmentRecord() {
+		AppointmentRecord AppointmentRecord = new AppointmentRecord();
+		if (AppointmentRecord.importAppointment()){
+			AppointmentRecord.setVisible(true);
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "No Record Found");
+		}
 		AppointmentRecord.setVisible(true);
 	}
 }

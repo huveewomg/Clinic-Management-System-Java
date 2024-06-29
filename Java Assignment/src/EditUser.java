@@ -35,7 +35,6 @@ import java.awt.event.MouseEvent;
 
 public class EditUser extends JFrame {
 
-    private static String username;
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTextField UsernameTXT;
@@ -45,8 +44,7 @@ public class EditUser extends JFrame {
     DefaultTableModel model;
     private JTable table;
 
-    public EditUser(String username) {
-        this.username = username;
+    public EditUser() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Edit User");
         setBounds(550, 300, 800, 600);
@@ -204,7 +202,7 @@ public class EditUser extends JFrame {
     }
 
     public void Homepage() {
-        AdminHomepage AdminHomepage = new AdminHomepage(username);
+        AdminHomepage AdminHomepage = new AdminHomepage();
         AdminHomepage.setVisible(true);
         dispose();
     }

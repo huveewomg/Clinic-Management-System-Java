@@ -1,16 +1,13 @@
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.io.FileReader;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JTextPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
 
 public class MedicalRecord extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -158,7 +152,7 @@ public class MedicalRecord extends JFrame {
 					}
 				}
 			}
-			// Add the last row if it wasn't added yet
+			reader.close();
 			if (i > 0) {
 				data.add(currentRow);
 			}
@@ -175,5 +169,4 @@ public class MedicalRecord extends JFrame {
 			return false;
 		}
 	}
-
 }

@@ -4,3 +4,45 @@ Details: Blood Test
 Remark: Normal Pressure
 Status: Completed
 
+Doctor: DrLee
+Date: 28/06/2024 1:15
+Details: My leg
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrLee
+Date: 28/06/2024 1:15
+Details: Sick
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrJohn
+Date: 28/06/2024 11:15
+Details: Headache
+Remark: Treated Patient
+Status: Completed
+
+Doctor: DrLee
+Date: 28/06/2024 10:15
+Details: My Leg
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrJohn
+Date: 28/06/2024 4:00
+Details: Headache
+Remark: Heatstroke
+Status: Cancelled
+
+Doctor: DrLee
+Date: 29/06/2024 1:45
+Details: Testing Book
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrJohn
+Date: 29/06/2024 4:00
+Details: Checkup
+Remark: Normal
+Status: Completed
+

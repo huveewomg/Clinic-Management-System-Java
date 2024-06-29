@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -8,7 +7,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -27,7 +25,6 @@ public class AppointmentRecord extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private static String username;
 	private JTable table;
 	private JTextField dateField;
 	private JTextField statusField;
@@ -36,9 +33,10 @@ public class AppointmentRecord extends JFrame {
 	private JTextPane detailField;
 
 	DefaultTableModel model;
+	String username = UserSession.getInstance().getUsername();
 
-	public AppointmentRecord(String username) {
-		this.username = username;
+
+	public AppointmentRecord() {
 		setTitle("Appointment Record");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
@@ -144,10 +142,10 @@ public class AppointmentRecord extends JFrame {
 		lblNewLabel_1_2.setBounds(468, 95, 115, 14);
 		contentPane.add(lblNewLabel_1_2);
 
-		importAppointment(username);
+		importAppointment();
 	}
 
-	private void importAppointment(String username) {
+	public boolean importAppointment() {
 		try {
 			String directoryPath = "Appointment\\";
 			String filePath = directoryPath + username + ".txt";
@@ -169,6 +167,7 @@ public class AppointmentRecord extends JFrame {
 					}
 				}
 			}
+			reader.close();
 			if (i > 0) {
 				list.add(data.clone());
 			}
@@ -177,10 +176,12 @@ public class AppointmentRecord extends JFrame {
 			for (String[] row : list) {
 				model.addRow(row);
 			}
+			return true;
 		} catch (IOException e) {
 			e.printStackTrace();
-			JOptionPane.showMessageDialog(this, "File Not Found: " + e.getMessage(), "Error",
-					JOptionPane.ERROR_MESSAGE);
+			// JOptionPane.showMessageDialog(this, "File Not Found: " + e.getMessage(), "Error",
+			// 		JOptionPane.ERROR_MESSAGE);
+			return false;
 		}
 	}
 }

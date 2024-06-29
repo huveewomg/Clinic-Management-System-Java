@@ -5,3 +5,6 @@ JasonTan123: 80
 Desmond: 60
 JasonTan123: 150.75
 Desmond: 60.25
+chin: 10
+chin: 10
+JasonTan123: 90

@@ -1,10 +1,8 @@
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import java.awt.Choice;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,21 +13,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 import java.awt.Window;
 
 public class SettingPage extends JFrame {
 
-	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	String username = UserSession.getInstance().getUsername();
 
-	public SettingPage(String username) {
-		this.username = username;
+	public SettingPage() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
 		setTitle("Setting Page");
@@ -67,7 +59,7 @@ public class SettingPage extends JFrame {
 	}
 	
 		private void ChangePassForm() {
-			ChangePass ChangePass = new ChangePass(username);
+			ChangePass ChangePass = new ChangePass();
 			ChangePass.setVisible(true);
 			dispose();
 		}

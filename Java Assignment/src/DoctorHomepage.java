@@ -27,7 +27,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class DoctorHomepage extends BaseFrame implements UserHomepage {
 
-	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField searchField;
@@ -37,13 +36,13 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 	DefaultTableModel PatientModel;
 	DefaultTableModel model;
 
-	public DoctorHomepage(String username) {
+	public DoctorHomepage() {
 		super(false);	
-		this.username = username;
 		initialize();
 	}
 		@Override
 		protected void initialize() {
+		String username = UserSession.getInstance().getUsername();
 		setTitle(username + " Homepage");	
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,7 +88,7 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 		JButton AppointmentBtn = new JButton("Appointment");
 		AppointmentBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				AppointmentEdit(username);
+				AppointmentEdit();
 			}
 		});
 		AppointmentBtn.setFont(new Font("Tahoma", Font.PLAIN, 26));
@@ -196,9 +195,9 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 		model.setColumnIdentifiers(column);
 		AppointmentTable.setModel(model);
 		scrollPane_1.setViewportView(AppointmentTable);
-
+		String DoctorUsername = UserSession.getInstance().getUsername();
 		queueList();
-		AppointmentEdit.AppointmentList(username, model);
+		AppointmentEdit.AppointmentList(DoctorUsername, model);
 	}
 
 	private void Logout() {
@@ -207,7 +206,7 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 	}
 
 	private void SettingForm() {
-		MainClass.SettingForm(username);
+		MainClass.SettingForm();
 	}
 
 	private void MedicalRecord(String PatientName) {
@@ -225,14 +224,14 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 		RecordForm.setVisible(true);
 	}
 
-	private void AppointmentEdit(String username) {
-		AppointmentEdit AppointmentEdit = new AppointmentEdit(username);
+	private void AppointmentEdit() {
+		AppointmentEdit AppointmentEdit = new AppointmentEdit();
 		AppointmentEdit.setVisible(true);
 		dispose();
 	}
 
 	private void NewSchedule() {
-		NewSchedule NewSchedule = new NewSchedule(username);
+		NewSchedule NewSchedule = new NewSchedule();
 		NewSchedule.setVisible(true);
 	}
 

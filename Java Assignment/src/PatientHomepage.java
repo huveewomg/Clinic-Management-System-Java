@@ -14,17 +14,16 @@ import java.awt.event.ActionEvent;
 
 public class PatientHomepage extends BaseFrame implements UserHomepage {
 
-	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
-	public PatientHomepage(String username) {
+	public PatientHomepage() {
 		super(false);	
-		this.username = username;
 		initialize();
 	}
 		@Override
 		protected void initialize() {
+		String username = UserSession.getInstance().getUsername();
 		setTitle(username + " Homepage");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -93,21 +92,21 @@ public class PatientHomepage extends BaseFrame implements UserHomepage {
 		}
 		
 		private void SettingForm() {
-			MainClass.SettingForm(username);
+			MainClass.SettingForm();
 		}
 		
 		private void HistoryPage() {
-			HistoryPage HistoryPage = new HistoryPage(username);
+			HistoryPage HistoryPage = new HistoryPage();
 			HistoryPage.setVisible(true);
 		}
 		
 		private void MakeAppointment() {
-			MakeAppointment MakeAppointment = new MakeAppointment(username);
+			MakeAppointment MakeAppointment = new MakeAppointment();
 			MakeAppointment.setVisible(true);
 		}
 		
 		private void CancelAppointment() {
-			CancelAppointment CancelAppointment = new CancelAppointment(username);
+			CancelAppointment CancelAppointment = new CancelAppointment();
 			CancelAppointment.setVisible(true);
 		}
 

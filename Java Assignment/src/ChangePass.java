@@ -18,13 +18,12 @@ import javax.swing.JOptionPane;
 public class ChangePass extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private static String username;
 	private JPanel contentPane;
 	private JPasswordField OldPassBox;
 	private JPasswordField NewPassBox;
 
-	public ChangePass(String username) {
-		this.username = username;
+	public ChangePass() {
+		String username = UserSession.getInstance().getUsername();
 		setTitle("Change Password");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
@@ -87,7 +86,7 @@ public class ChangePass extends JFrame {
 	// change pass function
 	private void ChangePass() {
 		try {
-			String username = this.username;
+			String username = UserSession.getInstance().getUsername();
 			String oldPass = OldPassBox.getText();
 			String newPass = NewPassBox.getText();
 	

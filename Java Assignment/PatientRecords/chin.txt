@@ -1,0 +1,15 @@
+Date: 28/06/2024 08:28:05
+Issue: Sickness
+Medication: Flu Pill
+Fees: 500
+
+Date: 28/06/2024 08:50:13
+Issue: Stomachache
+Medication: Pills
+Fees: 10
+
+Date: 28/06/2024 09:24:22
+Issue: Headache
+Medication: Pills
+Fees: 10
+

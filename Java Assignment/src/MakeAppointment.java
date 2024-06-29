@@ -51,8 +51,8 @@ public class MakeAppointment extends JFrame {
 
 	DefaultTableModel model;
 
-	public MakeAppointment(String username) {
-		this.username = username;
+	public MakeAppointment() {
+		String username = UserSession.getInstance().getUsername();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
 		setTitle("Book An Appointment");

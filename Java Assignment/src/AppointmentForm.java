@@ -212,7 +212,7 @@ public class AppointmentForm extends JFrame {
 	}
 
 	private void Homepage() {
-		AdminHomepage AdminHomepage = new AdminHomepage(username);
+		AdminHomepage AdminHomepage = new AdminHomepage();
 		AdminHomepage.setVisible(true);
 		dispose();
 	}

@@ -65,10 +65,10 @@ public class NewSchedule extends JFrame {
 	private JButton SubmitButton;
     private ArrayList<String> selectedTimes = new ArrayList<>();
     private JTextField textField;
-	private static String username;
+	String username = UserSession.getInstance().getUsername();
 
-	public NewSchedule(String username) {
-		this.username = username;
+	
+	public NewSchedule() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
 		setTitle("New Schedule");
@@ -92,7 +92,7 @@ public class NewSchedule extends JFrame {
 					JOptionPane.showMessageDialog(null, "Please enter a doctor ID.");
 					return;
 				}
-				clearSchedule(username);
+				clearSchedule();
 			}
 		});
 		ClearButton.setBounds(500, 130, 130, 23);
@@ -308,7 +308,7 @@ public class NewSchedule extends JFrame {
 		SubmitButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				storeSchedule(username);
+				storeSchedule();
 			}
 		});
 		SubmitButton.setBounds(527, 516, 89, 23);
@@ -341,7 +341,7 @@ public class NewSchedule extends JFrame {
         }
     }  
 	
-    private void storeSchedule(String username) {
+    private void storeSchedule() {
         if (selectedTimes.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Please select at least one time slot.");
             return;
@@ -370,7 +370,7 @@ public class NewSchedule extends JFrame {
         }
     }
 
-	private void clearSchedule(String username){
+	private void clearSchedule(){
 		String directoryPath = "Schedule\\";
 		File directory = new File(directoryPath + username + "Schedule.txt");
 		if (!directory.exists()) {

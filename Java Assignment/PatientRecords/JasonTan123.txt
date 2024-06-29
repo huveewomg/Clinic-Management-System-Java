@@ -18,3 +18,23 @@ Issue: Covid
 Medication: Panadol
 Fees: 150
 
+Date: 28/06/2024 08:24:24
+Issue: Sick
+Medication: Common Med
+Fees: 120
+
+Date: 28/06/2024 08:28:29
+Issue: Cold
+Medication: Cough Syrup
+Fees: 70
+
+Date: 28/06/2024 08:32:14
+Issue: Sick
+Medication: Flu Pill
+Fees: 90
+
+Date: 29/06/2024 14:56:21
+Issue: Flu
+Medication: Flu Pill
+Fees: 20
+

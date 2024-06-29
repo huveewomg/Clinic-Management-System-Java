@@ -70,7 +70,7 @@ public class LoginForm extends BaseFrame {
 
         JLabel logoImage = new JLabel("");
         logoImage.setIcon(new ImageIcon(LoginForm.class.getResource("/images/ClinicLogo.png")));		
-        logoImage.setBounds(-120, 0, 460, 561);
+        logoImage.setBounds(-120, 0, 460, 563);
         contentPane.add(logoImage);
 
 		JLabel lblNewLabel = new JLabel("USERNAME");
@@ -182,16 +182,16 @@ public class LoginForm extends BaseFrame {
             scanner.close();
 
             if (found) {
-                // Check the role
                 String role = getRoleFromCredentials(usernameInput);
                 UserHomepage homepage = null;
+                UserSession.getInstance().setUsername(usernameInput);
 
                 if (role.equals("Patient")) {
-                    homepage = new PatientHomepage(usernameInput);
+                    homepage = new PatientHomepage();
                 } else if (role.equals("Admin")) {
-                    homepage = new AdminHomepage(usernameInput);
+                    homepage = new AdminHomepage();
                 } else if (role.equals("Doctor")) {
-                    homepage = new DoctorHomepage(usernameInput);
+                    homepage = new DoctorHomepage();
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid role.", "Invalid Role", JOptionPane.ERROR_MESSAGE);
                     return;

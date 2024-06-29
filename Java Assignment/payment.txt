@@ -2,3 +2,17 @@ Name: Desmond
 Medication: PainKiller
 Fees: 90
 Status: Pending
+
+
+Name: JasonTan123
+Medication: Flu Pill
+Fees: 90
+Status: Pending
+
+
+
+Name: JasonTan123
+Medication: Flu Pill
+Fees: 20
+Status: Pending
+

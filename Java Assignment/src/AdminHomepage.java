@@ -19,13 +19,13 @@ public class AdminHomepage extends BaseFrame implements UserHomepage{
 	private JPanel contentPane;
 	private JTextField searchField;
 	
-	public AdminHomepage(String username) {
+	public AdminHomepage() {
 		super(false);	
-		this.username = username;
 		initialize();
 	}
 		@Override
 		protected void initialize() {
+		String username = UserSession.getInstance().getUsername();
 		setTitle("Admin Homepage");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -131,7 +131,7 @@ public class AdminHomepage extends BaseFrame implements UserHomepage{
 	}
 	
 	private void SettingForm() {
-		MainClass.SettingForm(username);
+		MainClass.SettingForm();
 	}	
 
 	private void Logout() {
@@ -140,7 +140,7 @@ public class AdminHomepage extends BaseFrame implements UserHomepage{
 	}
 	
 	private void EditStaff() {
-		EditUser editstaff = new EditUser(username);
+		EditUser editstaff = new EditUser();
 		editstaff.setVisible(true);
 		dispose();
 	}

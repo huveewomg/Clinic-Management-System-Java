@@ -1,0 +1,6 @@
+Doctor: DrJohn
+Date: 28/06/2024 3:15
+Details: Minor Surgery
+Remark: Cut off patint leg
+Status: Completed
+
