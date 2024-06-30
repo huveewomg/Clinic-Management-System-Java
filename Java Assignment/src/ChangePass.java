@@ -26,7 +26,6 @@ public class ChangePass extends JFrame {
 	private JPasswordField NewPassBox;
 
 	public ChangePass() {
-		String username = UserSession.getInstance().getUsername();
 		setTitle("Change Password");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(550, 300, 800, 600);
@@ -122,25 +121,27 @@ public class ChangePass extends JFrame {
 		String filePath = "credentials.txt";
 		List<String> fileContent = new ArrayList<>();
 		boolean updated = false;
-
+	
 		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 			String line;
 			while ((line = reader.readLine()) != null) {
+				fileContent.add(line);
 				if (line.startsWith("Username: " + username)) {
-					fileContent.add(line);
-					fileContent.add(reader.readLine()); // Name
+					// Add the next line (Name)
+					fileContent.add(reader.readLine());
+					// Replace the password line
+					reader.readLine(); // Skip the old password line
 					fileContent.add("Password: " + newPass);
-					fileContent.add(reader.readLine()); // Role
+					// Add the role line
+					fileContent.add(reader.readLine());
 					updated = true;
-				} else {
-					fileContent.add(line);
 				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
 		}
-
+	
 		if (updated) {
 			try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
 				for (String line : fileContent) {
@@ -152,8 +153,8 @@ public class ChangePass extends JFrame {
 				return false;
 			}
 		}
-
-		return updated;
+		
+		return updated; // Add return statement
 	}
 	
 }
