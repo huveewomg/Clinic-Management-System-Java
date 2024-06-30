@@ -385,7 +385,6 @@ public class NewSchedule extends JFrame {
 			writer.write("");
 			writer.close();
 			JOptionPane.showMessageDialog(null, "Schedule cleared successfully!");
-			dispose();
 		} catch (IOException ex) {
 			JOptionPane.showMessageDialog(null, "Error clearing schedule: " + ex.getMessage());
 		}
