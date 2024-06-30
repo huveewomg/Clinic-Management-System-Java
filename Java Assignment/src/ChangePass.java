@@ -13,6 +13,9 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class ChangePass extends JFrame {
@@ -85,75 +88,72 @@ public class ChangePass extends JFrame {
 
 	// change pass function
 	private void ChangePass() {
-		try {
-			String username = UserSession.getInstance().getUsername();
-			String oldPass = OldPassBox.getText();
-			String newPass = NewPassBox.getText();
-	
-			if (oldPass.equals("") || newPass.equals("")) {
-				JOptionPane.showMessageDialog(null, "Please fill in all fields");
-				return;
-			}
-	
-			BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+		UserSession session = UserSession.getInstance();
+		String username = session.getUsername();
+		String currentPassword = session.getPassword();
+		String oldPass = new String(OldPassBox.getPassword());
+		String newPass = new String(NewPassBox.getPassword());
+
+		if (oldPass.isEmpty() || newPass.isEmpty()) {
+			JOptionPane.showMessageDialog(this, "Please fill in all fields", "Empty Fields", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (!oldPass.equals(currentPassword)) {
+			JOptionPane.showMessageDialog(this, "Old password is incorrect!", "Incorrect Password", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (newPass.equals(oldPass)) {
+			JOptionPane.showMessageDialog(this, "New password can't be the same as the old password", "Invalid New Password", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (updatePasswordInFile(username, newPass)) {
+			session.setPassword(newPass);
+			JOptionPane.showMessageDialog(this, "Password changed successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
+			Homepage(); // Jump back to the homepage
+		} else {
+			JOptionPane.showMessageDialog(this, "Failed to update password. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	private boolean updatePasswordInFile(String username, String newPass) {
+		String filePath = "credentials.txt";
+		List<String> fileContent = new ArrayList<>();
+		boolean updated = false;
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
 			String line;
-			StringBuilder fileContent = new StringBuilder();
-			boolean usernameFound = false;
-			boolean oldPassCorrect = false;
-	
 			while ((line = reader.readLine()) != null) {
 				if (line.startsWith("Username: " + username)) {
-					usernameFound = true;
-					fileContent.append(line).append(System.lineSeparator());
-	
-					// Read the next lines for name, password, and role
-					String nameLine = reader.readLine();
-					String passLine = reader.readLine();
-					String roleLine = reader.readLine();
-	
-
-					if (passLine.startsWith("Password: " + oldPass)) {
-						oldPassCorrect = true;
-						fileContent.append(nameLine).append(System.lineSeparator());
-						fileContent.append("Password: ").append(newPass).append(System.lineSeparator());
-						fileContent.append(roleLine).append(System.lineSeparator());
-					} else {
-						fileContent.append(nameLine).append(System.lineSeparator());
-						fileContent.append(passLine).append(System.lineSeparator());
-						fileContent.append(roleLine).append(System.lineSeparator());
-					}
+					fileContent.add(line);
+					fileContent.add(reader.readLine()); // Name
+					fileContent.add("Password: " + newPass);
+					fileContent.add(reader.readLine()); // Role
+					updated = true;
 				} else {
-					fileContent.append(line).append(System.lineSeparator());
+					fileContent.add(line);
 				}
 			}
-			reader.close();
-	
-			if (!usernameFound) {
-				JOptionPane.showMessageDialog(null, "Username not found! Please Contact Admin");
-				return;
-			}
-	
-			if (!oldPassCorrect) {
-				JOptionPane.showMessageDialog(null, "Old password is incorrect!");
-				return;
-			}
-	
-			if (newPass.equals(oldPass)) {
-				JOptionPane.showMessageDialog(null, "New password can't be the same as the old password");
-				return;
-			}
-	
-			// Write the updated content back to the file
-			BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
-			writer.write(fileContent.toString());
-			writer.close();
-	
-			JOptionPane.showMessageDialog(null, "Password changed successfully!");
-			Homepage(); // Jump back to the homepage
-	
 		} catch (IOException e) {
 			e.printStackTrace();
+			return false;
 		}
+
+		if (updated) {
+			try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+				for (String line : fileContent) {
+					writer.write(line);
+					writer.newLine();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}
+
+		return updated;
 	}
 	
 }
