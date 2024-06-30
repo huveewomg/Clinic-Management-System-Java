@@ -185,6 +185,7 @@ public class LoginForm extends BaseFrame {
                 String role = getRoleFromCredentials(usernameInput);
                 UserHomepage homepage = null;
                 UserSession.getInstance().setUsername(usernameInput);
+                UserSession.getInstance().setPassword(passwordInput);
 
                 if (role.equals("Patient")) {
                     homepage = new PatientHomepage();
