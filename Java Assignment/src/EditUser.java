@@ -251,8 +251,11 @@ public class EditUser extends JFrame {
 
     
     public void UpdateUser() {
+        if (CheckUsername()) {
+            JOptionPane.showMessageDialog(null, "Username already exists. Please type again.");
+            return;
+        }
         try {
-            
             BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
             StringBuilder fileContent = new StringBuilder();
             String line;
@@ -279,7 +282,6 @@ public class EditUser extends JFrame {
             }
             reader.close();
 
-            // CheckUsername();
 
             FileWriter writer = new FileWriter("credentials.txt");
             writer.write(fileContent.toString());
