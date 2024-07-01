@@ -13,6 +13,7 @@ public class MainClass {
 
     public static void Logout() {
         UserSession.getInstance().setUsername(null);
+        UserSession.getInstance().setPassword(null);
         for (Window window : Window.getWindows()) {
             window.dispose();
         }
