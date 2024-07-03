@@ -201,7 +201,7 @@ public class MakeAppointment extends JFrame {
 			e.printStackTrace();
 		}
 		return doctorUsernames;
-	}
+	} 
 
 	private void searchSlot(List<String> doctorUsernames) {
 		String doctorUsername = comboBox.getSelectedItem().toString();

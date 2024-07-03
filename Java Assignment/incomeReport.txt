@@ -8,3 +8,4 @@ Desmond: 60.25
 chin: 10
 chin: 10
 JasonTan123: 90
+JasonTan123: 10

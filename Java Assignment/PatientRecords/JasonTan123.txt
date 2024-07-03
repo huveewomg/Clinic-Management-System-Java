@@ -38,3 +38,8 @@ Issue: Flu
 Medication: Flu Pill
 Fees: 20
 
+Date: 02/07/2024 09:06:14
+Issue: Sick
+Medication: None
+Fees: 10
+

@@ -4,15 +4,16 @@ Fees: 90
 Status: Pending
 
 
-Name: JasonTan123
-Medication: Flu Pill
-Fees: 90
-Status: Pending
 
 
 
 Name: JasonTan123
 Medication: Flu Pill
 Fees: 20
+Status: Pending
+
+Name: JasonTan123
+Medication: None
+Fees: 10
 Status: Pending
 

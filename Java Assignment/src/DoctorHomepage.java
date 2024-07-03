@@ -179,6 +179,7 @@ public class DoctorHomepage extends BaseFrame implements UserHomepage {
 		AppointmentTable = new JTable();
 		AppointmentTable.addMouseListener(new MouseAdapter() {
 			@Override
+			// When user click on the row of the table, the username will be shown in the textfield
 			public void mouseClicked(MouseEvent e) {
 				int i = AppointmentTable.getSelectedRow();
 				searchField.setText(model.getValueAt(i, 0).toString());

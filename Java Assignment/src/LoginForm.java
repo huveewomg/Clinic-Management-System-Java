@@ -62,7 +62,7 @@ public class LoginForm extends BaseFrame {
 		panel.setLayout(null);
 		panel.setBackground(Color.GRAY);
 		contentPane.add(panel);
-
+ 
 		JLabel LoginTitle = new JLabel("Welcome Back !");
 		LoginTitle.setBounds(410, 37, 319, 55);
 		LoginTitle.setFont(new Font("Tahoma", Font.PLAIN, 45));
@@ -110,33 +110,7 @@ public class LoginForm extends BaseFrame {
 		contentPane.add(lblNewLabel_1);
 	}
 
-	// Functions starts here
-
-	private String getRoleFromCredentials(String username) {
-        String filepath = "credentials.txt";
-        try {
-            File file = new File(filepath);
-            Scanner scanner = new Scanner(file);
-            String role = null;
-
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.startsWith("Username:") && line.substring(10).trim().equals(username)) {
-                    while (scanner.hasNextLine()) {
-                        line = scanner.nextLine();
-                        if (line.startsWith("Role:")) {
-                            role = line.substring(6).trim();
-                            return role;  // Return the role directly
-                        }
-                    }
-                }
-            }
-            scanner.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+	
 
 	// Check Login Credentials
 	private void checkCredentials() {
@@ -209,5 +183,32 @@ public class LoginForm extends BaseFrame {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    // Get Role from Credentials
+	private String getRoleFromCredentials(String username) {
+        String filepath = "credentials.txt";
+        try {
+            File file = new File(filepath);
+            Scanner scanner = new Scanner(file);
+            String role = null;
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                if (line.startsWith("Username:") && line.substring(10).trim().equals(username)) {
+                    while (scanner.hasNextLine()) {
+                        line = scanner.nextLine();
+                        if (line.startsWith("Role:")) {
+                            role = line.substring(6).trim();
+                            return role;  // Return the role directly
+                        }
+                    }
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

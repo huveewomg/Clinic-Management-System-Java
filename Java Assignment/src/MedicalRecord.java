@@ -130,6 +130,7 @@ public class MedicalRecord extends JFrame {
 
 	}
 
+	//import user records from file
 	public boolean importRecord(String PatientName) {
 		try {
 			String directoryPath = "PatientRecords\\";
@@ -156,6 +157,8 @@ public class MedicalRecord extends JFrame {
 			if (i > 0) {
 				data.add(currentRow);
 			}
+
+			//pass data into row
 			DefaultTableModel model = (DefaultTableModel) table.getModel();
 			model.setRowCount(0);
 			for (String[] row : data) {

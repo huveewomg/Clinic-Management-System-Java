@@ -225,7 +225,6 @@ public class CollectPayment extends JFrame {
 					break;
 				}
 			}
-			// If name was found, remove it and the next three lines
 			if (index != -1) {
 				for (int i = 0; i < 4 && index < lines.size(); i++) {
 					lines.remove(index); // Remove the line

@@ -10,3 +10,9 @@ Severity: Extreme
 Date: 28/06/2024 08:27:31
 Status: Pending
 
+Username: mason
+Name: mason
+Severity: Minor
+Date: 02/07/2024 09:09:31
+Status: Pending
+

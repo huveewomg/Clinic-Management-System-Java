@@ -46,3 +46,15 @@ Details: Checkup
 Remark: Normal
 Status: Completed
 
+Doctor: DrJohn
+Date: 02/07/2024 12:30
+Details: Stomacjach
+Remark: Private Reason
+Status: Cancelled
+
+Doctor: DrJohn
+Date: 02/07/2024 11:30
+Details: Sick
+Remark: Not sick
+Status: Completed
+

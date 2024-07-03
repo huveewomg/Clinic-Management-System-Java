@@ -339,7 +339,7 @@ public class NewSchedule extends JFrame {
                 }
             });
         }
-    }  
+    }   
 	
     private void storeSchedule() {
         if (selectedTimes.isEmpty()) {

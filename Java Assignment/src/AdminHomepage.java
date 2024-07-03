@@ -14,7 +14,6 @@ import javax.swing.JTextField;
 
 public class AdminHomepage extends BaseFrame implements UserHomepage{
 
-	private static String username;
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField searchField;
