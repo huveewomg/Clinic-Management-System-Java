@@ -347,7 +347,7 @@ public class NewSchedule extends JFrame {
             return;
         }
 
-		String directoryPath = "Schedule\\";
+		String directoryPath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Schedule/";
 		File directory = new File(directoryPath + username + "Schedule.txt");
 		if (!directory.exists()) {
 			try {
@@ -371,7 +371,7 @@ public class NewSchedule extends JFrame {
     }
 
 	private void clearSchedule(){
-		String directoryPath = "Schedule\\";
+		String directoryPath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Schedule/";
 		File directory = new File(directoryPath + username + "Schedule.txt");
 		if (!directory.exists()) {
 			try {

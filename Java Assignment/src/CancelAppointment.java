@@ -50,60 +50,60 @@ public class CancelAppointment extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("Cancel Appointment");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setBounds(164, 26, 325, 50);
 		contentPane.add(lblNewLabel);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Doctor :");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1.setBounds(10, 155, 112, 25);
 		contentPane.add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel_1_1 = new JLabel("PatientID :");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_1.setBounds(10, 224, 112, 25);
 		contentPane.add(lblNewLabel_1_1);
-		
+
 		JLabel lblNewLabel_1_1_1 = new JLabel("Time :");
 		lblNewLabel_1_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_1_1.setBounds(44, 290, 78, 25);
 		contentPane.add(lblNewLabel_1_1_1);
-		
+
 		JLabel lblNewLabel_1_1_1_1 = new JLabel("Detail :");
 		lblNewLabel_1_1_1_1.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel_1_1_1_1.setBounds(44, 366, 78, 25);
 		contentPane.add(lblNewLabel_1_1_1_1);
-		
+
 		doctorField = new JTextField();
 		doctorField.setEditable(false);
 		doctorField.setBounds(132, 161, 125, 20);
 		contentPane.add(doctorField);
 		doctorField.setColumns(10);
-		
+
 		patientField = new JTextField();
 		patientField.setEditable(false);
 		patientField.setColumns(10);
 		patientField.setBounds(132, 230, 125, 20);
 		contentPane.add(patientField);
-		
+
 		timeField = new JTextField();
 		timeField.setEditable(false);
 		timeField.setColumns(10);
 		timeField.setBounds(132, 296, 125, 20);
 		contentPane.add(timeField);
-		
+
 		detailField = new JTextField();
 		detailField.setEditable(false);
 		detailField.setColumns(10);
 		detailField.setBounds(132, 372, 125, 20);
 		contentPane.add(detailField);
-		
+
 		JButton btnNewButton = new JButton("Cancel Appointment");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -112,11 +112,11 @@ public class CancelAppointment extends JFrame {
 		});
 		btnNewButton.setBounds(58, 478, 199, 50);
 		contentPane.add(btnNewButton);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(347, 113, 427, 437);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -129,13 +129,13 @@ public class CancelAppointment extends JFrame {
 			}
 		});
 		table.setBackground(Color.WHITE);
-		model= new DefaultTableModel(){
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
-		Object[] column = {"Doctor", "PatientID", "Time", "Detail"};
+		model = new DefaultTableModel() {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		Object[] column = { "Doctor", "PatientID", "Time", "Detail" };
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -144,7 +144,7 @@ public class CancelAppointment extends JFrame {
 	}
 
 	private void showAppointment(String username) {
-		String filePath = "Appointment.txt";
+		String filePath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Appointment.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));
 			for (String line : lines) {
@@ -158,8 +158,8 @@ public class CancelAppointment extends JFrame {
 		}
 	}
 
-	private void cancelBooking(String username){
-		String filePath = "Appointment.txt";
+	private void cancelBooking(String username) {
+		String filePath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Appointment.txt";
 		String doctor = doctorField.getText();
 		String patient = patientField.getText();
 		String time = timeField.getText();
@@ -194,60 +194,60 @@ public class CancelAppointment extends JFrame {
 	}
 
 	private void ClearBooking(String Doctor, String Time) {
-		String DocSchedule = "Schedule/" + Doctor + "Schedule.txt";
+		String DocSchedule = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Schedule/" + Doctor + "Schedule.txt";
 		String bookedLine = Time + "," + "Booked";
-		String cancelledLine = Time; // 
+		String cancelledLine = Time; //
 		List<String> updatedSchedule = new ArrayList<>();
 
 		try {
 			List<String> scheduleLines = Files.readAllLines(Paths.get(DocSchedule));
 			for (String line : scheduleLines) {
 				if (line.equals(bookedLine)) {
-					updatedSchedule.add(cancelledLine); 
+					updatedSchedule.add(cancelledLine);
 				} else {
-					updatedSchedule.add(line); 
+					updatedSchedule.add(line);
 				}
 			}
-			Files.write(Paths.get(DocSchedule), updatedSchedule); 
+			Files.write(Paths.get(DocSchedule), updatedSchedule);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-		// add to show they cancelled
-	private void AddToRecord(){
+	// add to show they cancelled
+	private void AddToRecord() {
 		String Doctor = doctorField.getText();
 		String PatientName = patientField.getText();
 		String Date = timeField.getText();
 		String Details = detailField.getText();
-	
-		File appointmentFile = new File("Appointment/" + PatientName + ".txt");
-			if (!appointmentFile.exists()) {
-				try {
-					appointmentFile.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
-					JOptionPane.showMessageDialog(null, "Error creating appointment file: " + e.getMessage(), "Error",
-							JOptionPane.ERROR_MESSAGE);
-					return;
-				}
-			}
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			String currentDate = LocalDate.now().format(formatter);
+
+		File appointmentFile = new File("C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Appointment/" + PatientName + ".txt");
+		if (!appointmentFile.exists()) {
 			try {
-				FileWriter writer = new FileWriter(appointmentFile, true);
-				writer.write("Doctor: " + Doctor + "\n");
-				writer.write("Date: " + currentDate + " " + Date + "\n");
-				writer.write("Details: " + Details + "\n");
-				writer.write("Remark: Private Reason" + "\n");
-				writer.write("Status: Cancelled" + "\n");
-				writer.write("\n");
-				writer.close();
+				appointmentFile.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
-				JOptionPane.showMessageDialog(null, "Error writing to appointment file: " + e.getMessage(), "Error",
+				JOptionPane.showMessageDialog(null, "Error creating appointment file: " + e.getMessage(), "Error",
 						JOptionPane.ERROR_MESSAGE);
+				return;
 			}
+		}
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String currentDate = LocalDate.now().format(formatter);
+		try {
+			FileWriter writer = new FileWriter(appointmentFile, true);
+			writer.write("Doctor: " + Doctor + "\n");
+			writer.write("Date: " + currentDate + " " + Date + "\n");
+			writer.write("Details: " + Details + "\n");
+			writer.write("Remark: Private Reason" + "\n");
+			writer.write("Status: Cancelled" + "\n");
+			writer.write("\n");
+			writer.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Error writing to appointment file: " + e.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
+		}
 	}
-	
+
 }

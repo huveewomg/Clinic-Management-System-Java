@@ -196,7 +196,7 @@ public class AppointmentEdit extends JFrame {
 	// filter by doctor name
 	public static void AppointmentList(String DoctorName, DefaultTableModel model) {
 		try {
-			String filePath = "Appointment.txt";
+			String filePath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Appointment.txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;
 			List<String[]> data = new ArrayList<>(); // List to store appointment data

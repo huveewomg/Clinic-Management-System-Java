@@ -133,7 +133,7 @@ public class MedicalRecord extends JFrame {
 	//import user records from file
 	public boolean importRecord(String PatientName) {
 		try {
-			String directoryPath = "PatientRecords\\";
+			String directoryPath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/PatientRecords/";
 			String filePath = directoryPath + PatientName + ".txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;

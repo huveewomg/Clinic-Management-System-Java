@@ -149,7 +149,7 @@ public class CollectPayment extends JFrame {
 
 	private void ShowPendingList() {
 		try {
-			File file = new File("payment.txt");
+			File file = new File("C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/payment.txt");
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String line;
 			String[] dataRow = new String[4];
@@ -178,8 +178,8 @@ public class CollectPayment extends JFrame {
 	}
 
 	private void StoreData() {
-		String filePath = "credentials.txt";
-		String incomeReportPath = "incomeReport.txt";
+		String filePath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/credentials.txt";
+		String incomeReportPath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/incomeReport.txt";
 		String name = nameField.getText();
 		String fee = feeField.getText();
 
@@ -215,7 +215,7 @@ public class CollectPayment extends JFrame {
 	}
 
 	private void clearPayment(String name) {
-		String filePath = "payment.txt";
+		String filePath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/payment.txt";
 		try {
 			List<String> lines = Files.readAllLines(Paths.get(filePath));
 			int index = -1;

@@ -100,7 +100,7 @@ public class RecordForm extends JFrame {
 				return;
 			}
 
-			FileWriter writer = new FileWriter("Payment.txt\\", true);
+			FileWriter writer = new FileWriter("Payment.txt/", true);
 			writer.write("Name: "+ PatientName + "\n");
 			writer.write("Medication: " + Medication + "\n");
 			writer.write("Fees: " + Fees + "\n");
@@ -108,7 +108,7 @@ public class RecordForm extends JFrame {
 			writer.write("\n");
 			writer.close();
 
-			String directoryPath = "PatientRecords\\";
+			String directoryPath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/PatientRecords/";
 			File patientFile = new File(directoryPath + PatientName + ".txt");
 			if (!patientFile.exists()) {
 				try {

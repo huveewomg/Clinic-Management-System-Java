@@ -64,7 +64,7 @@ public class LoginForm extends BaseFrame {
 		contentPane.add(panel);
  
 		JLabel LoginTitle = new JLabel("Welcome Back !");
-		LoginTitle.setBounds(410, 37, 319, 55);
+		LoginTitle.setBounds(410, 37, 320, 55);
 		LoginTitle.setFont(new Font("Tahoma", Font.PLAIN, 45));
 		contentPane.add(LoginTitle);
 
@@ -114,7 +114,7 @@ public class LoginForm extends BaseFrame {
 
 	// Check Login Credentials
 	private void checkCredentials() {
-        String filepath = "credentials.txt";
+        String filepath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/credentials.txt";
         String usernameInput = UsernameTXT.getText();
         String passwordInput = PasswordTXT.getText();
 
@@ -187,7 +187,7 @@ public class LoginForm extends BaseFrame {
 
     // Get Role from Credentials
 	private String getRoleFromCredentials(String username) {
-        String filepath = "credentials.txt";
+        String filepath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/credentials.txt";
         try {
             File file = new File(filepath);
             Scanner scanner = new Scanner(file);

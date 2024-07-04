@@ -98,7 +98,7 @@ public class IncomeReport extends JFrame {
     }
 
     private void importData() {
-        importData("incomereport.txt");
+        importData("C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/incomeReport.txt");
     }
 
     private void importData(String filePath) {

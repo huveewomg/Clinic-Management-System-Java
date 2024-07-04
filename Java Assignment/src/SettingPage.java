@@ -68,7 +68,7 @@ public class SettingPage extends JFrame {
 			int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete your account?", "Confirmation", JOptionPane.YES_NO_OPTION);
 			if (confirm == JOptionPane.YES_OPTION) {
 				try {
-					BufferedReader reader = new BufferedReader(new FileReader("credentials.txt"));
+					BufferedReader reader = new BufferedReader(new FileReader("C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/credentials.txt"));
 					String line;
 					boolean usernameFound = false;
 					StringBuilder fileContent = new StringBuilder();
@@ -89,7 +89,7 @@ public class SettingPage extends JFrame {
 					if (!usernameFound) {
 						JOptionPane.showMessageDialog(null, "Account not found.");
 					} else {	
-						BufferedWriter writer = new BufferedWriter(new FileWriter("credentials.txt"));
+						BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/credentials.txt"));
 						writer.write(fileContent.toString());
 						writer.close();
 						JOptionPane.showMessageDialog(null, "Account deleted successfully.");

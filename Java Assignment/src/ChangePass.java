@@ -118,7 +118,7 @@ public class ChangePass extends JFrame {
 	}
 
 	private boolean updatePasswordInFile(String username, String newPass) {
-		String filePath = "credentials.txt";
+		String filePath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/credentials.txt";
 		List<String> fileContent = new ArrayList<>();
 		boolean updated = false;
 	

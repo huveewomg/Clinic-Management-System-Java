@@ -147,7 +147,7 @@ public class AppointmentRecord extends JFrame {
 
 	public boolean importAppointment() {
 		try {
-			String directoryPath = "Appointment\\";
+			String directoryPath = "C:/Users/timot/Desktop/AndroidStudioProjects/GitHub/Java-Assignment/Java Assignment/Appointment/";
 			String filePath = directoryPath + username + ".txt";
 			BufferedReader reader = new BufferedReader(new FileReader(filePath));
 			String line;
