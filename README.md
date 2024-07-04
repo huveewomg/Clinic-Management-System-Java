@@ -3,9 +3,8 @@ Java Programming Module for Final Semester
 
 Setup 
 - VSCode
-- Latest LTS Java
+- Support From JDK 13 Above
 
-Current Progress:
-Debug and Documentation
+Current Progress: Completed
 
-Refer To Issues For Potential Bugs 
+Screenshot In coming...
