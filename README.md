@@ -1,4 +1,4 @@
-# Java Assignment Clinic Management System
+# Clinic Management System w Java Swing
 
 
 Setup 
@@ -8,4 +8,4 @@ Setup
 
 Current Progress: Completed
 
-Screenshot In coming...
+Check Documentation.docx for images and explanation. 
